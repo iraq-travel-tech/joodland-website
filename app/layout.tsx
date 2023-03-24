@@ -1,3 +1,4 @@
+import MainNavbar from "@/components/nav/MainNavbar";
 import "@styles/globals.css";
 import { Metadata } from "next";
 
@@ -14,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MainNavbar />
+        <div className="min-h-screen bg-zinc-100 pb-10 ">
+          <div className="md:px-5 max-w-6xl mx-auto px-6">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
