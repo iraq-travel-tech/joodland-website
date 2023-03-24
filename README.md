@@ -7,8 +7,8 @@ front end tech stack:
 
 ### to run the project locally:
 
-1- clone the repo
-2- open your termminal/cmd in same folder in your pc
-3- write `` npm install ``
+1- clone the repo 
 
-4- to run the project: `` npm run dev ``
+2- open your termminal/cmd in same folder in your pc and run `` npm install ``
+
+3- to run the project: `` npm run dev ``
