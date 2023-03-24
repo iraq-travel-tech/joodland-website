@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <MainNavbar />
         <div className="min-h-screen bg-zinc-100 pb-10 ">
-          <div className="md:px-5 max-w-6xl mx-auto px-6">{children}</div>
+          <div className="px-5 max-w-6xl mx-auto">{children}</div>
         </div>
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AiFillCaretDown } from "react-icons/ai";
 import HomeInput from "./inputs/HomeInput";
 import { BsFillCalendarDateFill } from "react-icons/bs";
@@ -10,6 +10,7 @@ import { IoSearch } from "react-icons/io5";
 import dynamic from "next/dynamic";
 import { BiStar } from "react-icons/bi";
 import Link from "next/link";
+import Image from "next/image";
 
 const DropDown = dynamic(() => import("@/components/common/DropDown"));
 const PassengersComponent = dynamic(
@@ -34,7 +35,7 @@ export default function HomeMain() {
 
   return (
     <div>
-      <div className="absolute top-0 left-0 h-[45vh] bg-orange-700 w-full"></div>
+      <div className="absolute top-0 left-0 h-[21em] bg-orange-700 w-full"></div>
 
       <div className="relative flex flex-col  -mt-[3.5em] transition-all">
         <div className="flex flex-col">
@@ -58,10 +59,9 @@ export default function HomeMain() {
               setStateValue={setTripClass}
               options={["business", "economy"]}
             />
-
             <button
               onClick={() => setShowPassengersDialog(!ShowPassengersDialog)}
-              className="bg-white py-2 px-3 text-sm rounded flex gap-2 items-center capitalize active:scale-95 transition-all hover:bg-zinc-100"
+              className="bg-white py-2 px-3 text-xs rounded flex gap-2 items-center capitalize active:scale-95 transition-all hover:bg-zinc-100"
             >
               passengers
               <AiFillCaretDown />
@@ -93,23 +93,25 @@ export default function HomeMain() {
                 />
               </AnimatePresence>
             </div>
-
-            <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 p-2 lg:shadow-xl shadow-md">
-              <button className="lg:py-0 py-3 px-4 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95">
-                <span>
-                  <BsFillCalendarDateFill />
-                </span>
-                Depart Date{" "}
-              </button>
-              <div className="my-1 bg-zinc-300 w-[.06em]"></div>
-              <button className="lg:py-0 py-3 px-4 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95">
-                <span>
-                  <BsFillCalendarDateFill />
-                </span>
-                Return Date
-              </button>
+            <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
+              {TripDirection === "round trip" ? (
+                <>
+                  <DateButton
+                    text="Depart Date"
+                    Icon={<BsFillCalendarDateFill />}
+                  />
+                  <DateButton
+                    text="Return Date"
+                    Icon={<BsFillCalendarDateFill />}
+                  />
+                </>
+              ) : (
+                <DateButton
+                  text="Depart Date"
+                  Icon={<BsFillCalendarDateFill />}
+                />
+              )}
             </div>
-
             <button className="flex items-center sm:justify-between justify-center font-bold px-5 text-white bg-orange-600 hover:bg-orange-500 rounded  shadow-xl hover:scale-95 transition-all active:scale-90 gap-3 capitalize sm:w-max w-full lg:py-0 py-3">
               <IoSearch aria-label="Search" className="rotate-90" />
               search
@@ -133,7 +135,7 @@ export default function HomeMain() {
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col mt-20">
+      <div className="flex flex-col sm:mt-16 mt-12">
         <div className="text-2xl font-bold capitalize">
           what jooLand offers for you
         </div>
@@ -220,10 +222,11 @@ export default function HomeMain() {
               key={place.name}
               className="group active:scale-95 hover:scale-105 transition-all hover:shadow-xl flex flex-col text-white relative h-[15em]"
             >
-              <img
+              <Image
                 src={place.image}
                 className="brightness-50 z-10 absolute top-0 left-0 h-full w-full object-cover rounded-xl"
                 alt={(place.name = " image")}
+                fill
               />
               <div className="flex flex-col absolute bottom-4 left-4 z-20">
                 <div className="group-hover:scale-105 group-hover:shadow-lg transition-all text-sm">
@@ -240,3 +243,29 @@ export default function HomeMain() {
     </div>
   );
 }
+
+const DateButton = ({
+  Icon,
+  text,
+}: {
+  Icon: React.ReactNode;
+  text: string;
+}) => {
+  const buttonVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+    exit: { opacity: 0, transition: { duration: 0.5 } },
+  };
+
+  return (
+    <motion.button
+      className="lg:py-0 py-3 sm:px-4 px-3 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95 min-h-[2em]"
+      variants={buttonVariants}
+      animate="visible"
+      exit="exit"
+    >
+      <span>{Icon}</span>
+      {text}{" "}
+    </motion.button>
+  );
+};
