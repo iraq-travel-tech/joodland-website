@@ -11,7 +11,7 @@ export default function DropDown({ StateValue, setStateValue, options }: any) {
     <Select.Root
       onOpenChange={(e) => {
         setOpen(e);
-        console.log(Open);
+        // console.log(Open);
       }}
       open={Open}
       value={StateValue}
