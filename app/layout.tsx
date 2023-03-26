@@ -1,4 +1,4 @@
-import MainNavbar from "@/components/nav/MainNavbar";
+import MainNavbar from "@/components/core/mainnavbar/MainNavbar/MainNavbar";
 import "@styles/globals.css";
 import { Metadata } from "next";
 
