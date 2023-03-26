@@ -1,1 +1,1 @@
-# diaogbox for webpage
+# dialogbox for webpage
