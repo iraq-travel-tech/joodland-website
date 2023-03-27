@@ -11,18 +11,18 @@ export default function DialogBox({
   setState: any;
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    const body = document.body;
-    if (State) {
-      body.style.overflow = "hidden";
-    } else {
-      body.style.overflow = "auto";
-    }
-    // Add cleanup function to reset the overflow property of the body element
-    return () => {
-      body.style.overflow = "auto";
-    };
-  }, [State]);
+  // useEffect(() => {
+  //   const body = document.body;
+  //   if (State) {
+  //     body.style.overflow = "hidden";
+  //   } else {
+  //     body.style.overflow = "auto";
+  //   }
+  //   // Add cleanup function to reset the overflow property of the body element
+  //   return () => {
+  //     body.style.overflow = "auto";
+  //   };
+  // }, [State]);
 
   return (
     <>

@@ -12,6 +12,7 @@ import { BiStar } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
 
+const TheDateComponent = dynamic(() => import("./Datecomponent"));
 const DropDown = dynamic(() => import("@/components/common/DropDown"));
 const PassengersComponent = dynamic(
   () => import("@/components/home/PassengersComponent")
@@ -31,7 +32,17 @@ export default function HomeMain() {
   const [To, setTo] = useState("");
 
   const [ShowPassengersDialog, setShowPassengersDialog] = useState(false);
+  const [ShowDateComponent, setShowDateComponent] = useState(false);
   const [OpenInput, setOpenInput] = useState<"from" | "to" | null>(null);
+
+  const [OneWayStartDate, setOneWayStartDate] = useState("");
+  const [TwoWaysTripDate, setTwoWaysTripDate] = useState<any>([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: "selection",
+    },
+  ]);
 
   return (
     <div>
@@ -94,25 +105,22 @@ export default function HomeMain() {
               </AnimatePresence>
             </div>
             <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
-              {TripDirection === "round trip" ? (
-                <>
-                  <DateButton
-                    text="Depart Date"
-                    Icon={<BsFillCalendarDateFill />}
-                  />
-                  <DateButton
-                    text="Return Date"
-                    Icon={<BsFillCalendarDateFill />}
-                  />
-                </>
-              ) : (
-                <DateButton
-                  text="Depart Date"
-                  Icon={<BsFillCalendarDateFill />}
-                />
-              )}
+              <motion.button
+                onClick={() => setShowDateComponent(true)}
+                className="lg:py-0 py-3 sm:px-4 px-3 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95 min-h-[2em]"
+              >
+                <span>
+                  <BsFillCalendarDateFill />
+                </span>
+                set date
+              </motion.button>
             </div>
-            <button className="flex items-center sm:justify-between justify-center font-bold px-5 text-white bg-orange-600 hover:bg-orange-500 rounded  shadow-xl hover:scale-95 transition-all active:scale-90 gap-3 capitalize sm:w-max w-full lg:py-0 py-3">
+            <button
+              // onClick={() => {
+              //   console.log(OneWayStartDate, TwoWaysTripDate);
+              // }}
+              className="flex items-center sm:justify-between justify-center font-bold px-5 text-white bg-orange-600 hover:bg-orange-500 rounded  shadow-xl hover:scale-95 transition-all active:scale-90 gap-3 capitalize sm:w-max w-full lg:py-0 py-3"
+            >
               <IoSearch aria-label="Search" className="rotate-90" />
               search
             </button>
@@ -240,32 +248,20 @@ export default function HomeMain() {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {ShowDateComponent && (
+          <TheDateComponent
+            ShowDatePicker={ShowDateComponent}
+            setShowDatePicker={setShowDateComponent}
+            SelectedType={TripDirection}
+            TwoWaysTripDate={TwoWaysTripDate}
+            setTwoWaysTripDate={setTwoWaysTripDate}
+            OneWayStartDate={OneWayStartDate}
+            setOneWayStartDate={setOneWayStartDate}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
-
-const DateButton = ({
-  Icon,
-  text,
-}: {
-  Icon: React.ReactNode;
-  text: string;
-}) => {
-  const buttonVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.5 } },
-    exit: { opacity: 0, transition: { duration: 0.5 } },
-  };
-
-  return (
-    <motion.button
-      className="lg:py-0 py-3 sm:px-4 px-3 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95 min-h-[2em]"
-      variants={buttonVariants}
-      animate="visible"
-      exit="exit"
-    >
-      <span>{Icon}</span>
-      {text}{" "}
-    </motion.button>
-  );
-};
