@@ -19,7 +19,7 @@ const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
   const [TripDirection, setTripDirection] = useState<
     "one way trip" | "round trip"
-  >("round trip");
+  >("one way trip");
   const [TripClass, setTripClass] = useState<"business" | "economy">("economy");
 
   const [Adults, setAdults] = useState(1);

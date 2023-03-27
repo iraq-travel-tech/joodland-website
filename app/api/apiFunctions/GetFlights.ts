@@ -10,6 +10,7 @@ export const GET_flights = async ({
   const data = await fetch(
     "https://joodland-iraqtraveltech.ey.r.appspot.com/flightofferings",
     {
+      cache: "no-store",
       method: "POST",
       headers: {
         "Content-Type": "application/json",

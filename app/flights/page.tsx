@@ -20,7 +20,6 @@ export default async function page({ searchParams }: PageProps) {
   });
 
   const data: FlightsResponse = await res.json();
-  console.log(data);
 
   return (
     <div>
@@ -33,7 +32,7 @@ export default async function page({ searchParams }: PageProps) {
         </div>
       </div>
       <div className="flex py-4 flex-col gap-4">
-        {data?.FlightOfferingsResponse?.FlightOfferings?.FlightOffering?.map(
+        {data.FlightOfferingsResponse.FlightOfferings.FlightOffering?.map(
           (data, index) => (
             <FlightBox key={data.Departure.location.id + index} data={data} />
           )
