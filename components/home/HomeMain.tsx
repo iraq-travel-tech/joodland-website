@@ -12,10 +12,9 @@ import { BiStar } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
 
-const DropDown = dynamic(() => import("@/components/core-ui/dropdown/DropDown"));
-const PassengersComponent = dynamic(
-  () => import("@/components/home/PassengersComponent")
-);
+const TheDateComponent = dynamic(() => import("./Datecomponent"));
+const DropDown = dynamic(() => import("../core-ui/dropdown/DropDown/DropDown"));
+const PassengersComponent = dynamic(() => import("./PassengersComponent"));
 
 export default function HomeMain() {
   const [TripDirection, setTripDirection] = useState<

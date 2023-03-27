@@ -5,7 +5,7 @@ import "react-date-range/dist/theme/default.css";
 import { DateRange, Calendar } from "react-date-range";
 import { motion } from "framer-motion";
 import { MdOutlineClose } from "react-icons/md";
-import DialogBox from "../common/DialogBox";
+import DialogBox from "../core-ui/dialogbox/DialogBox/DialogBox";
 type TheDateComponentProps = {
   SelectedType: string;
   setOneWayStartDate: (date: string) => void;
@@ -114,8 +114,7 @@ export default function TheDateComponent({
           onClick={() => {
             setShowDatePicker(false);
           }}
-          className="rounded font-bold
-        text-white bg-orange-600 p-2 mt-3 active:scale-95 transition-all active:bg-orange-700"
+          className="rounded font-bold text-white bg-orange-600 p-2 mt-3 active:scale-95 transition-all active:bg-orange-700"
         >
           set date
         </button>
