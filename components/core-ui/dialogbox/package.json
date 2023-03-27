@@ -1,0 +1,9 @@
+{
+    "name": "@core-ui/dialogbox",
+    "version": "1.0.0",
+    "module": "index.ts",
+    "description": "dialogbox for website",
+    "license": "UNLICENSED",
+    "private": true,
+    "sideEffects": false
+}

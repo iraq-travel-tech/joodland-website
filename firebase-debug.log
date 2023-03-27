@@ -1,0 +1,261 @@
+[debug] [2023-03-24T20:20:02.866Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T20:20:02.869Z] Command:       /home/ammar/.nvm/versions/node/v18.15.0/bin/node /home/ammar/.nvm/versions/node/v18.15.0/bin/firebase deploy
+[debug] [2023-03-24T20:20:02.870Z] CLI Version:   11.24.1
+[debug] [2023-03-24T20:20:02.870Z] Platform:      linux
+[debug] [2023-03-24T20:20:02.870Z] Node Version:  v18.15.0
+[debug] [2023-03-24T20:20:02.870Z] Time:          Fri Mar 24 2023 21:20:02 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T20:20:02.871Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T20:20:02.979Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T20:20:02.980Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T20:20:02.980Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T20:20:02.983Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T20:20:02.983Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T20:20:02.983Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:20:03.311Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T20:20:03.312Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:20:03.314Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T20:20:03.647Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T20:20:03.648Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_1b7210c5-b7b2-4732-989f-a1a93d0d33d4"}
+[debug] [2023-03-24T20:21:11.414Z] TypeError: Cannot read properties of null (reading 'endsWith')
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:206:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/frameworks/index.js:269:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T20:23:43.420Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T20:23:43.422Z] Command:       /home/ammar/.nvm/versions/node/v18.15.0/bin/node /home/ammar/.nvm/versions/node/v18.15.0/bin/firebase deploy
+[debug] [2023-03-24T20:23:43.422Z] CLI Version:   11.24.1
+[debug] [2023-03-24T20:23:43.423Z] Platform:      linux
+[debug] [2023-03-24T20:23:43.423Z] Node Version:  v18.15.0
+[debug] [2023-03-24T20:23:43.427Z] Time:          Fri Mar 24 2023 21:23:43 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T20:23:43.427Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T20:23:43.511Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T20:23:43.512Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T20:23:43.512Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T20:23:43.514Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T20:23:43.515Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T20:23:43.515Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:23:43.868Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T20:23:43.868Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:23:43.871Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T20:23:44.271Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T20:23:44.271Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T20:24:35.622Z] TypeError: Cannot read properties of null (reading 'endsWith')
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:206:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/frameworks/index.js:269:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v18.15.0/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T20:30:37.223Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T20:30:37.227Z] Command:       /home/ammar/.nvm/versions/node/v16.4.2/bin/node /home/ammar/.nvm/versions/node/v16.4.2/bin/firebase deploy
+[debug] [2023-03-24T20:30:37.228Z] CLI Version:   11.24.1
+[debug] [2023-03-24T20:30:37.228Z] Platform:      linux
+[debug] [2023-03-24T20:30:37.228Z] Node Version:  v16.4.2
+[debug] [2023-03-24T20:30:37.233Z] Time:          Fri Mar 24 2023 21:30:37 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T20:30:37.233Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T20:30:37.389Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T20:30:37.390Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T20:30:37.390Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T20:30:37.394Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T20:30:37.394Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T20:30:37.394Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:30:37.689Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T20:30:37.690Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:30:37.692Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T20:30:38.075Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T20:30:38.075Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T20:30:43.107Z] Error: experimental.appDir requires Node v16.8.0 or later.
+    at /home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:277:35
+    at Array.reduce (<anonymous>)
+    at assignDefaults (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:263:44)
+    at Object.loadConfig [as default] (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:128:32)
+    at async Span.traceAsyncFn (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/trace/trace.js:79:20)
+    at async /home/ammar/git/ITT/jooland-website/node_modules/next/dist/build/index.js:78:28
+    at async Span.traceAsyncFn (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/trace/trace.js:79:20)
+    at async build (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/build/index.js:73:29)
+    at async build (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:55:5)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/frameworks/index.js:261:108)
+    at async deploy (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T20:39:24.691Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T20:39:24.693Z] Command:       /home/ammar/.nvm/versions/node/v19.8.1/bin/node /home/ammar/.nvm/versions/node/v19.8.1/bin/firebase deploy
+[debug] [2023-03-24T20:39:24.694Z] CLI Version:   11.25.1
+[debug] [2023-03-24T20:39:24.694Z] Platform:      linux
+[debug] [2023-03-24T20:39:24.694Z] Node Version:  v19.8.1
+[debug] [2023-03-24T20:39:24.694Z] Time:          Fri Mar 24 2023 21:39:24 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T20:39:24.694Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T20:39:24.776Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T20:39:24.777Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T20:39:24.777Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T20:39:24.780Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T20:39:24.780Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T20:39:24.780Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:39:25.146Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T20:39:25.147Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T20:39:25.148Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T20:39:25.545Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T20:39:25.547Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T20:40:31.060Z] TypeError: Cannot read properties of null (reading 'endsWith')
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:206:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/index.js:269:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T21:02:10.653Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T21:02:10.656Z] Command:       /home/ammar/.nvm/versions/node/v19.8.1/bin/node /home/ammar/.nvm/versions/node/v19.8.1/bin/firebase deploy
+[debug] [2023-03-24T21:02:10.657Z] CLI Version:   11.19.0
+[debug] [2023-03-24T21:02:10.657Z] Platform:      linux
+[debug] [2023-03-24T21:02:10.657Z] Node Version:  v19.8.1
+[debug] [2023-03-24T21:02:10.657Z] Time:          Fri Mar 24 2023 22:02:10 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T21:02:10.658Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T21:02:10.749Z] Object ".hosting" in "firebase.json" has unknown property: {"additionalProperty":"frameworksBackend"}
+[debug] [2023-03-24T21:02:10.749Z] Field ".hosting" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-03-24T21:02:10.750Z] Field ".hosting" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-03-24T21:02:10.773Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T21:02:10.774Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T21:02:10.775Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T21:02:10.789Z] > refreshing access token with scopes: []
+[debug] [2023-03-24T21:02:10.792Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-24T21:02:10.793Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-24T21:02:11.248Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-03-24T21:02:11.249Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-24T21:02:11.284Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T21:02:11.284Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T21:02:11.284Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:02:11.545Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T21:02:11.545Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:02:11.546Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T21:02:11.884Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T21:02:11.885Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T21:02:46.282Z] TypeError: Cannot read properties of null (reading 'endsWith')
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:199:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/index.js:253:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T21:05:37.261Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T21:05:37.265Z] Command:       /home/ammar/.nvm/versions/node/v19.8.1/bin/node /home/ammar/.nvm/versions/node/v19.8.1/bin/firebase deploy
+[debug] [2023-03-24T21:05:37.266Z] CLI Version:   11.18.0
+[debug] [2023-03-24T21:05:37.267Z] Platform:      linux
+[debug] [2023-03-24T21:05:37.267Z] Node Version:  v19.8.1
+[debug] [2023-03-24T21:05:37.267Z] Time:          Fri Mar 24 2023 22:05:37 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T21:05:37.268Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T21:05:37.390Z] Object ".hosting" in "firebase.json" has unknown property: {"additionalProperty":"frameworksBackend"}
+[debug] [2023-03-24T21:05:37.390Z] Field ".hosting" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-03-24T21:05:37.390Z] Field ".hosting" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-03-24T21:05:37.395Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T21:05:37.395Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T21:05:37.395Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T21:05:37.398Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T21:05:37.398Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T21:05:37.398Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:05:37.738Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T21:05:37.740Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:05:37.743Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T21:05:38.127Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T21:05:38.127Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T21:06:15.236Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received null
+    at new NodeError (node:internal/errors:399:5)
+    at validateString (node:internal/validators:163:11)
+    at dirname (node:path:1280:5)
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:204:90)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/index.js:250:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T21:07:39.944Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T21:07:39.948Z] Command:       /home/ammar/.nvm/versions/node/v19.8.1/bin/node /home/ammar/.nvm/versions/node/v19.8.1/bin/firebase deploy
+[debug] [2023-03-24T21:07:39.950Z] CLI Version:   11.19.0
+[debug] [2023-03-24T21:07:39.950Z] Platform:      linux
+[debug] [2023-03-24T21:07:39.950Z] Node Version:  v19.8.1
+[debug] [2023-03-24T21:07:39.950Z] Time:          Fri Mar 24 2023 22:07:39 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T21:07:39.951Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T21:07:40.168Z] Object ".hosting" in "firebase.json" has unknown property: {"additionalProperty":"frameworksBackend"}
+[debug] [2023-03-24T21:07:40.169Z] Field ".hosting" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-03-24T21:07:40.170Z] Field ".hosting" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-03-24T21:07:40.184Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T21:07:40.185Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T21:07:40.186Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T21:07:40.190Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T21:07:40.190Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T21:07:40.191Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:07:40.682Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T21:07:40.682Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:07:40.684Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T21:07:41.117Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T21:07:41.118Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T21:08:14.570Z] TypeError: Cannot read properties of null (reading 'endsWith')
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:199:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/frameworks/index.js:253:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v19.8.1/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T21:37:48.059Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T21:37:48.062Z] Command:       /home/ammar/.nvm/versions/node/v16.4.2/bin/node /home/ammar/.nvm/versions/node/v16.4.2/bin/firebase deploy
+[debug] [2023-03-24T21:37:48.062Z] CLI Version:   11.24.1
+[debug] [2023-03-24T21:37:48.063Z] Platform:      linux
+[debug] [2023-03-24T21:37:48.063Z] Node Version:  v16.4.2
+[debug] [2023-03-24T21:37:48.068Z] Time:          Fri Mar 24 2023 22:37:48 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T21:37:48.068Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T21:37:48.211Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T21:37:48.212Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T21:37:48.213Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T21:37:48.216Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T21:37:48.217Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T21:37:48.217Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:37:48.617Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T21:37:48.618Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:37:48.619Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T21:37:49.017Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T21:37:49.017Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T21:37:55.635Z] Error: experimental.appDir requires Node v16.8.0 or later.
+    at /home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:277:35
+    at Array.reduce (<anonymous>)
+    at assignDefaults (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:263:44)
+    at Object.loadConfig [as default] (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/server/config.js:128:32)
+    at async Span.traceAsyncFn (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/trace/trace.js:79:20)
+    at async /home/ammar/git/ITT/jooland-website/node_modules/next/dist/build/index.js:78:28
+    at async Span.traceAsyncFn (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/trace/trace.js:79:20)
+    at async build (/home/ammar/git/ITT/jooland-website/node_modules/next/dist/build/index.js:73:29)
+    at async build (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:55:5)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/frameworks/index.js:261:108)
+    at async deploy (/home/ammar/.nvm/versions/node/v16.4.2/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-03-24T21:39:31.411Z] ----------------------------------------------------------------------
+[debug] [2023-03-24T21:39:31.413Z] Command:       /home/ammar/.nvm/versions/node/v16.8.0/bin/node /home/ammar/.nvm/versions/node/v16.8.0/bin/firebase deploy
+[debug] [2023-03-24T21:39:31.414Z] CLI Version:   11.19.0
+[debug] [2023-03-24T21:39:31.414Z] Platform:      linux
+[debug] [2023-03-24T21:39:31.414Z] Node Version:  v16.8.0
+[debug] [2023-03-24T21:39:31.414Z] Time:          Fri Mar 24 2023 22:39:31 GMT+0100 (Central European Standard Time)
+[debug] [2023-03-24T21:39:31.414Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-24T21:39:31.503Z] Object ".hosting" in "firebase.json" has unknown property: {"additionalProperty":"frameworksBackend"}
+[debug] [2023-03-24T21:39:31.503Z] Field ".hosting" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-03-24T21:39:31.503Z] Field ".hosting" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-03-24T21:39:31.507Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-24T21:39:31.507Z] > authorizing via signed-in user (joodland.iraqtraveltech@gmail.com)
+[debug] [2023-03-24T21:39:31.507Z] [iam] checking project joodland-iraqtraveltech for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-24T21:39:31.510Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions [none]
+[debug] [2023-03-24T21:39:31.510Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions x-goog-quota-user=projects/joodland-iraqtraveltech
+[debug] [2023-03-24T21:39:31.510Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:39:32.069Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions 200
+[debug] [2023-03-24T21:39:32.069Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/joodland-iraqtraveltech:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-24T21:39:32.073Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech [none]
+[debug] [2023-03-24T21:39:32.448Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech 200
+[debug] [2023-03-24T21:39:32.449Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/joodland-iraqtraveltech {"projectId":"joodland-iraqtraveltech","projectNumber":"175408254516","displayName":"joodland-iraqtraveltech","name":"projects/joodland-iraqtraveltech","resources":{"hostingSite":"joodland-iraqtraveltech","realtimeDatabaseInstance":"joodland-iraqtraveltech-default-rtdb"},"state":"ACTIVE","etag":"1_3395bdf6-7275-4545-aaec-12f6fab6a81d"}
+[debug] [2023-03-24T21:40:11.602Z] TypeError: Cannot read property 'endsWith' of null
+    at ɵcodegenPublicDirectory (/home/ammar/.nvm/versions/node/v16.8.0/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:199:56)
+    at async prepareFrameworks (/home/ammar/.nvm/versions/node/v16.8.0/lib/node_modules/firebase-tools/lib/frameworks/index.js:253:13)
+    at async deploy (/home/ammar/.nvm/versions/node/v16.8.0/lib/node_modules/firebase-tools/lib/deploy/index.js:53:13)
+[error] 
+[error] Error: An unexpected error has occurred.

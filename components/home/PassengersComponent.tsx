@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import DialogBox from "../common/DialogBox";
+import DialogBox from "../core-ui/dialogbox/DialogBox";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function PassengersComponent({
