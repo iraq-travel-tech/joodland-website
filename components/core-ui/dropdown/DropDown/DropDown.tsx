@@ -40,18 +40,18 @@ export default function DropDown({
     }
   }
 
-  useEffect(() => {
-    const body = document.body;
-    if (isOpen) {
-      body.style.overflow = "hidden";
-    } else {
-      body.style.overflow = "auto";
-    }
-    // Add cleanup function to reset the overflow property of the body element
-    return () => {
-      body.style.overflow = "auto";
-    };
-  }, [isOpen]);
+  // useEffect(() => {
+  //   const body = document.body;
+  //   if (isOpen) {
+  //     body.style.overflow = "hidden";
+  //   } else {
+  //     body.style.overflow = "auto";
+  //   }
+  //   // Add cleanup function to reset the overflow property of the body element
+  //   return () => {
+  //     body.style.overflow = "auto";
+  //   };
+  // }, [isOpen]);
 
   return (
     <div className="relative" ref={componentRef}>

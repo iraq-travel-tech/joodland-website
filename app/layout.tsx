@@ -1,4 +1,4 @@
-import MainNavbar from "@/components/core-ui/mainnavbar/MainNavbar";
+import MainNavbar from "@/components/core-ui/mainnavbar/MainNavbar/MainNavbar";
 import "@styles/globals.css";
 import { Metadata } from "next";
 
@@ -6,6 +6,20 @@ export const metadata: Metadata = {
   title: "JoodLand Travel",
   description:
     "Book flights effortlessly. Find the best deals from top airlines and book your next flight with ease.",
+  keywords: ["book flights", "travel", "flight tickets"],
+  // twitter: {
+  //   card: "summary",
+  //   title: "JoodLand Travel",
+
+  //   description:
+  //     "Book flights effortlessly. Find the best deals from top airlines and book your next flight with ease.",
+  // },
+  openGraph: {
+    title: "JoodLand Travel",
+    description:
+      "Book flights effortlessly. Find the best deals from top airlines and book your next flight with ease.",
+    images:["/images/metadata_bg.jpg"]
+  },
 };
 
 export default function RootLayout({
