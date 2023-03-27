@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { BsFillCalendarDateFill } from "react-icons/bs";
@@ -116,15 +117,13 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
                 set date
               </motion.button>
             </div>
-            <button
-              // onClick={() => {
-              //   console.log(OneWayStartDate, TwoWaysTripDate);
-              // }}
+            <Link
+              href={`/flights?from=${From}&to=${To}&tripclass=${TripClass}&adults=${Adults}&children=${Children}&babies=${Babies}&departure=${OneWayStartDate}`}
               className="flex items-center sm:justify-between justify-center font-bold px-5 text-white bg-orange-600 hover:bg-orange-500 rounded  shadow-xl hover:scale-95 transition-all active:scale-90 gap-3 capitalize sm:w-max w-full lg:py-0 py-3"
             >
               <IoSearch aria-label="Search" className="rotate-90" />
               search
-            </button>
+            </Link>
           </div>
         </div>
       </div>

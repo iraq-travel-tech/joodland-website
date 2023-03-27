@@ -7,55 +7,41 @@ export const GET_flights = async ({
   departure,
   currencyCode,
 }: SearchParamsProps) => {
-  const request = await fetch(
-    `https://uapi-search-microservice-f2.ey.r.appspot.com/flightofferings/`,
+  const data = await fetch(
+    "https://joodland-iraqtraveltech.ey.r.appspot.com/flightofferings",
     {
       method: "POST",
       headers: {
-        Accept: "application/json, text/plain",
-        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         CatalogOfferingsRequestAir: {
-          offersPerPage: 5,
+          offersPerPage: 1,
           PassengerCriteria: [
             {
               value: "ADT",
-              number: adults,
+              number: 1,
             },
           ],
           PricingModifiersAir: {
-            currencyCode: currencyCode || "USD",
+            currencyCode: "USD",
           },
           SearchCriteriaFlight: [
             {
               "@type": "SearchCriteriaFlight",
               departureDate: departure,
               From: {
-                value: from?.toLowerCase(),
+                value: from,
               },
               To: {
-                value: to?.toUpperCase(),
+                value: to,
               },
             },
           ],
-          SearchModifiersAir: {
-            "@type": "SearchModifiersAir",
-            CarrierPreference: {
-              "@type": "CarrierPreference",
-              type: "Prohibited",
-              carriers: ["WN"],
-            },
-          },
-          PseudoCityInfo: {
-            value: "PCC",
-          },
         },
       }),
     }
   );
 
-  const response = await request.json();
-
-  return response;
+  return data;
 };
