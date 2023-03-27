@@ -12,7 +12,7 @@ import { BiStar } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
 
-const DropDown = dynamic(() => import("@/components/core/dropdown/DropDown"));
+const DropDown = dynamic(() => import("@/components/core-ui/dropdown/DropDown"));
 const PassengersComponent = dynamic(
   () => import("@/components/home/PassengersComponent")
 );
