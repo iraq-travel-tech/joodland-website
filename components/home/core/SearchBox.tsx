@@ -9,10 +9,14 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import HomeInput from "../inputs/HomeInput";
+import RegularButton from "@/components/core-ui/buttons/regular/RegularButton";
+import OrangeButtonLink from "@/components/core-ui/links/buttonlink/OrangeButtonLink";
 
-const TheDateComponent = dynamic(() => import("../Datecomponent"));
+const TheDateComponent = dynamic(
+  () => import("../../core-ui/calendar/Datecomponent")
+);
 const DropDown = dynamic(
-  () => import("@/components/core-ui/dropdown/DropDown/DropDown")
+  () => import("@/components/core-ui/dropdown/SimpleDropDown/DropDown")
 );
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
@@ -61,7 +65,7 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
         )}
 
         <div className="flex flex-col mt-5 gap-3">
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <DropDown
               StateValue={TripDirection}
               setStateValue={setTripDirection}
@@ -72,13 +76,14 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               setStateValue={setTripClass}
               options={["business", "economy"]}
             />
-            <button
+            <RegularButton
               onClick={() => setShowPassengersDialog(!ShowPassengersDialog)}
-              className="bg-white py-2 px-3 text-xs rounded flex gap-2 items-center capitalize active:scale-95 transition-all hover:bg-zinc-100"
+              bg="white"
+              endIcon={<AiFillCaretDown />}
+              className="!text-xs capitalize"
             >
               passengers
-              <AiFillCaretDown />
-            </button>
+            </RegularButton>
           </div>
 
           <div className="flex lg:flex-row flex-col gap-3">
@@ -107,23 +112,23 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               </AnimatePresence>
             </div>
             <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
-              <motion.button
+              <RegularButton
                 onClick={() => setShowDateComponent(true)}
-                className="lg:py-0 py-3 sm:px-4 px-3 min-w-max capitalize lg:flex-none flex-1 flex items-center gap-3 hover:bg-zinc-200 transition-all bg-white rounded active:scale-95 min-h-[2em]"
+                bg="white"
+                endIcon={<BsFillCalendarDateFill />}
+                className="capitalize justify-center items-center w-full"
               >
-                <span>
-                  <BsFillCalendarDateFill />
-                </span>
                 set date
-              </motion.button>
+              </RegularButton>
             </div>
-            <Link
+
+            <OrangeButtonLink
               href={`/flights?from=${From}&to=${To}&tripclass=${TripClass}&adults=${Adults}&children=${Children}&babies=${Babies}&departure=${OneWayStartDate}`}
-              className="flex items-center sm:justify-between justify-center font-bold px-5 text-white bg-orange-600 hover:bg-orange-500 rounded  shadow-xl hover:scale-95 transition-all active:scale-90 gap-3 capitalize sm:w-max w-full lg:py-0 py-3"
+              endIcon={<IoSearch aria-label="Search" className="rotate-90" />}
+              className="!justify-center"
             >
-              <IoSearch aria-label="Search" className="rotate-90" />
-              search
-            </Link>
+              Search
+            </OrangeButtonLink>
           </div>
         </div>
       </div>

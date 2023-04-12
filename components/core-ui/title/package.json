@@ -1,9 +1,0 @@
-{
-    "name": "@core-ui/title",
-    "version": "1.0.0",
-    "module": "index.ts",
-    "description": "title for website",
-    "license": "UNLICENSED",
-    "private": true,
-    "sideEffects": false
-}

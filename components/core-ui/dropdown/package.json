@@ -1,9 +1,0 @@
-{
-    "name": "@core-ui/dropdown",
-    "version": "1.0.0",
-    "module": "index.ts",
-    "description": "dropdown for website",
-    "license": "UNLICENSED",
-    "private": true,
-    "sideEffects": false
-}

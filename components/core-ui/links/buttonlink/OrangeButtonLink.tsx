@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type buttonsProps = {
   children: React.ReactNode;
   className?: string;
@@ -5,11 +7,13 @@ type buttonsProps = {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   onClick?: () => void;
+  href?: string;
 };
 
 export default function OrangeButtonLink(props: buttonsProps) {
   return (
-    <button
+    <Link
+      href={props.href || "#"}
       onClick={props.onClick}
       data-size={props.size || "md"}
       className={`
@@ -19,7 +23,7 @@ export default function OrangeButtonLink(props: buttonsProps) {
       text-white
       bg-orange-600
   
-      hover:bg-orange-700
+      hover:bg-orange-500
       active:scale-95 transition-all
         
       rounded
@@ -36,6 +40,6 @@ export default function OrangeButtonLink(props: buttonsProps) {
       <span>{props.startIcon}</span>
       {props.children}
       <span>{props.endIcon}</span>
-    </button>
+    </Link>
   );
 }

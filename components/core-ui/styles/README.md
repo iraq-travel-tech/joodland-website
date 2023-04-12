@@ -1,1 +1,0 @@
-# core component for webpage

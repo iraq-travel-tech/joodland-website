@@ -20,6 +20,7 @@ export default async function page({ searchParams }: PageProps) {
   });
 
   const data: FlightsResponse = await res.json();
+  console.log(data);
 
   return (
     <div>
