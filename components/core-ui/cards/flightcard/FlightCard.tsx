@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
+import OrangeButtonLink from "../../links/buttonlink/OrangeButtonLink";
 
 type FlightCardProps = {};
 
 export default function FlightCard(props: FlightCardProps) {
-  const [ShowDetails, setShowDetails] = useState(true);
+  const [ShowDetails, setShowDetails] = useState(false);
 
   return (
     <div className="flex flex-col rounded-xl bg-white">
@@ -87,6 +88,10 @@ export default function FlightCard(props: FlightCardProps) {
 
               <StopFlightBox />
               <StopFlightBox />
+
+              <OrangeButtonLink className="mt-3 w-max">
+                checkout
+              </OrangeButtonLink>
             </div>
           </motion.div>
         )}

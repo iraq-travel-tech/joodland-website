@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@radix-ui/react-form": "^0.0.2",
     "@radix-ui/react-select": "^1.2.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/node": "18.15.6",

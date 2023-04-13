@@ -74,7 +74,7 @@ export default function TheDateComponent({
           {SelectedType === "round trip" && (
             <DateRange
               minDate={new Date()}
-              editableDateInputs={true}
+              editableOldDateInputs={true}
               onChange={(item: any) => {
                 setTwoWaysTripDate([item.selection]);
               }}
