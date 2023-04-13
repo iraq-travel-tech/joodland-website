@@ -3,6 +3,7 @@ import SearchBox from "@/components/home/core/SearchBox";
 import { FlightsResponse } from "@/interfces/ResponseTypes";
 import { SearchParamsProps } from "@/interfces/SearchParamsProps";
 import { GET_flights } from "../api/apiFunctions/GetFlights";
+import FlightCard from "@/components/core-ui/cards/flightcard/FlightCard";
 
 type PageProps = {
   searchParams: SearchParamsProps;
@@ -33,11 +34,16 @@ export default async function page({ searchParams }: PageProps) {
         </div>
       </div>
       <div className="flex py-4 flex-col gap-4">
-        {data.FlightOfferingsResponse.FlightOfferings.FlightOffering?.map(
+        {/* {data.FlightOfferingsResponse.FlightOfferings.FlightOffering?.map(
           (data, index) => (
             <FlightBox key={data.Departure.location.id + index} data={data} />
           )
-        )}
+        )} */}
+
+        <FlightCard />
+        <FlightCard />
+        <FlightCard />
+        <FlightCard />
       </div>
     </div>
   );
