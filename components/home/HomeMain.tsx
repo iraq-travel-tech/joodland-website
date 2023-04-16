@@ -1,8 +1,4 @@
-"use client";
-import dynamic from "next/dynamic";
 import { BiStar } from "react-icons/bi";
-import Link from "next/link";
-import Image from "next/image";
 import SearchBox from "./core/SearchBox";
 import OfferCard from "../core-ui/cards/offercards/OfferCard";
 import ImageCard from "../core-ui/cards/imagecards/ImageCard";
@@ -72,9 +68,9 @@ export default function HomeMain() {
         </div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 mt-8">
-          {offers.map((service) => (
+          {offers.map((service,index) => (
             <OfferCard
-              key={service.serviceTitle}
+              key={service.serviceTitle + index}
               title={service.serviceTitle}
               description={service.serviceDescription}
               icon={<service.icon />}
@@ -89,9 +85,9 @@ export default function HomeMain() {
         </div>
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3 mt-8">
-          {places.map((place) => (
+          {places.map((place, index) => (
             <ImageCard
-              key={place.name}
+              key={place.name + index}
               name={place.name}
               link={place.link}
               image={place.image}

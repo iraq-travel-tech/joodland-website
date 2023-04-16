@@ -2,19 +2,15 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import React, { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
-import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
-import HomeInput from "../inputs/HomeInput";
 import RegularButton from "@/components/core-ui/buttons/regular/RegularButton";
 import OrangeButtonLink from "@/components/core-ui/links/buttonlink/OrangeButtonLink";
+import UiHomeInput from "@/components/ui/inputs/UiHomeInput";
+import UiDateButton from "@/components/ui/buttons/UiDateButton";
 
-const TheDateComponent = dynamic(
-  () => import("../../core-ui/calendar/Datecomponent")
-);
 const DropDown = dynamic(
   () => import("@/components/core-ui/dropdown/SimpleDropDown/DropDown")
 );
@@ -35,7 +31,6 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
 
   const [ShowPassengersDialog, setShowPassengersDialog] = useState(false);
   const [ShowDateComponent, setShowDateComponent] = useState(false);
-  const [OpenInput, setOpenInput] = useState<"from" | "to" | null>(null);
 
   const [OneWayStartDate, setOneWayStartDate] = useState("");
   const [TwoWaysTripDate, setTwoWaysTripDate] = useState<any>([
@@ -88,38 +83,34 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
 
           <div className="flex lg:flex-row flex-col gap-3">
             <div className="flex md:flex-row flex-col gap-3 flex-1">
-              <AnimatePresence>
-                <HomeInput
-                  State={From}
-                  setState={setFrom}
-                  setOpenInput={setOpenInput}
-                  OpenInput={OpenInput}
-                  icon={<FaPlaneDeparture />}
-                  placeholder="Going From"
-                  name="from"
-                  key={"from"}
-                />
-                <HomeInput
-                  State={To}
-                  setState={setTo}
-                  setOpenInput={setOpenInput}
-                  OpenInput={OpenInput}
-                  icon={<FaPlaneArrival />}
-                  placeholder="Going To"
-                  name="to"
-                  key={"to"}
-                />
-              </AnimatePresence>
+              <UiHomeInput
+                Value={From}
+                setValue={setFrom}
+                name="from"
+                placeholder="Going From"
+                startIcon={<FaPlaneDeparture />}
+              />
+
+              <UiHomeInput
+                Value={To}
+                setValue={setTo}
+                name="to"
+                placeholder="Going To"
+                startIcon={<FaPlaneArrival />}
+              />
             </div>
             <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
-              <RegularButton
+              {/* <RegularButton
                 onClick={() => setShowDateComponent(true)}
                 bg="white"
                 endIcon={<BsFillCalendarDateFill />}
                 className="capitalize justify-center items-center w-full"
               >
                 set date
-              </RegularButton>
+              </RegularButton> */}
+              <UiDateButton
+                isRange={TripDirection === "round trip" ? true : false}
+              />
             </div>
 
             <OrangeButtonLink
@@ -146,7 +137,7 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
           />
         )}
       </AnimatePresence>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {ShowDateComponent && (
           <TheDateComponent
             ShowDatePicker={ShowDateComponent}
@@ -158,7 +149,7 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
             setOneWayStartDate={setOneWayStartDate}
           />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </div>
   );
 }

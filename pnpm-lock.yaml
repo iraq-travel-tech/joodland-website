@@ -4,6 +4,9 @@ dependencies:
   '@radix-ui/react-form':
     specifier: ^0.0.2
     version: 0.0.2(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-popover':
+    specifier: ^1.0.5
+    version: 1.0.5(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
   '@radix-ui/react-select':
     specifier: ^1.2.1
     version: 1.2.1(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
@@ -19,6 +22,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.0.11
     version: 18.0.11
+  class-variance-authority:
+    specifier: ^0.5.2
+    version: 0.5.2(typescript@5.0.2)
   date-fns:
     specifier: ^2.29.3
     version: 2.29.3
@@ -34,6 +40,12 @@ dependencies:
   framer-motion:
     specifier: ^10.8.5
     version: 10.8.5(react-dom@18.2.0)(react@18.2.0)
+  install:
+    specifier: ^0.13.0
+    version: 0.13.0
+  moment:
+    specifier: 2.29.1
+    version: 2.29.1
   next:
     specifier: 13.2.4
     version: 13.2.4(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)
@@ -45,7 +57,7 @@ dependencies:
     version: 1.4.0(date-fns@2.29.3)(react@18.2.0)
   react-dates:
     specifier: ^21.8.0
-    version: 21.8.0(@babel/runtime@7.21.0)(moment@2.29.4)(react-dom@18.2.0)(react-with-direction@1.4.0)(react@18.2.0)
+    version: 21.8.0(@babel/runtime@7.21.0)(moment@2.29.1)(react-dom@18.2.0)(react-with-direction@1.4.0)(react@18.2.0)
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
@@ -2416,6 +2428,34 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@radix-ui/react-popover@1.0.5(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-GRHZ8yD12MrN2NLobHPE8Rb5uHTxd9x372DE9PPNnBjpczAQHcZ5ne0KXG4xpf+RDdXSzdLv9ym6mYJCDTaUZg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@radix-ui/primitive': 1.0.0
+      '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
+      '@radix-ui/react-context': 1.0.0(react@18.2.0)
+      '@radix-ui/react-dismissable-layer': 1.0.3(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-focus-guards': 1.0.0(react@18.2.0)
+      '@radix-ui/react-focus-scope': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-id': 1.0.0(react@18.2.0)
+      '@radix-ui/react-popper': 1.1.1(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-portal': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-presence': 1.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-slot': 1.0.1(react@18.2.0)
+      '@radix-ui/react-use-controllable-state': 1.0.0(react@18.2.0)
+      aria-hidden: 1.2.3
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-remove-scroll: 2.5.5(@types/react@18.0.28)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
   /@radix-ui/react-popper@1.1.1(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-keYDcdMPNMjSC8zTsZ8wezUMiWM9Yj14wtF3s0PTIs9srnEPC9Kt2Gny1T3T81mmSeyDjZxsD9N5WCwNNb712w==}
     peerDependencies:
@@ -2447,6 +2487,19 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@radix-ui/react-primitive': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@radix-ui/react-presence@1.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-A+6XEvN01NfVWiKu38ybawfHsBjWum42MRPnEuqPsBZ4eV7e/7K321B5VgYMPv3Xx5An6o1/l9ZuDBgmcmWK3w==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
+      '@radix-ui/react-use-layout-effect': 1.0.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5187,6 +5240,17 @@ packages:
       json-parse-helpfulerror: 1.0.3
     dev: false
 
+  /class-variance-authority@0.5.2(typescript@5.0.2):
+    resolution: {integrity: sha512-j7Qqw3NPbs4IpO80gvdACWmVvHiLLo5MECacUBLnJG17CrLpWaQ7/4OaWX6P0IO1j2nvZ7AuSfBS/ImtEUZJGA==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 6'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.0.2
+    dev: false
+
   /classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
@@ -7897,6 +7961,11 @@ packages:
     dev: false
     optional: true
 
+  /install@0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /internal-slot@1.0.5:
     resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
     engines: {node: '>= 0.4'}
@@ -9114,8 +9183,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  /moment@2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+  /moment@2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
     dev: false
 
   /morgan@1.10.0:
@@ -10270,7 +10339,7 @@ packages:
       shallow-equal: 1.2.1
     dev: false
 
-  /react-dates@21.8.0(@babel/runtime@7.21.0)(moment@2.29.4)(react-dom@18.2.0)(react-with-direction@1.4.0)(react@18.2.0):
+  /react-dates@21.8.0(@babel/runtime@7.21.0)(moment@2.29.1)(react-dom@18.2.0)(react-with-direction@1.4.0)(react@18.2.0):
     resolution: {integrity: sha512-PPriGqi30CtzZmoHiGdhlA++YPYPYGCZrhydYmXXQ6RAvAsaONcPtYgXRTLozIOrsQ5mSo40+DiA5eOFHnZ6xw==}
     peerDependencies:
       '@babel/runtime': ^7.0.0
@@ -10285,14 +10354,14 @@ packages:
       enzyme-shallow-equal: 1.0.5
       is-touch-device: 1.0.1
       lodash: 4.17.21
-      moment: 2.29.4
+      moment: 2.29.1
       object.assign: 4.1.4
       object.values: 1.1.6
       prop-types: 15.8.1
       raf: 3.4.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-moment-proptypes: 1.8.1(moment@2.29.4)
+      react-moment-proptypes: 1.8.1(moment@2.29.1)
       react-outside-click-handler: 1.3.0(react-dom@18.2.0)(react@18.2.0)
       react-portal: 4.2.2(react-dom@18.2.0)(react@18.2.0)
       react-with-direction: 1.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -10399,12 +10468,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-moment-proptypes@1.8.1(moment@2.29.4):
+  /react-moment-proptypes@1.8.1(moment@2.29.1):
     resolution: {integrity: sha512-Er940DxWoObfIqPrZNfwXKugjxMIuk1LAuEzn23gytzV6hKS/sw108wibi9QubfMN4h+nrlje8eUCSbQRJo2fQ==}
     peerDependencies:
       moment: '>=1.6.0'
     dependencies:
-      moment: 2.29.4
+      moment: 2.29.1
     dev: false
 
   /react-outside-click-handler@1.3.0(react-dom@18.2.0)(react@18.2.0):

@@ -124,8 +124,8 @@ const FlightDetails = ({
           <div className="divider h-[.1em] bg-zinc-300 rounded-full" />
 
           {data.totalStops >= 1 &&
-            data.flightSegments?.map((i) => (
-              <StopFlightBox key={i.Flight.id} flight={i.Flight} />
+            data.flightSegments?.map((i, index) => (
+              <StopFlightBox key={i.Flight.id + index} flight={i.Flight} />
             ))}
         </motion.div>
       )}

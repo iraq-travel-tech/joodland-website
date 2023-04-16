@@ -47,9 +47,9 @@ export default function PassengersComponent({
 
         <div className="w-full h-[.03em] my-4 bg-zinc-200 rounded-full" />
         <div className="flex flex-col gap-4">
-          {psList.map((passenger, index: number) => (
+          {psList.map((passenger, index) => (
             <div
-              key={index + passenger.name}
+              key={passenger.name + index}
               className="flex gap-8 justify-between items-center"
             >
               <div className="flex flex-col">
