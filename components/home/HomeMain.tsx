@@ -1,13 +1,8 @@
 import { BiStar } from "react-icons/bi";
 import SearchBox from "./core/SearchBox";
-<<<<<<< HEAD
-import UiImageCard from "../ui/cards/imagecards/UiImageCard";
-import UiOfferCard from "../ui/cards/offercards/UiOfferCard";
-=======
-import OfferCard from "../core-ui/cards/offercards/OfferCard";
-import ImageCard from "../core-ui/cards/imagecards/ImageCard";
 import { LocaleInterface } from "@/dictionaries/LocaleInterface";
->>>>>>> dev
+import UiOfferCard from "../ui/cards/offercards/UiOfferCard";
+import UiImageCard from "../ui/cards/imagecards/UiImageCard";
 
 const offers = [
   {
@@ -78,21 +73,12 @@ export default function HomeMain(props: PageProps) {
         </div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 mt-8">
-<<<<<<< HEAD
-          {offers.map((service, index) => (
-            <UiOfferCard
-              key={service.serviceTitle + index}
-              title={service.serviceTitle}
-              description={service.serviceDescription}
-              icon={<service.icon />}
-=======
           {props.dictionary.home.offers.map((service, index) => (
-            <OfferCard
+            <UiOfferCard
               key={service.title + index}
               title={service.title}
               description={service.description}
               icon={<BiStar className="text-2xl text-orange-700" />}
->>>>>>> dev
             />
           ))}
         </div>
@@ -104,16 +90,8 @@ export default function HomeMain(props: PageProps) {
         </div>
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3 mt-8">
-<<<<<<< HEAD
-          {places.map((place, index) => (
-            <UiImageCard
-              key={place.name + index}
-              name={place.name}
-              link={place.link}
-              image={place.image}
-=======
           {props.dictionary.home.bookflightscards.map((place, index) => (
-            <ImageCard
+            <UiImageCard
               dictionary={props.dictionary}
               key={place + index}
               name={place}
@@ -121,7 +99,6 @@ export default function HomeMain(props: PageProps) {
               image={
                 "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aXN0YW5idWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
               }
->>>>>>> dev
             />
           ))}
         </div>
