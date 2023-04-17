@@ -5,6 +5,8 @@ type CardProps = {
   name: string;
   image: string;
   link: string;
+
+  dictionary: any;
 };
 export default function UiImageCard(props: CardProps) {
   return (
@@ -18,9 +20,10 @@ export default function UiImageCard(props: CardProps) {
         alt={props.name + " image"}
         fill
       />
-      <div className="flex flex-col absolute bottom-4 left-4 z-20">
+      <div className="flex flex-col absolute bottom-4 left-4 rtl:!right-5 z-20">
         <div className="group-hover:scale-105 group-hover:shadow-lg transition-all text-sm">
-          flights to
+          {/* flights to */}
+          {props.dictionary.home.flightsto}
         </div>
         <div className="group-hover:scale-105 group-hover:shadow-lg transition-all text-2xl font-bold capitalize">
           {props.name}
