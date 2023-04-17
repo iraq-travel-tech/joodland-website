@@ -12,7 +12,7 @@ interface UiHomeInputProps {
   Value: string;
   setValue: any;
 
-  name: "from" | "to";
+  name: string;
 
   className?: string;
 }
@@ -62,7 +62,7 @@ flex-1
       >
         <input
           type="text"
-          className="w-full bg-white pl-12 h-full flex-1 rounded p-4 shadow-md"
+          className="w-full bg-white ltr:pl-12 rtl:pr-12 h-full flex-1 rounded p-4 shadow-md"
           placeholder={props.placeholder}
           value={props.Value}
           onChange={(e) => {
@@ -72,7 +72,9 @@ flex-1
           onBlur={handleInputBlur}
           onClick={() => setOpenInput(true)}
         />
-        <span className="ml-3 absolute top-4.5 left-2">{props.startIcon}</span>{" "}
+        <span className="ltr:ml-3 rtl:mr-3 absolute top-4.5 ltr:left-2 rtl:right-2">
+          {props.startIcon}
+        </span>{" "}
         <AnimatePresence>
           {OpenInput && (
             <motion.button
@@ -82,7 +84,7 @@ flex-1
               onClick={() => {
                 setOpenInput(false);
               }}
-              className="ml-3 hover:bg-zinc-200 p-1 rounded-full active:scale-95 transition-all absolute top-4.5 right-3"
+              className="ml-3 hover:bg-zinc-200 p-1 rounded-full active:scale-95 transition-all absolute top-4.5 ltr:right-3 rtl:left-3"
             >
               <IoClose size={17} />
             </motion.button>

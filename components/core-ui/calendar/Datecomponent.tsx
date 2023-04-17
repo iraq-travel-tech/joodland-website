@@ -66,21 +66,20 @@ export default function TheDateComponent({
               minDate={new Date()}
               className="w-full"
               date={new Date()}
-              onChange={(date: string) =>
-                setOneWayStartDate(formatDate(formatDate(date)))
+              onChange={(date) =>
+                setOneWayStartDate(formatDate(formatDate(date as any)))
               }
             />
           )}
           {SelectedType === "round trip" && (
             <DateRange
               minDate={new Date()}
-              editableOldDateInputs={true}
+              // editableOldDateInputs={true}
               onChange={(item: any) => {
                 setTwoWaysTripDate([item.selection]);
               }}
               moveRangeOnFirstSelection={false}
-              ranges={TwoWaysTripDate}
-              min
+              ranges={TwoWaysTripDate as any}
             />
           )}
         </div>

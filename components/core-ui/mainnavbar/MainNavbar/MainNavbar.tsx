@@ -3,8 +3,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import { LocaleInterface } from "@/dictionaries/LocaleInterface";
 
-export default function MainNavbar() {
+export default function MainNavbar({
+  dictionary,
+}: {
+  dictionary: LocaleInterface;
+}) {
   const [OpenSidebar, setOpenSidebar] = useState(false);
   const pathname = usePathname();
 
@@ -29,11 +34,11 @@ export default function MainNavbar() {
         >
           {[
             {
-              name: "home",
+              name: dictionary.nav.home,
               link: "/",
             },
             {
-              name: "about",
+              name: dictionary.nav.about,
               link: "/about",
             },
           ].map((i) => (

@@ -10,17 +10,22 @@ import RegularButton from "@/components/core-ui/buttons/regular/RegularButton";
 import OrangeButtonLink from "@/components/core-ui/links/buttonlink/OrangeButtonLink";
 import UiHomeInput from "@/components/ui/inputs/UiHomeInput";
 import UiDateButton from "@/components/ui/buttons/UiDateButton";
+import { LocaleInterface } from "@/dictionaries/LocaleInterface";
 
 const DropDown = dynamic(
   () => import("@/components/core-ui/dropdown/SimpleDropDown/DropDown")
 );
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
-export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
-  const [TripDirection, setTripDirection] = useState<
-    "one way trip" | "round trip"
-  >("one way trip");
-  const [TripClass, setTripClass] = useState<"business" | "economy">("economy");
+export default function SearchBox({
+  showtexts,
+  dictionary,
+}: {
+  showtexts?: boolean;
+  dictionary: LocaleInterface;
+}) {
+  const [TripDirection, setTripDirection] = useState(dictionary.home.oneway);
+  const [TripClass, setTripClass] = useState(dictionary.home.economy);
 
   const [Adults, setAdults] = useState(1);
   const [Children, setChildren] = useState(0);
@@ -51,10 +56,12 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
         {showtexts && (
           <div className="flex flex-col">
             <div className="md:text-4xl text-2xl mt-40 font-bold text-white">
-              Where are you flying?
+              {/* Where are you flying? */}
+              {dictionary.home.title}
             </div>
             <div className="md:text-2xl text-lg text-white">
-              Find Your Flights and Book Them with Ease with Jooland.
+              {/* Find Your Flights and Book Them with Ease with Jooland. */}
+              {dictionary.home.subtitle}
             </div>
           </div>
         )}
@@ -64,12 +71,13 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
             <DropDown
               StateValue={TripDirection}
               setStateValue={setTripDirection}
-              options={["round trip", "one way trip"]}
+              options={[dictionary.home.oneway, dictionary.home.roundtrip]}
             />
             <DropDown
               StateValue={TripClass}
               setStateValue={setTripClass}
-              options={["business", "economy"]}
+              // options={["business", "economy"]}
+              options={[dictionary.home.economy, dictionary.home.business]}
             />
             <RegularButton
               onClick={() => setShowPassengersDialog(!ShowPassengersDialog)}
@@ -77,7 +85,8 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               endIcon={<AiFillCaretDown />}
               className="!text-xs capitalize"
             >
-              passengers
+              {/* passengers */}
+              {dictionary.home.passengers}
             </RegularButton>
           </div>
 
@@ -86,16 +95,16 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               <UiHomeInput
                 Value={From}
                 setValue={setFrom}
-                name="from"
-                placeholder="Going From"
+                name={dictionary.home.from.value}
+                placeholder={dictionary.home.from.title}
                 startIcon={<FaPlaneDeparture />}
               />
 
               <UiHomeInput
                 Value={To}
                 setValue={setTo}
-                name="to"
-                placeholder="Going To"
+                name={dictionary.home.to.value}
+                placeholder={dictionary.home.to.title}
                 startIcon={<FaPlaneArrival />}
               />
             </div>
@@ -109,7 +118,9 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
                 set date
               </RegularButton> */}
               <UiDateButton
-                isRange={TripDirection === "round trip" ? true : false}
+                isRange={
+                  TripDirection === dictionary.home.roundtrip ? true : false
+                }
               />
             </div>
 
@@ -118,7 +129,8 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               endIcon={<IoSearch aria-label="Search" className="rotate-90" />}
               className="!justify-center"
             >
-              Search
+              {/* search */}
+              {dictionary.home.search}
             </OrangeButtonLink>
           </div>
         </div>
@@ -126,6 +138,7 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
       <AnimatePresence>
         {ShowPassengersDialog && (
           <PassengersComponent
+          dictionary={dictionary}
             Adults={Adults}
             setAdults={setAdults}
             Children={Children}

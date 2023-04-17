@@ -13,27 +13,28 @@ export default function PassengersComponent({
   setChildren,
   Babies,
   setBabies,
+  dictionary,
 }: any) {
   const [Plus, setPlus] = useState(true);
 
   const psList = [
     {
-      name: "adults",
-      age: "more than 12 years old",
+      name: dictionary.home.adults,
+      age: dictionary.home.adultsAge,
       state: Adults,
       setState: setAdults,
       min: 1,
     },
     {
-      name: "children",
-      age: "2-12 years old",
+      name: dictionary.home.children,
+      age: dictionary.home.childrenAge,
       state: Children,
       setState: setChildren,
       min: 0,
     },
     {
-      name: "babies",
-      age: "0-2 years old",
+      name: dictionary.home.babies,
+      age: dictionary.home.babiesAge,
       state: Babies,
       setState: setBabies,
       min: 0,
@@ -43,7 +44,7 @@ export default function PassengersComponent({
   return (
     <DialogBox State={State} setState={setState}>
       <div className="bg-white max-w-[50em] transition-all sm:min-w-[25em] rounded shadow-xl py-4 px-5 ">
-        <div className="text-2xl font-bold">Passengers</div>
+        <div className="text-2xl font-bold">{dictionary.home.passengers}</div>
 
         <div className="w-full h-[.03em] my-4 bg-zinc-200 rounded-full" />
         <div className="flex flex-col gap-4">

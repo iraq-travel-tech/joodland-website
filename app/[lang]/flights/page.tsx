@@ -25,7 +25,7 @@ export default async function page({ searchParams }: PageProps) {
 
   return (
     <div>
-      <SearchBox />
+      {/* <SearchBox /> */}
 
       <div className="flex flex-col pt-10">
         <div className="text-2xl font-bold">Best departing flights</div>

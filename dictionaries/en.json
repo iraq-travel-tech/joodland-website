@@ -1,0 +1,56 @@
+{
+  "home": {
+    "title": "Where are you flying?",
+    "subtitle": "Find Your Flights and Book Them with Ease with Jooland.",
+    "search": "Search",
+    "from": {
+      "title": "Going From",
+      "value": "from"
+    },
+    "to": {
+      "title": "Going To",
+      "value": "to"
+    },
+    "flightsto": "Flights to",
+
+    "setDate": "Set Date",
+    "oneway": "One Way trip",
+    "roundtrip": "Round Trip",
+    "economy": "Economy",
+    "business": "Business",
+    "passengers": "Passengers",
+    "adults": "Adults",
+    "adultsAge": "more than 12 years old",
+    "children": "Children",
+    "childrenAge": "2-12 years old",
+    "babies": "Babies",
+    "babiesAge": "0-2 years old",
+    "done": "Done",
+    "whatoffers": "What Jooland Offers for you?",
+    "offers": [
+      {
+        "title": "Search For Flights",
+        "description": "We can provide a search engine that allows customers to find flights to their desired destination."
+      },
+      {
+        "title": "Book Flights Online Or Offline",
+        "description": "We help customers to book flights directly through our website with our e-payment system."
+      },
+      {
+        "title": "Customer Support",
+        "description": "We provide customer support to assist customers with any issues or questions they may have before, during, or after their trip."
+      },
+      {
+        "title": "Flight Alerts",
+        "description": "Our website can provide alerts for flight changes or delays, ensuring customers are up-to-date on their flight status."
+      }
+    ],
+    "bookflights": "Book Flights Anywhere In The World",
+    "bookflightscards": ["istanbul", "london", "paris", "newyork"]
+  },
+  "nav": {
+    "home": "Home",
+    "flights": "Flights",
+    "about": "About"
+  }
+}

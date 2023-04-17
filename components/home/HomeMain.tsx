@@ -2,6 +2,7 @@ import { BiStar } from "react-icons/bi";
 import SearchBox from "./core/SearchBox";
 import OfferCard from "../core-ui/cards/offercards/OfferCard";
 import ImageCard from "../core-ui/cards/imagecards/ImageCard";
+import { LocaleInterface } from "@/dictionaries/LocaleInterface";
 
 const offers = [
   {
@@ -57,23 +58,27 @@ const places = [
   },
 ];
 
-export default function HomeMain() {
+type PageProps = {
+  dictionary: LocaleInterface;
+};
+
+export default function HomeMain(props: PageProps) {
   return (
     <div>
       <div className="absolute top-0 left-0 h-[21em] bg-orange-700 w-full"></div>
-      <SearchBox showtexts />
+      <SearchBox dictionary={props.dictionary} showtexts />
       <div className="flex flex-col sm:mt-16 mt-12">
         <div className="text-2xl font-bold capitalize">
-          what jooLand offers for you
+          {props.dictionary.home.whatoffers}
         </div>
 
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 mt-8">
-          {offers.map((service,index) => (
+          {props.dictionary.home.offers.map((service, index) => (
             <OfferCard
-              key={service.serviceTitle + index}
-              title={service.serviceTitle}
-              description={service.serviceDescription}
-              icon={<service.icon />}
+              key={service.title + index}
+              title={service.title}
+              description={service.description}
+              icon={<BiStar className="text-2xl text-orange-700" />}
             />
           ))}
         </div>
@@ -81,16 +86,19 @@ export default function HomeMain() {
 
       <div className="mt-10">
         <div className="text-2xl font-bold capitalize">
-          book flights anywhere in the world{" "}
+          {props.dictionary.home.bookflights}
         </div>
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3 mt-8">
-          {places.map((place, index) => (
+          {props.dictionary.home.bookflightscards.map((place, index) => (
             <ImageCard
-              key={place.name + index}
-              name={place.name}
-              link={place.link}
-              image={place.image}
+              dictionary={props.dictionary}
+              key={place + index}
+              name={place}
+              link={place}
+              image={
+                "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aXN0YW5idWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              }
             />
           ))}
         </div>
