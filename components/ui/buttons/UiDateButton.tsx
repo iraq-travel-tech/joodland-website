@@ -14,7 +14,7 @@ export default function UiDateButton(props: UiDateButtonProps) {
   const [ReturnDate, setReturnDate] = useState<null | any>(null);
 
   return (
-    <div>
+    <div className="w-full">
       <button
         onClick={() => setOpenModal(!OpenModal)}
         className="bg-zinc-white text-black py-2 px-3 rounded active:scale-95 transition-all hover:bg-zinc-300 flex w-full justify-center gap-2 items-center capitalize"
@@ -29,6 +29,7 @@ export default function UiDateButton(props: UiDateButtonProps) {
         {DepartureDate && (
           <>
             <span>
+              <span className="font-bold">departure: </span>
               {DepartureDate.toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
@@ -37,7 +38,7 @@ export default function UiDateButton(props: UiDateButtonProps) {
 
             {props.isRange && ReturnDate && (
               <span>
-                -{" "}
+                - <span className="font-bold">Return: </span>
                 {ReturnDate.toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
