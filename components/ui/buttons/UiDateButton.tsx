@@ -1,75 +1,65 @@
 "use client";
 import { useState } from "react";
-import dynamic from "next/dynamic"; // Import dynamic from Next.js
 import { MdDateRange } from "react-icons/md";
+import UiDatePicker from "../modals/UiDatePicker";
+import { AnimatePresence } from "framer-motion";
 
-type DateButtonProps = {
+type UiDateButtonProps = {
   isRange: boolean;
 };
 
-const UiDatePicker = dynamic(() => import("../modals/UiDatePicker"), {
-  ssr: false,
-});
-
-export default function UiDateButton(props: DateButtonProps) {
-  const [OneWayStartDate, setOneWayStartDate] = useState("");
-  const [TwoWaysTripDate, setTwoWaysTripDate] = useState<any>([
-    {
-      startDate: new Date(),
-      endDate: null,
-      key: "selection",
-    },
-  ]);
-
+export default function UiDateButton(props: UiDateButtonProps) {
   const [OpenModal, setOpenModal] = useState(false);
+  const [DepartureDate, setDepartureDate] = useState<null | any>(null);
+  const [ReturnDate, setReturnDate] = useState<null | any>(null);
 
   return (
-    <div className="relative w-full ">
+    <div>
       <button
         onClick={() => setOpenModal(!OpenModal)}
         className="bg-zinc-white text-black py-2 px-3 rounded active:scale-95 transition-all hover:bg-zinc-300 flex w-full justify-center gap-2 items-center capitalize"
       >
-        <MdDateRange />
-
-        {!props.isRange && (
-          <div>
-            {OneWayStartDate
-              ? new Date(OneWayStartDate).toLocaleString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                })
-              : "set date"}
-          </div>
+        {!DepartureDate && (
+          <>
+            <MdDateRange />
+            <span>set date</span>
+          </>
         )}
-        {props.isRange && TwoWaysTripDate.length > 0 && (
-          <div>
-            {TwoWaysTripDate[0].startDate
-              ? new Date(TwoWaysTripDate[0].startDate).toLocaleString("en-US", {
-                  month: "long",
+
+        {DepartureDate && (
+          <>
+            <span>
+              {DepartureDate.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+
+            {props.isRange && ReturnDate && (
+              <span>
+                -{" "}
+                {ReturnDate.toLocaleDateString("en-US", {
+                  month: "short",
                   day: "numeric",
-                })
-              : ""}{" "}
-            -{" "}
-            {TwoWaysTripDate[0].endDate
-              ? new Date(TwoWaysTripDate[0].endDate).toLocaleString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                })
-              : ""}
-          </div>
+                })}
+              </span>
+            )}
+          </>
         )}
       </button>
 
-      {OpenModal && (
-        <UiDatePicker
-          isRange={props.isRange}
-          setOneWayStartDate={setOneWayStartDate}
-          TwoWaysTripDate={TwoWaysTripDate}
-          setTwoWaysTripDate={setTwoWaysTripDate}
-          OneWayStartDate={OneWayStartDate}
-          setOpenModal={setOpenModal}
-        />
-      )}
+      <AnimatePresence>
+        {OpenModal && (
+          <UiDatePicker
+            isRange={props.isRange}
+            setDepartureDate={setDepartureDate}
+            setReturnDate={setReturnDate}
+            DepartureDate={DepartureDate}
+            ReturnDate={ReturnDate}
+            setOpen={setOpenModal}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

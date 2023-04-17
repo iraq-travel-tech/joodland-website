@@ -6,8 +6,10 @@ export default {
   component: UiDateButton,
 };
 
-const Template: StoryFn<typeof UiDateButton> = (args) => <UiDateButton {...args} />;
+const Template: StoryFn<typeof UiDateButton> = (args) => (
+  <UiDateButton {...args} />
+);
 export const OneWay = Template.bind({});
 OneWay.args = {
-  isRange: true,
+  isRange: false,
 };

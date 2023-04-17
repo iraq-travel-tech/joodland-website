@@ -43,6 +43,8 @@
     "@storybook/nextjs": "7.0.4",
     "@storybook/react": "7.0.4",
     "@storybook/testing-library": "0.0.14-next.2",
+    "@types/react-date-range": "^1.4.4",
+    "@types/react-dates": "^21.8.3",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "storybook": "7.0.4",

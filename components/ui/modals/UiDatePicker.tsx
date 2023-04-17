@@ -1,99 +1,83 @@
 "use client";
+import React, { useState } from "react";
+import { DateRange, Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-
-import "../../../styles/daterange.css";
-
-// @ts-ignore
-import { DateRange, Calendar } from "react-date-range";
+import { motion } from "framer-motion";
 
 type UiDatePickerProps = {
-  isRange: any;
-  setOneWayStartDate: any;
-  TwoWaysTripDate: any;
-  setTwoWaysTripDate: any;
-  OneWayStartDate: any;
-
-  setOpenModal: any;
+  isRange: boolean;
+  setDepartureDate: any;
+  setReturnDate: any;
+  DepartureDate: any;
+  ReturnDate: any;
+  setOpen: any;
 };
 
-function formatDate(date: string) {
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
 export default function UiDatePicker(props: UiDatePickerProps) {
+  const [width, setWidth] = useState(window.innerWidth);
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
+  window.addEventListener("resize", updateWidth);
+
   return (
-    <div
-      className="rounded-xl shadow-xl 
-       md:py-6 
-       md:px-5 
-      md:bg-white
-
-    
-    md:absolute 
-    md:top-18
-    md:-left-1/2
-    md:-translate-x-1/2
-    md:w-max
-    md:inset-auto
-
-    fixed 
-    inset-0
-
-    flex 
-    justify-center
-    items-end
-
-    z-50
-    "
-    >
-      <div
-        className="relative w-full 
-      rounded-t-2xl md:p-0 p-10
-      md:rounded-t-none
-      bg-white z-20
-      flex items-center justify-center
-      "
+    <div className="fixed z-50 inset-0 flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.5 }}
+        className="sm:p-5 p-2 relative z-10 rounded-xl shadow-xl bg-white"
       >
-        {!props.isRange && (
-          <Calendar
-            minDate={new Date()}
-            className="w-full"
-            rangeColors={["#F7F7F7"]}
-            date={new Date()}
-            onChange={(date: string) =>
-              props.setOneWayStartDate(formatDate(formatDate(date)))
-            }
-          />
-        )}
-        {props.isRange && (
+        {props.isRange ? (
           <DateRange
-            editableDateInputs={true}
-            rangeColors={["#F7F7F7"]}
+            minDate={new Date()}
+            editableDateInputs={false}
+            dateDisplayFormat="MMM d"
+            color="orange"
+            months={width > 768 ? 2 : 1}
+            direction="horizontal"
             showDateDisplay={false}
             showMonthAndYearPickers={false}
-            monthDisplayFormat="MMMM YYY"
-            direction="horizontal"
-            minDate={new Date()}
-            editableOldDateInputs={true}
-            onChange={(item: any) => {
-              props.setTwoWaysTripDate([item.selection]);
+            ranges={[
+              {
+                startDate: props.DepartureDate || new Date(),
+                endDate: props.ReturnDate || new Date(),
+                key: "selection",
+              },
+            ]}
+            onChange={(item) => {
+              props.setDepartureDate(item.selection.startDate || new Date());
+              props.setReturnDate(item.selection.endDate || new Date());
             }}
-            moveRangeOnFirstSelection={false}
-            ranges={props.TwoWaysTripDate}
-            min
+          />
+        ) : (
+          <Calendar
+            minDate={new Date()}
+            editableDateInputs={false}
+            dateDisplayFormat="MMM d"
+            color="orange"
+            months={width > 768 ? 2 : 1}
+            direction="horizontal"
+            showDateDisplay={false}
+            showMonthAndYearPickers={false}
+            onChange={(item) => {
+              props.setDepartureDate(item || new Date());
+              props.setReturnDate(null);
+              props.setOpen(false);
+            }}
+            date={props.DepartureDate}
           />
         )}
-      </div>
+      </motion.div>
 
-      <div
-        onClick={() => props.setOpenModal(false)}
-        className="absolute md:hidden inset-0 z-10 bg-black/50"
-      ></div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => props.setOpen(false)}
+        className="absolute inset-0 bg-black/50"
+      />
     </div>
   );
 }

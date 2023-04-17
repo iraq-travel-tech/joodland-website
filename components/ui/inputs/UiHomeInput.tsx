@@ -97,7 +97,7 @@ flex-1
             transition={{
               duration: 0.2,
             }}
-            className="sm:absolute z-20 relative sm:top-20 top-5 left-0 w-full bg-white flex flex-col overflow-hidden gap-3 p-3 rounded shadow-md sm:shadow-xl"
+            className="sm:absolute z-20 relative sm:top-16 top-5 left-0 w-full bg-white flex flex-col overflow-hidden gap-3 p-3 rounded shadow-md sm:shadow-xl"
           >
             <AnimatePresence>
               {results.map((i, index) => (
