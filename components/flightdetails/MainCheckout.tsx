@@ -1,8 +1,8 @@
 import React from "react";
 import WhiteBoxTitle from "./whitebox/FlightDetails-WhiteBox";
 import { BsArrowRight } from "react-icons/bs";
-import FlightDetailsCard from "../core-ui/cards/flightdetails/FlightDetailsCard";
 import CheckoutFormSection from "./CheckoutFormSection";
+import FlightDetailsCard from "../ui/cards/flightdetails/FlightDetailsCard";
 
 export default function MainCheckout() {
   return (

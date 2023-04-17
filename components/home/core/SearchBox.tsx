@@ -6,14 +6,13 @@ import React, { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
-import RegularButton from "@/components/core-ui/buttons/regular/RegularButton";
-import OrangeButtonLink from "@/components/core-ui/links/buttonlink/OrangeButtonLink";
 import UiHomeInput from "@/components/ui/inputs/UiHomeInput";
 import UiDateButton from "@/components/ui/buttons/UiDateButton";
+import UiDropDown from "@/components/ui/dropdowns/UiDropDown";
+import UiButton from "@/components/ui/buttons/UiButton";
+import UiLink from "@/components/ui/links/UiLink";
 
-const DropDown = dynamic(
-  () => import("@/components/core-ui/dropdown/SimpleDropDown/DropDown")
-);
+
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
 export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
@@ -30,7 +29,6 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
   const [To, setTo] = useState("");
 
   const [ShowPassengersDialog, setShowPassengersDialog] = useState(false);
-  const [ShowDateComponent, setShowDateComponent] = useState(false);
 
   const [OneWayStartDate, setOneWayStartDate] = useState("");
   const [TwoWaysTripDate, setTwoWaysTripDate] = useState<any>([
@@ -61,24 +59,27 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
 
         <div className="flex flex-col mt-5 gap-3">
           <div className="flex gap-3 flex-wrap">
-            <DropDown
+            <UiDropDown
               StateValue={TripDirection}
               setStateValue={setTripDirection}
               options={["round trip", "one way trip"]}
             />
-            <DropDown
+
+            <UiDropDown
               StateValue={TripClass}
               setStateValue={setTripClass}
               options={["business", "economy"]}
             />
-            <RegularButton
+
+          
+            <UiButton
               onClick={() => setShowPassengersDialog(!ShowPassengersDialog)}
-              bg="white"
+              variant="white"
               endIcon={<AiFillCaretDown />}
               className="!text-xs capitalize"
             >
               passengers
-            </RegularButton>
+            </UiButton>
           </div>
 
           <div className="flex lg:flex-row flex-col gap-3">
@@ -100,26 +101,19 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
               />
             </div>
             <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
-              {/* <RegularButton
-                onClick={() => setShowDateComponent(true)}
-                bg="white"
-                endIcon={<BsFillCalendarDateFill />}
-                className="capitalize justify-center items-center w-full"
-              >
-                set date
-              </RegularButton> */}
               <UiDateButton
                 isRange={TripDirection === "round trip" ? true : false}
               />
             </div>
 
-            <OrangeButtonLink
-              href={`/flights?from=${From}&to=${To}&tripclass=${TripClass}&adults=${Adults}&children=${Children}&babies=${Babies}&departure=${OneWayStartDate}`}
-              endIcon={<IoSearch aria-label="Search" className="rotate-90" />}
-              className="!justify-center"
+            <UiLink
+              href={`/flights?from=${From}&to=${To}&depart=${OneWayStartDate}&return=${TwoWaysTripDate[0].endDate}&adults=${Adults}&children=${Children}&babies=${Babies}&class=${TripClass}`}
+              variant={"filled"}
+              endIcon={<IoSearch />}
+              className="!w-full lg:!w-max"
             >
-              Search
-            </OrangeButtonLink>
+              search
+            </UiLink>
           </div>
         </div>
       </div>
@@ -137,19 +131,6 @@ export default function SearchBox({ showtexts }: { showtexts?: boolean }) {
           />
         )}
       </AnimatePresence>
-      {/* <AnimatePresence>
-        {ShowDateComponent && (
-          <TheDateComponent
-            ShowDatePicker={ShowDateComponent}
-            setShowDatePicker={setShowDateComponent}
-            SelectedType={TripDirection}
-            TwoWaysTripDate={TwoWaysTripDate}
-            setTwoWaysTripDate={setTwoWaysTripDate}
-            OneWayStartDate={OneWayStartDate}
-            setOneWayStartDate={setOneWayStartDate}
-          />
-        )}
-      </AnimatePresence> */}
     </div>
   );
 }

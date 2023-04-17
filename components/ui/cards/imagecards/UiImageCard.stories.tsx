@@ -1,14 +1,16 @@
 import { StoryFn } from "@storybook/react";
-import ImageCard from "./ImageCard";
+import UiImageCard from "./UiImageCard";
 
 export default {
-  title: "components/cards/ImageCard",
-  component: ImageCard,
+  title: "components/cards/UiImageCard",
+  component: UiImageCard,
 };
 
-const Template: StoryFn<typeof ImageCard> = (args) => <ImageCard {...args} />;
+const Template: StoryFn<typeof UiImageCard> = (args) => (
+  <UiImageCard {...args} />
+);
 
-export const Default: StoryFn<typeof ImageCard> = Template.bind({});
+export const Default: StoryFn<typeof UiImageCard> = Template.bind({});
 Default.args = {
   name: "paris",
   image:

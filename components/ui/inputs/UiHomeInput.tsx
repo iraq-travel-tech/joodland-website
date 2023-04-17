@@ -5,7 +5,11 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 
-interface UiHomeInputProps {
+interface UiHomeInputProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   startIcon: React.ReactNode;
   placeholder: string;
 

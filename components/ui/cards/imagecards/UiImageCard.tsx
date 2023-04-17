@@ -6,7 +6,7 @@ type CardProps = {
   image: string;
   link: string;
 };
-export default function ImageCard(props: CardProps) {
+export default function UiImageCard(props: CardProps) {
   return (
     <Link
       href={props.link}

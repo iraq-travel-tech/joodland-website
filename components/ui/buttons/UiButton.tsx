@@ -49,10 +49,10 @@ export default function UiButton(props: ButtonProps) {
   });
 
   return (
-    <button className={style}>
-      <span className="mt-1">{props.startIcon}</span>
+    <button onClick={props.onClick} className={style}>
+      {props.startIcon}
       {props.children}
-      <span className="mt-1">{props.endIcon}</span>
+      {props.endIcon}
     </button>
   );
 }

@@ -1,13 +1,13 @@
 import { StoryFn } from "@storybook/react";
-import OfferCard from "./OfferCard";
+import UiOfferCard from "./UiOfferCard";
 import { BiStar } from "react-icons/bi";
 
 export default {
-  title: "components/cards/OfferCard",
-  component: OfferCard,
+  title: "components/cards/UiOfferCard",
+  component: UiOfferCard,
 };
 
-const Template: StoryFn<typeof OfferCard> = (args) => <OfferCard {...args} />;
+const Template: StoryFn<typeof UiOfferCard> = (args) => <UiOfferCard {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   title: "search for flights",

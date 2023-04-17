@@ -10,6 +10,8 @@ interface UiLinkProps
 
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+
+  href: string;
 }
 export default function UiLink(props: UiLinkProps) {
   const style = buttonStyles({
@@ -20,7 +22,7 @@ export default function UiLink(props: UiLinkProps) {
     className: props.className,
   });
   return (
-    <Link href="/" className={style}>
+    <Link href={props.href} className={style}>
       <span className="mt-1">{props.startIcon}</span>
       UiLink
       <span className="mt-1">{props.endIcon}</span>

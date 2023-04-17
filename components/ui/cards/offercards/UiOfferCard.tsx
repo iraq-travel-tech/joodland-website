@@ -1,12 +1,12 @@
 import React from "react";
 
-type OfferCardProps = {
+type UiOfferCardProps = {
   title: string;
   description: string;
   icon: React.ReactNode;
 };
 
-export default function OfferCard(props: OfferCardProps) {
+export default function UiOfferCard(props: UiOfferCardProps) {
   return (
     <article
       key={props.title}

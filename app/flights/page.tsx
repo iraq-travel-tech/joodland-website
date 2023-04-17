@@ -3,7 +3,7 @@ import SearchBox from "@/components/home/core/SearchBox";
 import { FlightsResponse } from "@/interfces/ResponseTypes";
 import { SearchParamsProps } from "@/interfces/SearchParamsProps";
 import { GET_flights } from "../api/apiFunctions/GetFlights";
-import FlightCard from "@/components/core-ui/cards/flightcard/FlightCard";
+import UiFlightCard from "@/components/ui/cards/flightcard/UiFlightCard";
 
 type PageProps = {
   searchParams: SearchParamsProps;
@@ -40,10 +40,9 @@ export default async function page({ searchParams }: PageProps) {
           )
         )} */}
 
-        <FlightCard />
-        <FlightCard />
-        <FlightCard />
-        <FlightCard />
+        <UiFlightCard />
+        <UiFlightCard />
+        <UiFlightCard />
       </div>
     </div>
   );

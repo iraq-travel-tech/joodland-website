@@ -1,6 +1,4 @@
-import FlightDetailsCard from "@/components/core-ui/cards/flightdetails/FlightDetailsCard";
 import MainCheckout from "@/components/flightdetails/MainCheckout";
-import WhiteBoxTitle from "@/components/flightdetails/whitebox/FlightDetails-WhiteBox";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 

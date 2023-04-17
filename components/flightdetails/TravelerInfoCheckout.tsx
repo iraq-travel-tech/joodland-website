@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OldDateInput from "../core-ui/forms/inputs/OldDateInput";
+// import OldDateInput from "../core-ui/forms/inputs/OldDateInput";
 
 type AllProps = {
   index: number;
@@ -57,13 +57,13 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
 
         <div className="flex gap-4 items-center">
           <div className="w-max">
-            <OldDateInput
+            {/* <OldDateInput
               name={`traveler-${index}-date-of-birth`}
               placeholder="Date of Birth"
               value={Date}
               setValue={setDate}
               required
-            />
+            /> */}
           </div>
           <div className="flex gap-3">
             <p className="font-bold">Gender:</p>

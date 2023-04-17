@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import EmailInput from "../core-ui/forms/inputs/EmailInput";
-import OldDateInput from "../core-ui/forms/inputs/OldDateInput";
 import TravelerInfoCheckout from "./TravelerInfoCheckout";
 
 type AllProps = {
