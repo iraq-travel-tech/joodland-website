@@ -9,9 +9,9 @@ import { IoSearch } from "react-icons/io5";
 import UiHomeInput from "@/components/ui/inputs/UiHomeInput";
 import UiDateButton from "@/components/ui/buttons/UiDateButton";
 import { LocaleInterface } from "@/dictionaries/LocaleInterface";
-import UiDropDown from "@/components/ui/dropdowns/UiDropDown";
 import UiButton from "@/components/ui/buttons/UiButton";
 import UiLink from "@/components/ui/links/UiLink";
+import UiNewDropDown from "@/components/ui/dropdowns/UiNewDropDown";
 
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
@@ -38,7 +38,7 @@ export default function SearchBox({
   const [TwoWaysTripDate, setTwoWaysTripDate] = useState<any>([
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -65,17 +65,34 @@ export default function SearchBox({
 
         <div className="flex flex-col mt-5 gap-3">
           <div className="flex gap-3 flex-wrap">
-            <UiDropDown
-              StateValue={TripDirection}
-              setStateValue={setTripDirection}
-              options={[dictionary.home.oneway, dictionary.home.roundtrip]}
+            <UiNewDropDown
+              State={TripDirection}
+              setState={setTripDirection}
+              options={[
+                {
+                  value: dictionary.home.oneway,
+                  label: dictionary.home.oneway,
+                },
+                {
+                  value: dictionary.home.roundtrip,
+                  label: dictionary.home.roundtrip,
+                },
+              ]}
             />
 
-            <UiDropDown
-              StateValue={TripClass}
-              setStateValue={setTripClass}
-              // options={["business", "economy"]}
-              options={[dictionary.home.economy, dictionary.home.business]}
+            <UiNewDropDown
+              State={TripClass}
+              setState={setTripClass}
+              options={[
+                {
+                  value: dictionary.home.economy,
+                  label: dictionary.home.economy,
+                },
+                {
+                  value: dictionary.home.business,
+                  label: dictionary.home.business,
+                },
+              ]}
             />
 
             <UiButton

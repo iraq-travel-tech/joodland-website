@@ -12,19 +12,6 @@ export default function DialogBox({
   setState: any;
   children: React.ReactNode;
 }) {
-  // useEffect(() => {
-  //   const body = document.body;
-  //   if (State) {
-  //     body.style.overflow = "hidden";
-  //   } else {
-  //     body.style.overflow = "auto";
-  //   }
-  //   // Add cleanup function to reset the overflow property of the body element
-  //   return () => {
-  //     body.style.overflow = "auto";
-  //   };
-  // }, [State]);
-
   return (
     <>
       <div className="fixed z-50 inset-0 flex items-center justify-center p-6">
@@ -35,7 +22,7 @@ export default function DialogBox({
           className="fixed inset-0 z-10 bg-black/40"
         ></motion.div>
         <motion.div
-          className="relative z-20"
+          className="relative z-20 w-full flex items-center justify-center"
           animate={{
             scale: [0.9, 1],
             opacity: [0.5, 1],

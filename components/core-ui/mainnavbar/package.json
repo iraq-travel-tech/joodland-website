@@ -1,9 +1,0 @@
-{
-    "name": "@core-ui/mainnavbar",
-    "version": "1.0.0",
-    "module": "index.ts",
-    "description": "mainnavbar for website",
-    "license": "UNLICENSED",
-    "private": true,
-    "sideEffects": false
-}

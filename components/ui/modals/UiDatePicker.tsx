@@ -22,7 +22,9 @@ export default function UiDatePicker(props: UiDatePickerProps) {
   window.addEventListener("resize", updateWidth);
 
   return (
-    <div className="fixed z-50 inset-0 flex items-center justify-center">
+    <div 
+    dir="ltr"
+    className="fixed z-50 inset-0 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -49,16 +49,20 @@ export default function UiHomeInput(props: UiHomeInputProps) {
   }
 
   return (
-    <div
+    <motion.div
+    layout
       className={`
         sm:!relative 
         
          sm:!p-0 
          z-10
 flex-1
-    ${OpenInput && "fixed inset-0 p-4 z-50 bg-white"}
+    ${OpenInput && "fixed inset-0 p-4 z-50"}
 
     `}
+      animate={{
+        backgroundColor: OpenInput ? "#fff" : "",
+      }}
     >
       <motion.div
         layout
@@ -158,6 +162,6 @@ flex-1
           ></motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

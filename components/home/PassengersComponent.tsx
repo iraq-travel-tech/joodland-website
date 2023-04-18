@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import DialogBox from "../core-ui/dialogbox/DialogBox/DialogBox";
+import DialogBox from "../ui/dialog/DialogBox";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function PassengersComponent({
@@ -43,7 +43,7 @@ export default function PassengersComponent({
 
   return (
     <DialogBox State={State} setState={setState}>
-      <div className="bg-white max-w-[50em] transition-all sm:min-w-[25em] rounded shadow-xl py-4 px-5 ">
+      <div className="bg-white w-full max-w-[30em] transition-all sm:min-w-[25em] rounded shadow-xl py-4 px-5 ">
         <div className="text-2xl font-bold">{dictionary.home.passengers}</div>
 
         <div className="w-full h-[.03em] my-4 bg-zinc-200 rounded-full" />

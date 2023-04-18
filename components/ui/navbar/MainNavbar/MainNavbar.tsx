@@ -14,7 +14,7 @@ export default function MainNavbar({
   const pathname = usePathname();
 
   return (
-    <nav className="sticky z-40 bg-orange-700 top-0 left-0 w-full">
+    <nav dir="ltr" className="sticky z-40 bg-orange-700 top-0 left-0 w-full">
       <div className="md:px-5 max-w-6xl mx-auto flex items-center justify-between text-white px-5 py-3">
         <div className="text-xl font-bold">jooLand</div>
 

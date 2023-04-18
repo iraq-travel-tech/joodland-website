@@ -1,5 +1,3 @@
-import FlightBox from "@/components/flights/FlightBox";
-import SearchBox from "@/components/home/core/SearchBox";
 import { FlightsResponse } from "@/interfces/ResponseTypes";
 import { SearchParamsProps } from "@/interfces/SearchParamsProps";
 import { GET_flights } from "../api/apiFunctions/GetFlights";
@@ -25,8 +23,6 @@ export default async function page({ searchParams }: PageProps) {
 
   return (
     <div>
-      {/* <SearchBox /> */}
-
       <div className="flex flex-col pt-10">
         <div className="text-2xl font-bold">Best departing flights</div>
         <div className="text-zinc-600">
