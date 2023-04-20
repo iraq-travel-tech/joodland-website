@@ -17,7 +17,7 @@ export default function UiDateButton(props: UiDateButtonProps) {
     <div className="w-full">
       <button
         onClick={() => setOpenModal(!OpenModal)}
-        className="bg-zinc-white text-black py-2 px-3 rounded active:scale-95 transition-all hover:bg-zinc-300 flex w-full justify-center gap-2 items-center capitalize"
+        className="flex items-center justify-center w-full gap-2 px-3 py-2 text-black capitalize transition-all rounded bg-zinc-white active:scale-95 hover:bg-zinc-300"
       >
         {!DepartureDate && (
           <>

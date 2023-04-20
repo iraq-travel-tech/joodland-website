@@ -9,8 +9,8 @@ export default function MainCheckout() {
     <div className="flex gap-10 mt-5">
       <div className="flex flex-col flex-1">
         <WhiteBoxTitle className="flex-1 px-5" title="Trip Summary">
-          <div className="flex mt-5 items-center gap-2">
-            <div className="font-bold capitalize flex gap-2 items-center ">
+          <div className="flex items-center gap-2 mt-5">
+            <div className="flex items-center gap-2 font-bold capitalize ">
               <p>London</p>
               <span>
                 <BsArrowRight />
@@ -18,14 +18,14 @@ export default function MainCheckout() {
               <p>Paris</p>
             </div>
 
-            <div className="text-zinc-400 text-sm">Duration: 15h 35m</div>
+            <div className="text-sm text-zinc-400">Duration: 15h 35m</div>
           </div>
 
-          <div className="mt-3 flex flex-col gap-4">
-            <div className="bg-white shadow-md p-2 border border-zinc-300 rounded">
+          <div className="flex flex-col gap-4 mt-3">
+            <div className="p-2 bg-white border rounded shadow-md border-zinc-300">
               <FlightDetailsCard />
             </div>
-            <div className="bg-white shadow-md p-2 border border-zinc-300 rounded">
+            <div className="p-2 bg-white border rounded shadow-md border-zinc-300">
               <FlightDetailsCard />
             </div>
           </div>

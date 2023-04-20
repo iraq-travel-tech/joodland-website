@@ -46,7 +46,7 @@ export default function UiNewDropDown(props: UiNewDropDownProps) {
           <>
             <Select.Content
               // make it align to the left
-              className="bg-white mt-12 p-2 rounded shadow z-40 "
+              className="z-40 p-2 mt-12 bg-white rounded shadow "
             >
               <motion.div
                 initial={{ opacity: 0, y: -10 }}

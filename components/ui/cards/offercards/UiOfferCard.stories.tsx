@@ -7,7 +7,9 @@ export default {
   component: UiOfferCard,
 };
 
-const Template: StoryFn<typeof UiOfferCard> = (args) => <UiOfferCard {...args} />;
+const Template: StoryFn<typeof UiOfferCard> = (args) => (
+  <UiOfferCard {...args} />
+);
 export const Default = Template.bind({});
 Default.args = {
   title: "search for flights",

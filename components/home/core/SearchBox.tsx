@@ -13,6 +13,7 @@ import UiButton from "@/components/ui/buttons/UiButton";
 import UiLink from "@/components/ui/links/UiLink";
 import UiNewDropDown from "@/components/ui/dropdowns/UiNewDropDown";
 
+
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
 export default function SearchBox({
@@ -52,19 +53,19 @@ export default function SearchBox({
       >
         {showtexts && (
           <div className="flex flex-col">
-            <div className="md:text-4xl text-2xl mt-40 font-bold text-white">
+            <div className="mt-40 text-2xl font-bold text-white md:text-4xl">
               {/* Where are you flying? */}
               {dictionary.home.title}
             </div>
-            <div className="md:text-2xl text-lg text-white">
+            <div className="text-lg text-white md:text-2xl">
               {/* Find Your Flights and Book Them with Ease with Jooland. */}
               {dictionary.home.subtitle}
             </div>
           </div>
         )}
 
-        <div className="flex flex-col mt-5 gap-3">
-          <div className="flex gap-3 flex-wrap">
+        <div className="flex flex-col gap-3 mt-5">
+          <div className="flex flex-wrap gap-3">
             <UiNewDropDown
               State={TripDirection}
               setState={setTripDirection}
@@ -106,8 +107,8 @@ export default function SearchBox({
             </UiButton>
           </div>
 
-          <div className="flex lg:flex-row flex-col gap-3">
-            <div className="flex md:flex-row flex-col gap-3 flex-1">
+          <div className="flex flex-col gap-3 lg:flex-row">
+            <div className="flex flex-col flex-1 gap-3 md:flex-row">
               <UiHomeInput
                 Value={From}
                 setValue={setFrom}
@@ -124,7 +125,7 @@ export default function SearchBox({
                 startIcon={<FaPlaneArrival />}
               />
             </div>
-            <div className="flex flex-1 lg:max-w-max bg-white rounded gap-2 sm:p-2 p-1 lg:shadow-xl shadow-md">
+            <div className="flex flex-1 gap-2 p-1 bg-white rounded shadow-md lg:max-w-max sm:p-2 lg:shadow-xl">
               <UiDateButton
                 isRange={
                   TripDirection === dictionary.home.roundtrip ? true : false

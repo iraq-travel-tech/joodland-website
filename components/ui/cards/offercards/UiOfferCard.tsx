@@ -10,15 +10,15 @@ export default function UiOfferCard(props: UiOfferCardProps) {
   return (
     <article
       key={props.title}
-      className="border-2 border-zinc-200 bg-white p-3 flex flex-col rounded hover:scale-105  hover:shadow-xl shadow-none transition-all"
+      className="flex flex-col p-3 transition-all bg-white border-2 rounded shadow-none border-zinc-200 hover:scale-105 hover:shadow-xl"
     >
-      <div className="w-10 h-10 flex items-center justify-center rounded text-orange-600 bg-orange-600/40">
+      <div className="flex items-center justify-center w-10 h-10 text-orange-600 rounded bg-orange-600/40">
         {props.icon}
       </div>
 
-      <h1 className="font-bold capitalize mt-3">{props.title}</h1>
+      <h1 className="mt-3 font-bold capitalize">{props.title}</h1>
 
-      <p className="text-sm mt-1">{props.description} </p>
+      <p className="mt-1 text-sm">{props.description} </p>
     </article>
   );
 }

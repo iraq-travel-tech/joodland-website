@@ -67,12 +67,12 @@ export default function HomeMain(props: PageProps) {
     <div>
       <div className="absolute top-0 left-0 h-[21em] bg-orange-700 w-full"></div>
       <SearchBox dictionary={props.dictionary} showtexts />
-      <div className="flex flex-col sm:mt-16 mt-12">
+      <div className="flex flex-col mt-12 sm:mt-16">
         <div className="text-2xl font-bold capitalize">
           {props.dictionary.home.whatoffers}
         </div>
 
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 mt-8">
+        <div className="grid grid-cols-1 gap-3 mt-8 lg:grid-cols-4 md:grid-cols-2">
           {props.dictionary.home.offers.map((service, index) => (
             <UiOfferCard
               key={service.title + index}
@@ -89,7 +89,7 @@ export default function HomeMain(props: PageProps) {
           {props.dictionary.home.bookflights}
         </div>
 
-        <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3 mt-8">
+        <div className="grid grid-cols-1 gap-3 mt-8 lg:grid-cols-4 sm:grid-cols-2">
           {props.dictionary.home.bookflightscards.map((place, index) => (
             <UiImageCard
               dictionary={props.dictionary}

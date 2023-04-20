@@ -48,19 +48,19 @@ export default function AutoCompleteList(props: AutoCompleteListProps) {
               onClick={() => {
                 props.setState(result.id);
               }}
-              className="flex gap-3 rounded hover:bg-gray-100 justify-between items-center p-2 cursor-pointer"
+              className="flex items-center justify-between gap-3 p-2 rounded cursor-pointer hover:bg-gray-100"
             >
               {" "}
               {showImage ? (
-                <div className="min-w-10 h-10">
+                <div className="h-10 min-w-10">
                   <img
-                    className="w-full h-full rounded object-cover"
+                    className="object-cover w-full h-full rounded"
                     src={currentImage}
                     alt=""
                   />
                 </div>
               ) : (
-                <MdOutlineSubdirectoryArrowRight className="text-black ml-3" />
+                <MdOutlineSubdirectoryArrowRight className="ml-3 text-black" />
               )}
               <div className="flex flex-col flex-1">
                 <div className="font-bold">{result.name}</div>
@@ -68,7 +68,7 @@ export default function AutoCompleteList(props: AutoCompleteListProps) {
                   {result.cityname}
                 </div>
               </div>
-              <div className="font-bold text-white bg-orange-600 py-1 px-2 rounded text-xs">
+              <div className="px-2 py-1 text-xs font-bold text-white bg-orange-600 rounded">
                 {result.id}
               </div>
             </motion.li>
@@ -79,7 +79,7 @@ export default function AutoCompleteList(props: AutoCompleteListProps) {
       {/* dark background */}
       <div
         // onClick={() => props.setOpenInput(null)}
-        className="fixed inset-0 sm:bg-black/40 bg-white z-10"
+        className="fixed inset-0 z-10 bg-white sm:bg-black/40"
       />
     </motion.div>
   );

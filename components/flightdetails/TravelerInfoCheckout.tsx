@@ -15,19 +15,19 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
       <div className="text-lg font-bold">
         Traveler {index + 1} - {i}
       </div>
-      <div className="flex mt-3 flex-col gap-4">
+      <div className="flex flex-col gap-4 mt-3">
         <div className="flex gap-4">
           <input
             required
             type="text"
-            className="border rounded border-zinc-300 py-2 px-3 flex-1"
+            className="flex-1 px-3 py-2 border rounded border-zinc-300"
             placeholder="Email Address"
             name={`traveler-${index}-email`}
           />
           <input
             required
             type="text"
-            className="border rounded border-zinc-300 py-2 px-3 flex-1"
+            className="flex-1 px-3 py-2 border rounded border-zinc-300"
             placeholder="Phone Number"
             name={`traveler-${index}-phone`}
           />
@@ -36,26 +36,26 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
           <input
             required
             type="text"
-            className="border rounded border-zinc-300 py-2 px-3 flex-1"
+            className="flex-1 px-3 py-2 border rounded border-zinc-300"
             placeholder="First Name"
             name={`traveler-${index}-first-name`}
           />
           <input
             type="text"
-            className="border rounded border-zinc-300 py-2 px-3 flex-1"
+            className="flex-1 px-3 py-2 border rounded border-zinc-300"
             placeholder="Middle Name"
             name={`traveler-${index}-middle-name`}
           />
           <input
             required
             type="text"
-            className="border rounded border-zinc-300 py-2 px-3 flex-1"
+            className="flex-1 px-3 py-2 border rounded border-zinc-300"
             placeholder="Last Name"
             name={`traveler-${index}-last-name`}
           />
         </div>
 
-        <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-4">
           <div className="w-max">
             {/* <OldDateInput
               name={`traveler-${index}-date-of-birth`}

@@ -51,16 +51,16 @@ export default function PassengersComponent({
           {psList.map((passenger, index) => (
             <div
               key={passenger.name + index}
-              className="flex gap-8 justify-between items-center"
+              className="flex items-center justify-between gap-8"
             >
               <div className="flex flex-col">
                 <div className="font-bold capitalize">{passenger.name}</div>
                 <div className="text-xs text-zinc-500">{passenger.age}</div>
               </div>
 
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 <button
-                  className="w-10 h-10 rounded-full border active:scale-90 transition-all hover:bg-zinc-200 flex items-center justify-center cursor-pointer"
+                  className="flex items-center justify-center w-10 h-10 transition-all border rounded-full cursor-pointer active:scale-90 hover:bg-zinc-200"
                   onClick={() => {
                     passenger.setState(passenger.state + 1);
                     setPlus(true);
@@ -69,7 +69,7 @@ export default function PassengersComponent({
                   <BiPlus />
                 </button>
 
-                <div className="w-5 h-6 relative">
+                <div className="relative w-5 h-6">
                   <AnimatePresence>
                     <motion.div
                       className={`absolute ${
@@ -98,7 +98,7 @@ export default function PassengersComponent({
                 </div>
 
                 <button
-                  className="w-10 h-10 rounded-full border active:scale-90 transition-all hover:bg-zinc-200 flex items-center justify-center cursor-pointer"
+                  className="flex items-center justify-center w-10 h-10 transition-all border rounded-full cursor-pointer active:scale-90 hover:bg-zinc-200"
                   onClick={() => {
                     setPlus(false);
                     passenger.setState(
@@ -115,7 +115,7 @@ export default function PassengersComponent({
           ))}
           <button
             onClick={() => setState(!State)}
-            className="p-2 font-bold text-white rounded bg-orange-600 active:scale-95 transition-all active:bg-orange-500 mt-3"
+            className="p-2 mt-3 font-bold text-white transition-all bg-orange-600 rounded active:scale-95 active:bg-orange-500"
           >
             Done
           </button>

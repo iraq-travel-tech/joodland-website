@@ -16,16 +16,16 @@ export default function UiImageCard(props: CardProps) {
     >
       <Image
         src={props.image}
-        className="brightness-50 z-10 absolute top-0 left-0 h-full w-full object-cover rounded-xl"
+        className="absolute top-0 left-0 z-10 object-cover w-full h-full brightness-50 rounded-xl"
         alt={props.name + " image"}
         fill
       />
       <div className="flex flex-col absolute bottom-4 left-4 rtl:!right-5 z-20">
-        <div className="group-hover:scale-105 group-hover:shadow-lg transition-all text-sm">
+        <div className="text-sm transition-all group-hover:scale-105 group-hover:shadow-lg">
           {/* flights to */}
           {props.dictionary.home.flightsto}
         </div>
-        <div className="group-hover:scale-105 group-hover:shadow-lg transition-all text-2xl font-bold capitalize">
+        <div className="text-2xl font-bold capitalize transition-all group-hover:scale-105 group-hover:shadow-lg">
           {props.name}
         </div>
       </div>
