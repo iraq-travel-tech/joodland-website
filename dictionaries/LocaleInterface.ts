@@ -27,6 +27,7 @@ interface Home {
   offers: Offer[];
   bookflights: string;
   bookflightscards: string[];
+  alert: "Please fill all the fields" | "رجاءاً قم بملئ جميع الحقول"
 }
 
 interface Offer {

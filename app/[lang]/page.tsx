@@ -11,7 +11,7 @@ export default async function page(props: PageProps) {
 
   return (
     <div>
-      <HomeMain dictionary={dictionary} />
+      <HomeMain lang={props.params.lang} dictionary={dictionary} />
     </div>
   );
 }

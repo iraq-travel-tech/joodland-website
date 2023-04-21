@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 
 export const buttonStyles = cva(
-  "py-2 px-3 rounded active:scale-90 transition-all active:brightness-75 flex gap-2 items-center fill-current justify-center",
+  "py-2 px-3 rounded active:scale-90 transition-all active:brightness-75 flex gap-2 items-center fill-current justify-center    disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
@@ -37,6 +37,8 @@ interface ButtonProps
 
   onClick?: any;
   className?: string;
+
+  disabled?: boolean;
 }
 
 export default function UiButton(props: ButtonProps) {
@@ -49,7 +51,7 @@ export default function UiButton(props: ButtonProps) {
   });
 
   return (
-    <button onClick={props.onClick} className={style}>
+    <button disabled={props.disabled} onClick={props.onClick} className={style}>
       {props.startIcon}
       {props.children}
       {props.endIcon}

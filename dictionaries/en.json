@@ -7,6 +7,7 @@
       "title": "Going From",
       "value": "from"
     },
+    "alert": "Please fill all the fields",
     "to": {
       "title": "Going To",
       "value": "to"
@@ -52,5 +53,9 @@
     "home": "Home",
     "flights": "Flights",
     "about": "About"
+  },
+  "flights": {
+    "title": "Best departing flights",
+    "subtitle": "Ranked based on price and convenience"
   }
 }

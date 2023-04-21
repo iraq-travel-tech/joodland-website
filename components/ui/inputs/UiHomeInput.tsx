@@ -24,7 +24,7 @@ interface UiHomeInputProps
   className?: string;
 }
 
-export default function UiHomeInput(props: UiHomeInputProps) {
+const UiHomeInput = (props: UiHomeInputProps) => {
   const [OpenInput, setOpenInput] = useState(false);
   const [results, setResults] = useState<ElasticSearch[]>([]);
   const [selectedFromList, setSelectedFromList] = useState(false);
@@ -62,12 +62,9 @@ export default function UiHomeInput(props: UiHomeInputProps) {
          sm:!p-0 
          z-10
 flex-1
-    ${OpenInput && "fixed inset-0 p-4 z-50"}
+    ${OpenInput && "fixed inset-0 p-4 z-50 bg-white"}
 
     `}
-      animate={{
-        backgroundColor: OpenInput ? "#fff" : "",
-      }}
     >
       <motion.div
         layout
@@ -78,13 +75,13 @@ flex-1
           className="flex-1 w-full h-full p-4 bg-white rounded shadow-md ltr:pl-12 rtl:pr-12"
           placeholder={props.placeholder}
           value={props.Value}
-          // defaultValue={props.Value}
           onChange={(e) => {
             props.setValue(e.target.value);
             setSelectedFromList(false);
           }}
           onBlur={handleInputBlur}
           onClick={() => setOpenInput(true)}
+          required
         />
         <span className="ltr:ml-3 rtl:mr-3 absolute top-4.5 ltr:left-2 rtl:right-2">
           {props.startIcon}
@@ -170,4 +167,6 @@ flex-1
       </AnimatePresence>
     </motion.div>
   );
-}
+};
+
+export default UiHomeInput;

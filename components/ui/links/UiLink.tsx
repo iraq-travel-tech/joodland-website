@@ -24,7 +24,7 @@ export default function UiLink(props: UiLinkProps) {
   return (
     <Link href={props.href} className={style}>
       <span className="mt-1">{props.startIcon}</span>
-      UiLink
+      {props.children}
       <span className="mt-1">{props.endIcon}</span>
     </Link>
   );

@@ -41,13 +41,13 @@ export default function UiFlightCard(props: UiFlightCardProps) {
             </div>
           </div>
 
-          <div className="md:text-lg md:static absolute top-2 right-3.5 md:text-black text-orange-600 font-semibold md:font-normal">
+          <div className="md:text-lg md:static absolute top-2 rtl:left-3.5 ltr:right-3.5  md:text-black text-orange-600 font-semibold md:font-normal">
             1 stop
           </div>
 
           <div className="flex max-w-[10em] md:w-full md:items-center md:flex-row flex-col md:justify-between">
             <div className="flex flex-row flex-1 md:flex-none">
-              <div className="ml-auto text-2xl font-bold md:text-lg sm:text-3xl md:font-normal md:ml-0">
+              <div className="ltr:ml-auto rtl:mr-auto text-2xl font-bold md:text-lg sm:text-3xl md:font-normal md:ml-0">
                 200$
               </div>
             </div>

@@ -7,6 +7,8 @@ type CardProps = {
   link: string;
 
   dictionary: any;
+
+  sizes?: string;
 };
 export default function UiImageCard(props: CardProps) {
   return (
@@ -19,6 +21,7 @@ export default function UiImageCard(props: CardProps) {
         className="absolute top-0 left-0 z-10 object-cover w-full h-full brightness-50 rounded-xl"
         alt={props.name + " image"}
         fill
+        sizes={props.sizes}
       />
       <div className="flex flex-col absolute bottom-4 left-4 rtl:!right-5 z-20">
         <div className="text-sm transition-all group-hover:scale-105 group-hover:shadow-lg">

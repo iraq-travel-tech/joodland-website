@@ -12,16 +12,18 @@ import { LocaleInterface } from "@/dictionaries/LocaleInterface";
 import UiButton from "@/components/ui/buttons/UiButton";
 import UiLink from "@/components/ui/links/UiLink";
 import UiNewDropDown from "@/components/ui/dropdowns/UiNewDropDown";
-
+import { useRouter } from "next/navigation";
 
 const PassengersComponent = dynamic(() => import("../PassengersComponent"));
 
 export default function SearchBox({
   showtexts,
   dictionary,
+  lang,
 }: {
   showtexts?: boolean;
   dictionary: LocaleInterface;
+  lang: string;
 }) {
   const [TripDirection, setTripDirection] = useState(dictionary.home.oneway);
   const [TripClass, setTripClass] = useState(dictionary.home.economy);
@@ -43,6 +45,8 @@ export default function SearchBox({
       key: "selection",
     },
   ]);
+
+  const router = useRouter();
   return (
     <div>
       {" "}
@@ -65,7 +69,7 @@ export default function SearchBox({
         )}
 
         <div className="flex flex-col gap-3 mt-5">
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap sm:gap-3 gap-2">
             <UiNewDropDown
               State={TripDirection}
               setState={setTripDirection}
@@ -107,7 +111,12 @@ export default function SearchBox({
             </UiButton>
           </div>
 
-          <div className="flex flex-col gap-3 lg:flex-row">
+          <form
+            className="flex flex-col  gap-3 lg:flex-row"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div className="flex flex-col flex-1 gap-3 md:flex-row">
               <UiHomeInput
                 Value={From}
@@ -134,15 +143,18 @@ export default function SearchBox({
             </div>
 
             <UiLink
-              href={`/flights?from=${From}&to=${To}&depart=${OneWayStartDate}&return=${TwoWaysTripDate[0].endDate}&adults=${Adults}&children=${Children}&babies=${Babies}&class=${TripClass}`}
+              href={`${lang}/flights?from=${From}&to=${To}&depart=${
+                OneWayStartDate ? OneWayStartDate : TwoWaysTripDate[0].startDate
+              }&return=${
+                OneWayStartDate ? OneWayStartDate : TwoWaysTripDate[0].endDate
+              }&adults=${Adults}&children=${Children}&babies=${Babies}&class=${TripClass}`}
+              className="!w-full lg:!w-max"
               variant={"filled"}
               endIcon={<IoSearch />}
-              className="!w-full lg:!w-max"
             >
-              {/* search */}
               {dictionary.home.search}
             </UiLink>
-          </div>
+          </form>
         </div>
       </div>
       <AnimatePresence>
