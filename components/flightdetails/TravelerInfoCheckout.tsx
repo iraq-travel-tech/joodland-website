@@ -16,7 +16,7 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
         Traveler {index + 1} - {i}
       </div>
       <div className="flex flex-col gap-4 mt-3">
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <input
             required
             type="text"
@@ -32,7 +32,7 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
             name={`traveler-${index}-phone`}
           />
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <input
             required
             type="text"
@@ -56,15 +56,7 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="w-max">
-            {/* <OldDateInput
-              name={`traveler-${index}-date-of-birth`}
-              placeholder="Date of Birth"
-              value={Date}
-              setValue={setDate}
-              required
-            /> */}
-          </div>
+          <div className="w-max"></div>
           <div className="flex gap-3">
             <p className="font-bold">Gender:</p>
 
@@ -90,7 +82,7 @@ export default function TravelerInfoCheckout({ i, index }: AllProps) {
             </label>
           </div>{" "}
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 }

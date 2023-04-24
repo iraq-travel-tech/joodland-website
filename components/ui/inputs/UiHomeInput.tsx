@@ -80,7 +80,7 @@ flex-1
             setSelectedFromList(false);
           }}
           onBlur={handleInputBlur}
-          onClick={() => setOpenInput(true)}
+          onFocus={() => setOpenInput(true)}
           required
         />
         <span className="ltr:ml-3 rtl:mr-3 absolute top-4.5 ltr:left-2 rtl:right-2">
@@ -110,6 +110,7 @@ flex-1
             transition={{
               duration: 0.2,
             }}
+            dir="ltr"
             className="relative left-0 z-20 flex flex-col w-full gap-3 p-3 overflow-hidden bg-white rounded shadow-md sm:absolute sm:top-16 top-5 sm:shadow-xl"
           >
             <AnimatePresence>

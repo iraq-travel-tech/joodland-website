@@ -89,7 +89,11 @@ export default function UiFlightCard(props: UiFlightCardProps) {
               <StopFlightBox />
               <StopFlightBox />
 
-              <UiLink className="mt-3 w-max" href="/" variant="filled">
+              <UiLink
+                className="mt-3 w-max"
+                href="/flights/checkout"
+                variant="filled"
+              >
                 checkout
               </UiLink>
             </div>

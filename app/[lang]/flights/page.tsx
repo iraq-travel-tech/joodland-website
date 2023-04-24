@@ -3,6 +3,8 @@ import { SearchParamsProps } from "@/interfces/SearchParamsProps";
 import { GET_flights } from "../api/apiFunctions/GetFlights";
 import UiFlightCard from "@/components/ui/cards/flightcard/UiFlightCard";
 import { getDictionary } from "@/get-dictionary";
+import Link from "next/link";
+import { BsArrowLeftShort } from "react-icons/bs";
 
 type PageProps = {
   searchParams: SearchParamsProps;
@@ -27,6 +29,13 @@ export default async function page(props: PageProps) {
   return (
     <div>
       <div className="flex flex-col pt-10">
+        <Link
+          href="/"
+          className="text-xl flex w-max items-center text-zinc-400 gap-2"
+        >
+          <BsArrowLeftShort />
+          Go Back
+        </Link>
         <div className="text-2xl font-bold">{dictionary.flights.title}</div>
         <div className="text-zinc-600">{dictionary.flights.subtitle}</div>
       </div>
