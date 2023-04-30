@@ -1,7 +1,6 @@
-import "./globals.css";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({ subsets: ["latin"] });
+import { ClerkProvider } from "@clerk/nextjs/app-beta";
+import MainLayout from "@/components/ui/layouts/MainLayout";
+import "styles/globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +14,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className="bg-zinc-100">
+        <ClerkProvider>
+          <div>
+            <MainLayout>{children}</MainLayout>
+          </div>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }

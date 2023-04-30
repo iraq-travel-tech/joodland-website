@@ -1,7 +1,12 @@
-import React from 'react'
+import HomePosts from "@/components/screens/home/sections/HomePosts";
+import InputSection from "@/components/screens/home/sections/InputSection";
 
 export default function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <InputSection />
+
+      <HomePosts />
+    </div>
+  );
 }
