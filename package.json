@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.16.4",
+    "@prisma/client": "4.13.0",
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@types/node": "18.16.2",
     "@types/react": "18.2.0",
@@ -38,6 +39,7 @@
     "@storybook/nextjs": "7.0.7",
     "@storybook/react": "7.0.7",
     "@storybook/testing-library": "0.0.14-next.2",
+    "prisma": "4.13.0",
     "storybook": "7.0.7"
   }
 }
