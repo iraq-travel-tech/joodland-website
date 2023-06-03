@@ -1,6 +1,6 @@
-import { ClerkProvider } from "@clerk/nextjs/app-beta";
-import MainLayout from "@/components/ui/layouts/MainLayout";
-import "styles/globals.css";
+import ClientLayout from "@components/templates/layout/ClientLayout";
+import MainLayout from "@components/templates/layout/MainLayout";
+import "@styles/globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,12 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-zinc-100">
-        <ClerkProvider>
-          <div>
-            <MainLayout>{children}</MainLayout>
-          </div>
-        </ClerkProvider>
+      <body className="bg-gray-100">
+        <ClientLayout>
+          <MainLayout>{children}</MainLayout>
+        </ClientLayout>
       </body>
     </html>
   );
