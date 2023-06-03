@@ -3,14 +3,14 @@
 import { useState, useRef, useEffect } from "react";
 
 interface WheelPickerProps {
-  list: number[];
-  State: number;
-  setState: React.Dispatch<React.SetStateAction<number>>;
+  list: Array<any>;
+  State: any;
+  setState: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
   const ComponentRef = useRef<HTMLDivElement>(null);
-  const [centeredNumber, setCenteredNumber] = useState(list.indexOf(State));
+  const [centeredItem, setCenteredItem] = useState(State);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [isDown, setIsDown] = useState(false);
@@ -41,8 +41,6 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
     }
   };
 
-
-
   useEffect(() => {
     const Component = ComponentRef.current;
 
@@ -52,11 +50,13 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
         const { scrollTop, clientHeight } = Component;
 
         const scrollPosition = scrollTop + clientHeight;
-        const centeredNumber = Math.round(scrollPosition / 33) - 5;
+        const centeredIndex = Math.round(scrollPosition / 33) - 5;
 
-        setCenteredNumber(centeredNumber);
+        const centeredItem = list[centeredIndex];
 
-        setState(list[centeredNumber]);
+        setCenteredItem(centeredItem);
+
+        setState(centeredItem);
       }
     };
 
@@ -69,18 +69,20 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
 
   useEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, list.length);
-    const centeredItemRef = itemRefs.current[centeredNumber];
+    const centeredIndex = list.indexOf(centeredItem);
+
+    const centeredItemRef = itemRefs.current[centeredIndex];
     if (centeredItemRef) {
       centeredItemRef.scrollIntoView({
         block: "center",
       });
     }
-  }, [State, centeredNumber]);
+  }, []);
 
   return (
     <div
       ref={ComponentRef}
-      className="flex cursor-grab active:cursor-grabbing noscrollwheel pt-20 pb-20 flex-col overflow-y-scroll text-center snap-mandatory snap-y relative"
+      className="flex cursor-grab active:cursor-grabbing noscrollwheel pt-20 pb-20 flex-col overflow-y-scroll text-center snap-mandatory snap-y relative "
       onMouseDown={onMouseDown}
       onMouseLeave={onMouseLeave}
       onMouseUp={onMouseUp}
@@ -91,13 +93,13 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
           style={{
             minHeight: 33,
           }}
-          key={item}
-          className={`snap-center pt-1 w-[5em] relative z-10 transition-all scale-100 select-none
+          key={index}
+          className={`snap-center pt-1 min-w-[6em] relative z-10 transition-all scale-100 select-none
               
             ${
-              index === centeredNumber
-                ? "font-bold text-black scale-105"
-                : "text-zinc-500 scale-95"
+              item === centeredItem
+                ? "text-black  font-bold "
+                : "text-zinc-500 font-normal  "
             }
               
               `}

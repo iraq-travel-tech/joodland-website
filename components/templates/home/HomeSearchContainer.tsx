@@ -7,7 +7,7 @@ import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import TextInput from "@components/elements/textinput/TextInput";
-import CustomDatePicker from "@components/elements/textinput/DatePicker";
+import DatePicker from "@components/elements/textinput/DatePicker";
 
 const tripdirections = [
   {
@@ -60,12 +60,23 @@ export default function HomeSearchContainer() {
   const [From, setFrom] = useState("");
   const [To, setTo] = useState("");
 
-  const [DepartureDate, setDepartureDate] = useState(
-    new Date().toISOString().split("T")[0]
+  const today = new Date();
+  const year = String(today.getFullYear());
+  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    today
   );
-  const [ReturnDate, setReturnDate] = useState(
-    new Date().toISOString().split("T")[0]
-  );
+  const day = String(today.getDate());
+
+  const [DepartureDate, setDepartureDate] = useState({
+    year: year,
+    month: month,
+    day: day,
+  });
+  const [ReturnDate, setReturnDate] = useState({
+    year: year,
+    month: month,
+    day: day,
+  });
 
   return (
     <div className="flex z-10 mt-10 sm:mt-16 flex-col bg-white shadow-xl p-4 rounded-lg">
@@ -120,11 +131,28 @@ export default function HomeSearchContainer() {
           />
         </div>
 
-        <CustomDatePicker />
+        <DatePicker
+          date={DepartureDate}
+          setDate={setDepartureDate}
+          title="DepartureDate"
+        />
 
-        {tripDirection === "Round Trip" && <CustomDatePicker />}
+        {tripDirection === "Round Trip" && (
+          <DatePicker
+            date={ReturnDate}
+            title="ReturnDate"
+            setDate={setReturnDate}
+          />
+        )}
 
-        <Button className="min-w-[10em] rounded-lg">Search</Button>
+        <Button
+          onClick={() => {
+            console.log(DepartureDate);
+          }}
+          className="min-w-[10em] rounded-lg"
+        >
+          Search
+        </Button>
       </div>
     </div>
   );
