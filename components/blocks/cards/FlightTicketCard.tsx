@@ -9,12 +9,17 @@ import { BsAirplaneFill } from "react-icons/bs";
 export default function FlightTicketCard() {
   const [OpenStops, setOpenStops] = useState(false);
   return (
-    <motion.div className="grid grid-cols-[1fr_max-content] grid-rows-[max-content-1fr_max-content_max-content] shadow-lg rounded-lg p-4 ">
-      <p className="font-bold col-span-2">logo</p>
+    <motion.div
+      className={`
+      grid grid-cols-[1fr_max-content] grid-rows-[max-content-1fr_max-content_max-content] custom-shadow rounded-lg p-4  ring-primary-600 ring-0 transition-all
+      ${OpenStops ? " !ring-2 " : ""}
+    `}
+    >
+      <p className="font-bold text-secondary-800 col-span-2">logo</p>
       <div className="flex sm:col-span-1 col-span-2 justify-between items-center">
         <div className="flex gap-4">
           <div className="flex-col">
-            <p className="font-bold sm:text-2xl text-xl">
+            <p className="font-bold text-secondary-800 sm:text-2xl text-xl">
               12:40
               <span className="text-sm ml-1">AM</span>
             </p>
@@ -28,7 +33,7 @@ export default function FlightTicketCard() {
             <div className="h-[.08em] sm:w-8 w-5 rounded bg-zinc-300"></div>
           </div>
           <div className="flex-col">
-            <p className="font-bold sm:text-2xl text-xl">
+            <p className="font-bold text-secondary-800 sm:text-2xl text-xl">
               12:40
               <span className="text-sm ml-1">AM</span>
             </p>
@@ -39,13 +44,15 @@ export default function FlightTicketCard() {
         </div>
       </div>
       <div className="flex sm:mt-0 mt-6 flex-col items-end">
-        <div className="font-bold sm:text-2xl text-xl">200$</div>
+        <div className="font-bold text-secondary-800 sm:text-2xl text-xl">
+          200$
+        </div>
 
         <div className="flex items-center gap-3 ms:text-sm text-xs">
           <p className="flex items-center gap-1">
             <span>1</span>
             <span>
-              <FaUser size={12} />
+              <FaUser className="fill-secondary-800" size={12} />
             </span>
           </p>
           <div className="circle rounded-full w-1 h-1 bg-black"></div>
@@ -55,8 +62,14 @@ export default function FlightTicketCard() {
       <div className="flex col-start-1 row-start-3 sm:mt-5 mt-auto md:col-span-2">
         <Button
           padding={"sm"}
-          className="text-sm px-3"
-          endIcon={<BiChevronDown />}
+          className="text-sm px-3 !bg-primary-100 !text-primary-700"
+          endIcon={
+            <BiChevronDown
+              className={`${
+                OpenStops ? "transform rotate-180" : ""
+              } transition-transform duration-300`}
+            />
+          }
           roundedFull
           onClick={() => setOpenStops(!OpenStops)}
         >
@@ -69,13 +82,15 @@ export default function FlightTicketCard() {
           <div className="flex flex-col relative gap-4">
             <div className="flex gap-10">
               <div className="flex flex-col">
-                <div className="font-bold">12:40 am</div>
+                <div className="font-bold text-secondary-800">12:40 am</div>
 
                 <div className="text-zinc-400 text-sm">3h 10m</div>
               </div>
 
               <div className="flex flex-col relative">
-                <div className="font-bold">Baghdad (BGW)</div>
+                <div className="font-bold text-secondary-800">
+                  Baghdad (BGW)
+                </div>
 
                 <div className="text-zinc-400 text-sm">
                   Baghdad International
@@ -91,13 +106,15 @@ export default function FlightTicketCard() {
 
             <div className="flex gap-10">
               <div className="flex flex-col">
-                <div className="font-bold">12:40 am</div>
+                <div className="font-bold text-secondary-800">12:40 am</div>
 
                 <div className="text-zinc-400 text-sm">3h 10m</div>
               </div>
 
               <div className="flex flex-col relative">
-                <div className="font-bold">Baghdad (BGW)</div>
+                <div className="font-bold text-secondary-800">
+                  Baghdad (BGW)
+                </div>
 
                 <div className="text-zinc-400 text-sm">
                   Baghdad International

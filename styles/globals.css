@@ -5,3 +5,8 @@
 .noscrollwheel::-webkit-scrollbar {
   width: 0rem;
 }
+
+
+.custom-shadow{
+  box-shadow: rgba(19, 41, 104, 0.2) 0px 2px 5px 0px;
+}

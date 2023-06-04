@@ -22,8 +22,10 @@ export default function FlightsNav() {
       `}
     >
       <nav className="max-w-6xl py-5 mx-auto px-4 sm:px-6 lg:px-8 flex items-start justify-between flex-col w-full">
-        <div className="flex justify-between w-full items-center">
-          <p className="text-xl font-bold sm:flex hidden">JooLand</p>
+        <div className="relative z-50 flex justify-between w-full items-center">
+          <Link href="/" className="text-xl font-bold sm:flex hidden">
+            JooLand
+          </Link>
 
           <Link className="flex sm:hidden" href="/">
             <Button bg={"ghost"} iconOnly>
@@ -61,21 +63,23 @@ export default function FlightsNav() {
         </div>
 
         <AnimatePresence>
-          <motion.div
-            className="w-full"
-            initial={{
-              opacity: 0,
-              y: -20,
-            }}
-            animate={{
-              opacity: OpenSearchContainer ? 1 : 0,
-              y: OpenSearchContainer ? 0 : -20,
-            }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <HomeSearchContainer noShadow noMarginTop />
-          </motion.div>
+          {OpenSearchContainer && (
+            <motion.div
+              className="w-full"
+              initial={{
+                opacity: 0,
+                y: -20,
+              }}
+              animate={{
+                opacity: OpenSearchContainer ? 1 : 0,
+                y: OpenSearchContainer ? 0 : -20,
+              }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <HomeSearchContainer noShadow noMarginTop />
+            </motion.div>
+          )}
         </AnimatePresence>
       </nav>
     </header>

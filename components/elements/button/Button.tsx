@@ -5,7 +5,7 @@ export const ButtonStyles = cva(
   {
     variants: {
       bg: {
-        primary: "bg-[#FA6B6B] hover:bg-[#FA6B6B]/80 text-white",
+        primary: "bg-primary-600 hover:bg-primary-500 text-white",
         secondary: "bg-blue-500 hover:bg-blue-600 text-white",
         ghost: "bg-transparent hover:bg-gray-200 text-black",
       },
@@ -73,9 +73,9 @@ export default function Button({
 
   return (
     <button className={style} onClick={onClick} type={type} {...props}>
-      {startIcon}
+      <span className="pointer-events-none">{startIcon}</span>{" "}
       <span>{children}</span>
-      {endIcon}
+      <span className="pointer-events-none">{endIcon}</span>{" "}
     </button>
   );
 }
