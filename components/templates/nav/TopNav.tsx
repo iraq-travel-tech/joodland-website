@@ -5,6 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 export default function TopNav() {
   const [isScrolled, setIsScrolled] = useState(false);
+  
 
   useEffect(() => {
     // Add event listener to handle scroll

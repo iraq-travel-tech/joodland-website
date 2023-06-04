@@ -11,6 +11,7 @@ interface WheelPickerProps {
 const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
   const ComponentRef = useRef<HTMLDivElement>(null);
   const [centeredItem, setCenteredItem] = useState(State);
+  const [prevCenteredItem, setPrevCenteredItem] = useState(State);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [isDown, setIsDown] = useState(false);
@@ -78,6 +79,16 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (centeredItem !== prevCenteredItem) {
+      // Vibrate for 10 milliseconds when the centered item changes
+      if ("vibrate" in navigator) {
+        navigator.vibrate(10);
+      }
+      setPrevCenteredItem(centeredItem);
+    }
+  }, [centeredItem]);
 
   return (
     <div

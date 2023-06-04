@@ -6,9 +6,9 @@ import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
-import TextInput from "@components/elements/textinput/TextInput";
 import DatePicker from "@components/elements/textinput/DatePicker";
 import HomeSearchInput from "./HomeSearchInput";
+import Link from "next/link";
 
 const tripdirections = [
   {
@@ -31,7 +31,13 @@ const tripClasses = [
   },
 ];
 
-export default function HomeSearchContainer() {
+export default function HomeSearchContainer({
+  noShadow,
+  noMarginTop,
+}: {
+  noShadow?: boolean;
+  noMarginTop?: boolean;
+}) {
   const [Passengers, setPassengers] = useState({
     adults: 1,
     children: 0,
@@ -80,7 +86,11 @@ export default function HomeSearchContainer() {
   });
 
   return (
-    <div className="flex z-10 mt-10 sm:mt-16 flex-col bg-white shadow-xl p-4 rounded-lg">
+    <div
+      className={`flex z-10 w-full ${
+        !noMarginTop && "sm:mt-16 mt-10"
+      } flex-col bg-white p-4 rounded-lg ${!noShadow && "shadow-xl"}`}
+    >
       <div className="flex sm:gap-3 gap-1">
         <UiSelect
           State={tripDirection}
@@ -127,8 +137,8 @@ export default function HomeSearchContainer() {
           <HomeSearchInput
             startIcon={<FaPlaneArrival className="fill-gray-400" />}
             placeHolder="To"
-            State={From}
-            setState={setFrom}
+            State={To}
+            setState={setTo}
           />
         </div>
 
@@ -146,14 +156,9 @@ export default function HomeSearchContainer() {
           />
         )}
 
-        <Button
-          onClick={() => {
-            console.log(DepartureDate);
-          }}
-          className="min-w-[10em] rounded-lg"
-        >
-          Search
-        </Button>
+        <Link className="h-full min-w-[10em]" href={`/flights/${From}-${To}`}>
+          <Button className="h-full py-3 w-full rounded-lg">Search</Button>
+        </Link>
       </div>
     </div>
   );

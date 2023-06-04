@@ -10,8 +10,8 @@ const Template: StoryFn<typeof TextInput> = (args) => {
   const [state, setState] = useState("");
   return (
     <TextInput
-      value={state}
-      onChange={setState}
+      State={state}
+      setState={setState}
       placeholder="Enter your name"
       // startIcon={<span>👋</span>}
       endIcon={<span>👋</span>}

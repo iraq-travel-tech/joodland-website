@@ -22,7 +22,11 @@ const UiSelect = ({
   return (
     <Select.Root
       open={open}
-      onOpenChange={(open) => setOpen(open)}
+      onOpenChange={(open) => {
+        setTimeout(() => {
+          setOpen(open);
+        }, 200);
+      }}
       onValueChange={(value) => setState(value)}
       value={State}
     >
@@ -64,7 +68,12 @@ const UiSelect = ({
                     className={`text-[13px] hover:bg-gray-100 leading-none text-violet11 rounded-[3px] flex items-center h-[30px] pr-[35px] pl-[25px] relative select-none${
                       option.value === State ? " data-highlighted" : ""
                     }`}
-                    onSelect={() => setState(option.value)}
+                    // onTouchStartCapture={() => setState(option.value)}
+                    // onSelect={() => setState(option.value)}
+                    onClick={() => {
+                      setState(option.value);
+                      setOpen(false);
+                    }}
                   >
                     <Select.ItemText>{option.label}</Select.ItemText>
                     {option.value === State && (

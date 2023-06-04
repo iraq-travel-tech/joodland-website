@@ -62,7 +62,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ date, setDate, title }) => {
         className="bg-gray-100 border rounded border-gray-300 w-full p-3 text-gray-500 h-full"
         onClick={() => setOpen(true)}
       >
-        {year} / {month} / {day}
+        {title} : {year} / {month} / {day}
       </button>
       <Dialog open={open} setOpen={setOpen}>
         <div className="flex justify-between">

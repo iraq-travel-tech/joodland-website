@@ -3,7 +3,7 @@ import { HomeCardsContent } from "@lib/content/homeText";
 
 export default function page() {
   return (
-    <div>
+    <div className="pb-6">
       <div className="absolute top-0 left-0 sm:h-[45vh] h-[40vh] w-full">
         <img
           src="/images/sunset-bg.jpg"
