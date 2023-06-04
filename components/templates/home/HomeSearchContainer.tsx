@@ -8,6 +8,7 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import TextInput from "@components/elements/textinput/TextInput";
 import DatePicker from "@components/elements/textinput/DatePicker";
+import HomeSearchInput from "./HomeSearchInput";
 
 const tripdirections = [
   {
@@ -117,17 +118,17 @@ export default function HomeSearchContainer() {
 
       <div className="flex md:flex-row flex-col mt-3 gap-2">
         <div className="flex flex-1 sm:flex-row flex-col gap-2">
-          <TextInput
+          <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
+            placeHolder="From"
             State={From}
             setState={setFrom}
-            placeholder="From"
           />
-          <TextInput
+          <HomeSearchInput
             startIcon={<FaPlaneArrival className="fill-gray-400" />}
-            State={To}
-            setState={setTo}
-            placeholder="To"
+            placeHolder="To"
+            State={From}
+            setState={setFrom}
           />
         </div>
 

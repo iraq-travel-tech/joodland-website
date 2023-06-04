@@ -30,6 +30,8 @@ interface TextInputProps extends VariantProps<typeof TextInputStyles> {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   className?: string;
+  onBlur?: any;
+  onFocus?: any;
 }
 
 export default function TextInput({
@@ -38,6 +40,8 @@ export default function TextInput({
   State,
   setState,
   label,
+  onFocus,
+  onBlur,
   type = "text",
   startIcon,
   endIcon,
@@ -53,6 +57,8 @@ export default function TextInput({
         {startIcon}
       </div>
       <input
+        onFocus={onFocus}
+        onBlur={onBlur}
         type={type}
         className={`${inputStyles} `}
         style={{
