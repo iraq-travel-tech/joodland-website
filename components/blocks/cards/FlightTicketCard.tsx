@@ -3,7 +3,7 @@ import Button from "@components/elements/button/Button";
 import React, { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { BsAirplaneFill } from "react-icons/bs";
 
 export default function FlightTicketCard() {
@@ -77,53 +77,68 @@ export default function FlightTicketCard() {
         </Button>
       </div>
 
-      {OpenStops && (
-        <div className="col-span-2 mt-6 flex flex-col gap-4">
-          <div className="flex flex-col relative gap-4">
-            <div className="flex gap-10">
-              <div className="flex flex-col">
-                <div className="font-bold text-secondary-800">12:40 am</div>
+      <AnimatePresence>
+        {OpenStops && (
+          <motion.div
+            initial={{
+              height: 0,
+            }}
+            animate={{
+              height: "auto",
+            }}
+            exit={{
+              height: 0,
+            }}
+            className="col-span-2 overflow-hidden flex flex-col gap-4"
+          >
+            <div className="flex pt-6 flex-col relative gap-4">
+              <div className="flex gap-10">
+                <div className="flex flex-col">
+                  <div className="font-bold text-secondary-800">12:40 am</div>
 
-                <div className="text-zinc-400 text-sm">3h 10m</div>
-              </div>
-
-              <div className="flex flex-col relative">
-                <div className="font-bold text-secondary-800">
-                  Baghdad (BGW)
+                  <div className="text-zinc-400 text-sm">3h 10m</div>
                 </div>
 
-                <div className="text-zinc-400 text-sm">
-                  Baghdad International
+                <div className="flex flex-col relative">
+                  <div className="font-bold text-secondary-800">
+                    Baghdad (BGW)
+                  </div>
+
+                  <div className="text-zinc-400 text-sm">
+                    Baghdad International
+                  </div>
                 </div>
               </div>
+
+              <div className="flex flex-col items-center w-max gap-2 h-[5em]">
+                <BsAirplaneFill className="rotate-180" />
+                <div className="h-full w-[.08em] bg-zinc-300"></div>
+                <div className="circle w-[.5em] min-h-[.5em] h-[.5em] rounded-full bg-black"></div>
+              </div>
+
+              <div className="flex gap-10">
+                <div className="flex flex-col">
+                  <div className="font-bold text-secondary-800">12:40 am</div>
+
+                  <div className="text-zinc-400 text-sm">3h 10m</div>
+                </div>
+
+                <div className="flex flex-col relative">
+                  <div className="font-bold text-secondary-800">
+                    Baghdad (BGW)
+                  </div>
+
+                  <div className="text-zinc-400 text-sm">
+                    Baghdad International
+                  </div>
+                </div>
+              </div>
+
+              <Button className="w-max mt-4">See More Details</Button>
             </div>
-
-            <div className="flex flex-col items-center w-max gap-2 h-[5em]">
-              <BsAirplaneFill className="rotate-180" />
-              <div className="h-full w-[.08em] bg-zinc-300"></div>
-              <div className="circle w-[.5em] min-h-[.5em] h-[.5em] rounded-full bg-black"></div>
-            </div>
-
-            <div className="flex gap-10">
-              <div className="flex flex-col">
-                <div className="font-bold text-secondary-800">12:40 am</div>
-
-                <div className="text-zinc-400 text-sm">3h 10m</div>
-              </div>
-
-              <div className="flex flex-col relative">
-                <div className="font-bold text-secondary-800">
-                  Baghdad (BGW)
-                </div>
-
-                <div className="text-zinc-400 text-sm">
-                  Baghdad International
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

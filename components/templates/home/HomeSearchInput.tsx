@@ -102,13 +102,9 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
     setOpenContainer(true);
   }
 
-  useEffect(() => {
-    console.log(selectedFromList);
-  }, [selectedFromList]);
-
   return (
     <div
-      className={`sm:relative sm:p-0   ${
+      className={`sm:relative sm:p-0 ${
         openContainer && "z-50 fixed p-5"
       } bg-white  top-0 left-0 w-full h-full`}
     >

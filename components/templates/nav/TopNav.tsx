@@ -53,7 +53,7 @@ export default function TopNav() {
         </p>
 
         <ul
-          className={`flex gap-2 items-center justify-center md:static md:text-inherit transition-all fixed top-0 left-0 h-full w-3/4 md:w-max bg-white md:bg-transparent z-50 ${
+          className={`flex gap-2 items-center justify-center md:static md:text-inherit transition-all fixed top-0 h-full w-3/4 md:w-max bg-white md:bg-transparent md:left-0 z-50 ${
             LeftSideBarOpen ? " left-0 " : " -left-full "
           } `}
         >
