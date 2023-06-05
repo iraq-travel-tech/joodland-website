@@ -12,11 +12,13 @@ const UiSelect = ({
   State,
   setState,
   noShadow,
+  noBg,
 }: {
   options: { label: string; value: string }[];
   State: string;
   setState: (value: string) => void;
   noShadow?: boolean;
+  noBg?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -31,9 +33,9 @@ const UiSelect = ({
       value={State}
     >
       <Select.Trigger
-        className={`inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11  selection:bg-transparent shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none ${
+        className={`inline-flex hover:brightness-90 items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px]  text-violet11  selection:bg-transparent shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none ${
           !noShadow && "shadow-[0_2px_10px]"
-        }`}
+        } ${!noBg && "bg-white"}`}
         aria-label="Food"
       >
         <Select.Value placeholder="Select a fruit…" />
@@ -48,7 +50,7 @@ const UiSelect = ({
       <Select.Portal>
         <Select.Content
           position="popper"
-          className="overflow-hidden z-10 bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
+          className="overflow-hidden z-50 bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
           sideOffset={4}
           asChild
         >
@@ -65,7 +67,7 @@ const UiSelect = ({
                   <Select.Item
                     key={option.value}
                     value={option.value}
-                    className={`text-[13px] hover:bg-gray-100 leading-none text-violet11 rounded-[3px] flex items-center h-[30px] pr-[35px] pl-[25px] relative select-none${
+                    className={`text-[13px] hover:bg-gray-100 leading-none text-violet11 rounded-[3px] flex items-center h-[30px] pr-[35px] pl-[25px] cursor-pointer active:scale-95 relative select-none${
                       option.value === State ? " data-highlighted" : ""
                     }`}
                     // onTouchStartCapture={() => setState(option.value)}

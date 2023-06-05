@@ -9,6 +9,10 @@ import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
 import HomeSearchInput from "./HomeSearchInput";
 import Link from "next/link";
+import Badge from "@components/elements/badge/Badge";
+import { useRouter } from "next/navigation";
+import Flash from "@components/blocks/flash/Flash";
+import useFlashMessages from "@lib/hooks/useFlashMessages";
 
 const tripdirections = [
   {
@@ -43,6 +47,7 @@ export default function HomeSearchContainer({
     children: 0,
     Babies: 0,
   });
+  const router = useRouter();
 
   const [tripDirection, setTripDirection] = useState("One Way");
   const [tripClass, setTripClass] = useState("Economy");
@@ -85,6 +90,18 @@ export default function HomeSearchContainer({
     day: day,
   });
 
+  const { adults, children, Babies } = Passengers;
+  const departureDate = `${DepartureDate.year}${DepartureDate.month}${DepartureDate.day}`;
+  const returnDate = ReturnDate
+    ? `${ReturnDate.year}${ReturnDate.month}${ReturnDate.day}`
+    : "";
+
+  const flightSearchUrl = `/flights/${From}-${To}?direction=${tripDirection}&class=${tripClass}&adults=${adults}&children=${children}&babies=${Babies}&departure=${departureDate}${
+    returnDate ? `&return=${returnDate}` : ""
+  }`;
+
+  const { messages, addFlash, removeFlash } = useFlashMessages();
+
   return (
     <div
       className={`flex z-10 w-full ${
@@ -108,7 +125,7 @@ export default function HomeSearchContainer({
 
         <Button
           bg={"ghost"}
-          className="text-xs"
+          className="text-xs relative"
           endIcon={<BsChevronDown className="text-xs" />}
           onClick={() => setOpenPassengersDialog(true)}
         >
@@ -116,6 +133,10 @@ export default function HomeSearchContainer({
           <span className="sm:hidden">
             <FaUsers />
           </span>
+
+          <Badge variant={"primary"}>
+            {Passengers.adults + Passengers.children + Passengers.Babies}
+          </Badge>
         </Button>
         <PassengersDialogBox
           setOpenPassengersDialog={setOpenPassengersDialog}
@@ -156,10 +177,24 @@ export default function HomeSearchContainer({
           />
         )}
 
-        <Link className="h-full min-w-[10em]" href={`/flights/${From}-${To}`}>
-          <Button className="h-full py-3 w-full rounded-lg">Search</Button>
-        </Link>
+        <div className="h-full min-w-[10em]">
+          <Button
+            onClick={() => {
+              if (From === "") {
+                addFlash(`Please set the 'From' field.`);
+              } else if (To === "") {
+                addFlash(`Please set the 'To' field.`);
+              } else {
+                router.push(flightSearchUrl);
+              }
+            }}
+            className="h-full py-3 w-full rounded-lg"
+          >
+            Search
+          </Button>
+        </div>
       </div>
+      <Flash messages={messages} removeFlash={removeFlash} />
     </div>
   );
 }

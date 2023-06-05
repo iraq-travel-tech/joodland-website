@@ -1,44 +1,62 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect, useState } from "react";
 
-type FlashProps = {
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, FC } from "react";
+
+interface FlashMessageProps {
   message: string;
-  type?: "success" | "error"; // for different styles of flash messages
-  duration?: number; // duration for flash message to be visible
-};
+  removeFlash: () => void;
+}
+
+interface FlashProps {
+  messages: string[];
+  removeFlash: (index: number) => void;
+}
 
 const flashVariant = {
-  hidden: { opacity: 0, y: -50 },
+  hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -50 },
+  exit: { opacity: 0, x: 50 },
 };
 
-export const Flash: React.FC<FlashProps> = ({
-  message,
-  type = "success",
-  duration = 3000,
-}) => {
-  const [showFlash, setShowFlash] = useState(true);
-
+const FlashMessage: FC<FlashMessageProps> = ({ message, removeFlash }) => {
   useEffect(() => {
-    const timer = setTimeout(() => setShowFlash(false), duration);
+    const timer = setTimeout(removeFlash, 2000);
     return () => clearTimeout(timer); // cleanup on unmount
-  }, [duration]);
+  }, [removeFlash]);
 
   return (
-    <AnimatePresence mode="wait">
-      {showFlash && (
-        <motion.div
-          className={`flash-message ${type}`} // Apply different styles based on type
-          variants={flashVariant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          {message}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      layout
+      className={`rounded-md text-white bg-blue-600 py-3 px-4`}
+      variants={flashVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={{
+        duration: 0.5,
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      }}
+    >
+      {message}
+    </motion.div>
   );
 };
+
+const Flash: FC<FlashProps> = ({ messages, removeFlash }) => (
+  <motion.div layout className="flex fixed bottom-4 right-4 flex-col gap-4">
+    <AnimatePresence>
+      {messages.map((message, index) => (
+        <FlashMessage
+          key={index}
+          message={message}
+          removeFlash={() => removeFlash(index)}
+        />
+      ))}
+    </AnimatePresence>
+  </motion.div>
+);
+
+export default Flash;
