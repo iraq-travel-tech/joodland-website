@@ -1,4 +1,0 @@
-deployed in : https://github.com/omer-os/jooland-website/ 
-to make changes work in production go to : https://github.com/omer-os/jooland-website/tree/main
-then click: sync fork
-r
