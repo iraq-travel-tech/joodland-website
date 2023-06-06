@@ -1,8 +1,5 @@
-import FlightTicketCard from "@components/blocks/cards/FlightTicketCard";
-import Button from "@components/elements/button/Button";
 import FlightsPage from "@components/pages/flights/FlightsPage";
 import React from "react";
-import { MdFilterListAlt } from "react-icons/md";
 
 export default function page({
   params,

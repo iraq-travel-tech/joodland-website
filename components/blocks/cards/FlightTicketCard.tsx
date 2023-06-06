@@ -6,6 +6,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsAirplaneFill } from "react-icons/bs";
+import Link from "next/link";
 
 type FlightTicketCardProps = {
   ticket: Ticket;
@@ -161,7 +162,9 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                   </div>
                 </div>
 
-                <Button className="w-max mt-4">See More Details</Button>
+                <Link href={`/flights/details/23423`}>
+                  <Button className="w-max mt-4">See More Details</Button>
+                </Link>
               </div>
             ))}
           </motion.div>

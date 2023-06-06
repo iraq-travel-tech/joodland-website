@@ -13,6 +13,7 @@ import Badge from "@components/elements/badge/Badge";
 import { useRouter } from "next/navigation";
 import Flash from "@components/blocks/flash/Flash";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const tripdirections = [
   {
@@ -71,6 +72,7 @@ export default function HomeSearchContainer({
   const [OpenPassengersDialog, setOpenPassengersDialog] = useState(false);
   const [From, setFrom] = useState("");
   const [To, setTo] = useState("");
+  const [Loading, setLoading] = useState(false);
 
   const today = new Date();
   const year = String(today.getFullYear());
@@ -185,12 +187,14 @@ export default function HomeSearchContainer({
               } else if (To === "") {
                 addFlash(`Please set the 'To' field.`);
               } else {
+                setLoading(true);
                 router.push(flightSearchUrl);
               }
             }}
             className="h-full py-3 w-full rounded-lg"
           >
-            Search
+            {!Loading && "Search"}
+            {Loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>
         </div>
       </div>

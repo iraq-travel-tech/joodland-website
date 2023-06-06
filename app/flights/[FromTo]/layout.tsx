@@ -19,7 +19,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="w-full">
-          <Link className="md:flex hidden" href="/">
+          <Link className="md:flex hidden w-max" href="/">
             <Button bg={"ghost"} startIcon={<GoChevronLeft />}>
               Go Back
             </Button>

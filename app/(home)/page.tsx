@@ -27,7 +27,9 @@ export default function page() {
         <HomeSearchContainer />
 
         <div className="mt-14">
-          <div className="font-bold text-2xl text-secondary-900">What Jooland Offers For You?</div>
+          <div className="font-bold text-2xl text-secondary-900">
+            What Jooland Offers For You?
+          </div>
           <div className="grid grid-cols-1 mt-6 gap-3 lg:grid-cols-4 md:grid-cols-2">
             {HomeCardsContent.map((card, index) => (
               <article
@@ -37,7 +39,9 @@ export default function page() {
                 <div className="flex items-center justify-center w-10 h-10 text-primary-700 rounded bg-primary-100">
                   {card.icon}
                 </div>
-                <h1 className="mt-3 font-bold capitalize text-secondary-900">{card.title}</h1>
+                <h1 className="mt-3 font-bold capitalize text-secondary-900">
+                  {card.title}
+                </h1>
                 <p className="mt-1 text-sm">{card.description}</p>
               </article>
             ))}
