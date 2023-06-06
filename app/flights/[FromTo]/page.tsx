@@ -15,8 +15,7 @@ export default function page({
   const to = params.FromTo.split("-")[1];
 
   return (
-    <div>
-
+    <div className="md:mt-4">
       <FlightsPage />
     </div>
   );

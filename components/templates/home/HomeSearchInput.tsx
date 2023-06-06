@@ -7,6 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 // @ts-ignore : doesn't have types
 import { useDebouncedValue } from "@mantine/hooks";
+import { IoMdClose } from "react-icons/io";
+import Button from "@components/elements/button/Button";
 
 type ResultItem = {
   id: string;
@@ -109,7 +111,16 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
       } bg-white  top-0 left-0 w-full h-full`}
     >
       <motion.div layout>
+        {openContainer && (
+          <div className="text-2xl flex justify-between items-center mb-4 font-bold sm:hidden">
+            <p>{placeHolder}</p>
+            <button className="active:scale-90 transition-all">
+              <IoMdClose />
+            </button>
+          </div>
+        )}
         <TextInput
+          className=""
           startIcon={startIcon}
           State={inputState}
           setState={setInputState}
@@ -128,7 +139,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         sm:rounded-lg 
         rounded
         sm:top-14
-        top-20
+        top-32
         sm:w-[27em]
 
         sm:left-0
