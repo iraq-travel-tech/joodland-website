@@ -8,40 +8,70 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
 import HomeSearchInput from "./HomeSearchInput";
-import Link from "next/link";
 import Badge from "@components/elements/badge/Badge";
 import { useRouter } from "next/navigation";
 import Flash from "@components/blocks/flash/Flash";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-const tripdirections = [
-  {
-    label: "One Way",
-    value: "One Way",
-  },
-  {
-    label: "Round Trip",
-    value: "Round Trip",
-  },
-];
-const tripClasses = [
-  {
-    label: "Economy",
-    value: "Economy",
-  },
-  {
-    label: "business",
-    value: "business",
-  },
-];
+interface AllTexts {
+  switchTexts: {
+    direction: {
+      oneway: string;
+      round: string;
+    };
+    class: {
+      economy: string;
+      business: string;
+    };
+  };
+  passengers: {
+    name: string;
+    adults: {
+      title: string;
+      subTitle: string;
+    };
+    children: {
+      title: string;
+      subTitle: string;
+    };
+    babies: {
+      title: string;
+      subTitle: string;
+    };
+  };
+  btns: {
+    done: string;
+    search: string;
+  };
+  from: string;
+  to: string;
+  months: {
+    january: string;
+    february: string;
+    march: string;
+    april: string;
+    may: string;
+    june: string;
+    july: string;
+    august: string;
+    september: string;
+    october: string;
+    november: string;
+    december: string;
+  };
+  DepartureDate: string;
+  ReturnDate: string;
+}
 
 export default function HomeSearchContainer({
   noShadow,
   noMarginTop,
+  allTexts,
 }: {
   noShadow?: boolean;
   noMarginTop?: boolean;
+  allTexts: AllTexts;
 }) {
   const [Passengers, setPassengers] = useState({
     adults: 1,
@@ -50,23 +80,44 @@ export default function HomeSearchContainer({
   });
   const router = useRouter();
 
-  const [tripDirection, setTripDirection] = useState("One Way");
+  const tripdirections = [
+    {
+      label: allTexts.switchTexts.direction.oneway,
+      value: "oneway",
+    },
+    {
+      label: allTexts.switchTexts.direction.round,
+      value: "round",
+    },
+  ];
+  const tripClasses = [
+    {
+      label: allTexts.switchTexts.class.economy,
+      value: "Economy",
+    },
+    {
+      label: allTexts.switchTexts.class.business,
+      value: "business",
+    },
+  ];
+
+  const [tripDirection, setTripDirection] = useState("oneway");
   const [tripClass, setTripClass] = useState("Economy");
   const [TripPassengers, setTripPassengers] = useState([
     {
-      label: "Adults",
+      label: allTexts.passengers.adults.title,
       value: 1,
-      age: "more than 12 years old",
+      age: allTexts.passengers.adults.subTitle,
     },
     {
-      label: "Children",
+      label: allTexts.passengers.children.title,
       value: 0,
-      age: "2-12 years old",
+      age: allTexts.passengers.children.subTitle,
     },
     {
-      label: "Babies",
+      label: allTexts.passengers.babies.title,
       value: 0,
-      age: "less than 2 years old",
+      age: allTexts.passengers.babies.subTitle,
     },
   ]);
   const [OpenPassengersDialog, setOpenPassengersDialog] = useState(false);
@@ -103,7 +154,6 @@ export default function HomeSearchContainer({
   }`;
 
   const { messages, addFlash, removeFlash } = useFlashMessages();
-
   return (
     <div
       className={`flex z-10 w-full ${
@@ -131,7 +181,7 @@ export default function HomeSearchContainer({
           endIcon={<BsChevronDown className="text-xs" />}
           onClick={() => setOpenPassengersDialog(true)}
         >
-          <span className="sm:flex hidden">Passengers</span>
+          <span className="sm:flex hidden">{allTexts.passengers.name}</span>
           <span className="sm:hidden">
             <FaUsers />
           </span>
@@ -146,6 +196,7 @@ export default function HomeSearchContainer({
           setTripPassengers={setTripPassengers}
           OpenPassengersDialog={OpenPassengersDialog}
           setPassengers={setPassengers}
+          allTexts={allTexts}
         />
       </div>
 
@@ -153,13 +204,13 @@ export default function HomeSearchContainer({
         <div className="flex flex-1 sm:flex-row flex-col gap-2">
           <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
-            placeHolder="From"
+            placeHolder={allTexts.from}
             State={From}
             setState={setFrom}
           />
           <HomeSearchInput
             startIcon={<FaPlaneArrival className="fill-gray-400" />}
-            placeHolder="To"
+            placeHolder={allTexts.to}
             State={To}
             setState={setTo}
           />
@@ -168,14 +219,42 @@ export default function HomeSearchContainer({
         <DatePicker
           date={DepartureDate}
           setDate={setDepartureDate}
-          title="DepartureDate"
+          title={allTexts.DepartureDate}
+          months={[
+            allTexts.months.january,
+            allTexts.months.february,
+            allTexts.months.march,
+            allTexts.months.april,
+            allTexts.months.may,
+            allTexts.months.june,
+            allTexts.months.july,
+            allTexts.months.august,
+            allTexts.months.september,
+            allTexts.months.october,
+            allTexts.months.november,
+            allTexts.months.december,
+          ]}
         />
 
-        {tripDirection === "Round Trip" && (
+        {tripDirection === "round" && (
           <DatePicker
             date={ReturnDate}
-            title="ReturnDate"
+            title={allTexts.ReturnDate}
             setDate={setReturnDate}
+            months={[
+              allTexts.months.january,
+              allTexts.months.february,
+              allTexts.months.march,
+              allTexts.months.april,
+              allTexts.months.may,
+              allTexts.months.june,
+              allTexts.months.july,
+              allTexts.months.august,
+              allTexts.months.september,
+              allTexts.months.october,
+              allTexts.months.november,
+              allTexts.months.december,
+            ]}
           />
         )}
 
@@ -193,7 +272,7 @@ export default function HomeSearchContainer({
             }}
             className="h-full py-3 w-full rounded-lg"
           >
-            {!Loading && "Search"}
+            {!Loading && allTexts.btns.search}
             {Loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>
         </div>
@@ -209,17 +288,19 @@ const PassengersDialogBox = ({
   setTripPassengers,
   OpenPassengersDialog,
   setPassengers,
+  allTexts,
 }: {
   setOpenPassengersDialog: any;
   TripPassengers: any;
   setTripPassengers: any;
   OpenPassengersDialog: boolean;
   setPassengers: any;
+  allTexts: AllTexts;
 }) => {
   return (
     <Dialog open={OpenPassengersDialog} setOpen={setOpenPassengersDialog}>
       <div className="flex flex-col gap-3 p-2 sm:w-[20em]">
-        <div className="text-xl font-bold">Passengers</div>
+        <div className="text-xl font-bold">{allTexts.passengers.name}</div>
         <hr className="border my-2 border-gray-200" />
         {TripPassengers.map((passenger: any, index: number) => (
           <div key={index} className="flex items-center justify-between gap-8">
@@ -270,7 +351,7 @@ const PassengersDialogBox = ({
             });
           }}
         >
-          Done
+          {allTexts.btns.done}
         </Button>
       </div>
     </Dialog>

@@ -18,24 +18,16 @@ interface DatePickerProps {
     }>
   >;
   title: string;
+  months: any;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ date, setDate, title }) => {
+const DatePicker: React.FC<DatePickerProps> = ({
+  date,
+  setDate,
+  title,
+  months,
+}) => {
   const years = Array.from({ length: 2 }, (_, index) => index + 2023);
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
 
   const [open, setOpen] = useState(false);

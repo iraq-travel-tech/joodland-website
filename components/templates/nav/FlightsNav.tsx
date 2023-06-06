@@ -8,11 +8,62 @@ import { GoChevronLeft } from "react-icons/go";
 import Button from "@components/elements/button/Button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-
+import { useTranslations } from "next-intl";
 export default function FlightsNav() {
   const [OpenSearchContainer, setOpenSearchContainer] = useState(false);
   const params = useParams() as {
     FromTo: string;
+  };
+
+  const t = useTranslations("Home");
+  const allTexts = {
+    switchTexts: {
+      direction: {
+        oneway: t("switchTexts.direction.oneway"),
+        round: t("switchTexts.direction.round"),
+      },
+      class: {
+        economy: t("switchTexts.class.economy"),
+        business: t("switchTexts.class.business"),
+      },
+    },
+    passengers: {
+      name: t("passengers.name"),
+      adults: {
+        title: t("passengers.adults.title"),
+        subTitle: t("passengers.adults.subTitle"),
+      },
+      children: {
+        title: t("passengers.children.title"),
+        subTitle: t("passengers.children.subTitle"),
+      },
+      babies: {
+        title: t("passengers.babies.title"),
+        subTitle: t("passengers.babies.subTitle"),
+      },
+    },
+    btns: {
+      done: t("btns.done"),
+      search: t("btns.search"),
+    },
+    from: t("from"),
+    to: t("to"),
+    months: {
+      january: t("months.january"),
+      february: t("months.february"),
+      march: t("months.march"),
+      april: t("months.april"),
+      may: t("months.may"),
+      june: t("months.june"),
+      july: t("months.july"),
+      august: t("months.august"),
+      september: t("months.september"),
+      october: t("months.october"),
+      november: t("months.november"),
+      december: t("months.december"),
+    },
+    DepartureDate: t("DepartureDate"),
+    ReturnDate: t("ReturnDate"),
   };
 
   return (
@@ -77,7 +128,7 @@ export default function FlightsNav() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <HomeSearchContainer noShadow noMarginTop />
+              <HomeSearchContainer noShadow noMarginTop allTexts={allTexts} />
             </motion.div>
           )}
         </AnimatePresence>

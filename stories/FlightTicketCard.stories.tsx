@@ -5,4 +5,4 @@ export default {
   component: FlightTicketCard,
 };
 
-export const FlightTicketCardStory = () => <FlightTicketCard />;
+// export const FlightTicketCardStory = () => <lFlightTicketCard />;

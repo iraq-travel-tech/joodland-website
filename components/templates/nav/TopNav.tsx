@@ -1,8 +1,11 @@
 "use client";
 import Button from "@components/elements/button/Button";
-import UiSelect from "@components/elements/select/Select";
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useRouter } from "next/router";
+import UiSelect from "@components/elements/select/Select";
+import Link from "next-intl/link";
+import { useParams } from "next/navigation";
 
 const languages = [
   {
@@ -35,6 +38,10 @@ export default function TopNav() {
     setIsScrolled(scrollTop > 0);
   };
 
+  const params = useParams() as {
+    locale: "ar" | "en";
+  };
+
   return (
     <header
       className={`sticky top-0 left-0 transition-all shadow-none  z-40 ${
@@ -45,9 +52,9 @@ export default function TopNav() {
     >
       <nav className="max-w-6xl py-5 relative mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <p
-          className={`text-xl font-bold
-        ${isScrolled ? "text-black" : " text-white "}
-        `}
+          className={`text-xl font-bold ${
+            isScrolled ? "text-black" : " text-white "
+          }`}
         >
           JooLand
         </p>
@@ -58,13 +65,23 @@ export default function TopNav() {
           } `}
         >
           <li className="relative z-50">
-            <UiSelect
+            {/* <UiSelect
               options={[...languages]}
               State={Language}
               setState={setLanguage}
               noShadow
               noBg
-            />
+            /> */}
+
+            {params.locale === "ar" ? (
+              <Link locale="en" href="/">
+                english
+              </Link>
+            ) : (
+              <Link locale="ar" href="/">
+                arabic
+              </Link>
+            )}
           </li>
         </ul>
         <div

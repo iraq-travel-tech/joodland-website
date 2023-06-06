@@ -1,0 +1,74 @@
+{
+  "Home": {
+    "heroTitle": "Where are you flying?",
+    "heroBody": "Find Your Flights and Book Them with Ease with Jooland.",
+    "from": "from",
+    "to": "to",
+    "DepartureDate": "Departure Date",
+    "ReturnDate": "Return Date",
+    "offers": {
+      "title": "What Jooland Offers For You?",
+      "search": {
+        "title": "Search For Flights",
+        "subTitle": "We can provide a search engine that allows customers to find flights to their desired destination."
+      },
+      "book": {
+        "title": "Book Flights Online Or Offline",
+        "subTitle": "We help customers to book flights directly through our website with our e-payment system."
+      },
+      "support": {
+        "title": "Customer Support",
+        "subTitle": "We provide customer support to assist customers with any issues or questions they may have before, during, or after their trip."
+      },
+      "alerts": {
+        "title": "Flight Alerts",
+        "subTitle": "Our website can provide alerts for flight changes or delays, ensuring customers are up-to-date on their flight status."
+      }
+    },
+    "switchTexts": {
+      "direction": {
+        "oneway": "one way",
+        "round": "round trip"
+      },
+      "class": {
+        "economy": "economy",
+        "business": "business"
+      }
+    },
+    "passengers": {
+      "name": "passengers",
+      "adults": {
+        "title": "adults",
+        "subTitle": "more than 12 years old"
+      },
+      "children": {
+        "title": "children",
+        "subTitle": "2-12 years old"
+      },
+      "babies": {
+        "title": "babies",
+        "subTitle": "less than 2 years old"
+      }
+    },
+    "btns": {
+      "done": "done",
+      "search": "search",
+      "cancel": "cancel"
+    },
+
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  }
+}
