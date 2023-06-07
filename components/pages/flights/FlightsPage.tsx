@@ -6,13 +6,23 @@ import React, { useState } from "react";
 import { MdFilterListAlt } from "react-icons/md";
 import DropDown from "@components/elements/dropdown/DropDown";
 
-
-export default function FlightsPage() {
+export default function FlightsPage({
+  allTexts,
+}: {
+  allTexts: {
+    selectOutbound: string;
+    btns: { goback: string; stops: string; sort: string };
+    directions: {
+      oneway: string;
+      round: string;
+    };
+  };
+}) {
   return (
     <div>
       <motion.div className="flex justify-between items-center">
         <div className="text-2xl font-bold text-secondary-900">
-          Select outbound
+          {allTexts.selectOutbound}
         </div>
 
         <div className="sm:hidden">
@@ -20,13 +30,13 @@ export default function FlightsPage() {
             align="end"
             trigger={
               <Button startIcon={<MdFilterListAlt />} roundedFull bg={"ghost"}>
-                sort filters
+                {allTexts.btns.sort}
               </Button>
             }
           >
             <div className="w-[10em] flex flex-col gap-1">
               <button className="capitalize py-2 px-3 rounded hover:bg-gray-100">
-                non stop
+                {allTexts.btns.stops}
               </button>
             </div>
           </DropDown>
@@ -35,9 +45,7 @@ export default function FlightsPage() {
 
       <motion.div layout className="flex flex-col gap-4 pt-6 pb-10">
         {[1, 2, 3, 4, 5].map((i, index) => (
-          <motion.div
-            key={index}
-          >
+          <motion.div key={index}>
             <FlightTicketCard
               ticket={{
                 logo: "Airline Logo",

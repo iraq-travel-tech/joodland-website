@@ -2,9 +2,16 @@ import Button from "@components/elements/button/Button";
 import FlightsNav from "@components/templates/nav/FlightsNav";
 import Link from "next/link";
 import { GoChevronLeft } from "react-icons/go";
-import { MdFilterListAlt } from "react-icons/md";
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function layout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode;
+  params: {
+    locale: string;
+  };
+}) {
   return (
     <div className="bg-gray-100">
       <FlightsNav />
@@ -18,10 +25,10 @@ export default function layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="w-full">
+        <div dir={locale === "ar" ? "rtl" : "ltr"} className="w-full">
           <Link className="md:flex hidden w-max" href="/">
             <Button bg={"ghost"} startIcon={<GoChevronLeft />}>
-              Go Back
+              {locale === "ar" ? "الرجوع" : "Go Back "}
             </Button>
           </Link>
           {children}{" "}

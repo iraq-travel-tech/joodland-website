@@ -163,6 +163,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         sm:shadow-lg
 
 
+        z-50
             `}
         >
           <AnimatePresence>

@@ -69,7 +69,7 @@ export default function FlightsNav() {
   return (
     <header
       className={`sticky top-0 bg-white shadow left-0 transition-all z-40 
-      ${OpenSearchContainer ? " h-max " : " h-20 "} overflow-hidden 
+      ${OpenSearchContainer ? " h-max " : " h-20 "}  
       `}
     >
       <nav className="max-w-6xl py-5 mx-auto px-4 sm:px-6 lg:px-8 flex items-start justify-between flex-col w-full">

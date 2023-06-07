@@ -70,5 +70,13 @@
       "november": "November",
       "december": "December"
     }
+  },
+  "flights": {
+    "selectOutbound": "Select outbound",
+    "btns": { "goback": "go back", "stops": "stops", "sort": "sort filters" },
+    "directions": {
+      "oneway": "one way",
+      "round": "round trip"
+    }
   }
 }

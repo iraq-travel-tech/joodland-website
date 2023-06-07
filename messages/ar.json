@@ -28,8 +28,8 @@
     },
     "switchTexts": {
       "direction": {
-        "oneway": "رحلة ذهاب",
-        "round": "رحلة ذهاب وإياب"
+        "oneway": "ذهاب فقط",
+        "round": "ذهاب و اياب"
       },
       "class": {
         "economy": "اقتصادي",
@@ -69,6 +69,14 @@
       "october": "أكتوبر",
       "november": "نوفمبر",
       "december": "ديسمبر"
+    }
+  },
+  "flights": {
+    "selectOutbound": "اختار الرحلة",
+    "btns": { "goback": "الرجوع", "stops": "الوقوفات", "sort": "sort filters" },
+    "directions": {
+      "oneway": "ذهاب فقط",
+      "round": "ذهاب و اياب"
     }
   }
 }
