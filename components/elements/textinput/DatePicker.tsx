@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Dialog from "../dialog/Dialog";
 import WheelPicker from "../wheel/WheelPicker";
 import Button from "../button/Button";
+import { useParams } from "next/navigation";
 
 interface DatePickerProps {
   date: {
@@ -48,6 +49,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
     });
   }, [year, month, day]);
 
+  const params = useParams();
+
   return (
     <div>
       <button
@@ -60,7 +63,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <div className="flex justify-between">
           <div className="font-bold">{title}</div>
           <button className="text-blue-600 px-3" onClick={() => setOpen(false)}>
-            Cancel
+            {params.locale === "ar" ? "إلغاء" : "Cancel"}
           </button>
         </div>
         <hr className="my-4" />
@@ -76,7 +79,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         </div>
 
         <Button onClick={handleDone} className="w-full mt-5">
-          Done
+          {params.locale === "ar" ? "تم" : "Done"}
         </Button>
       </Dialog>
     </div>

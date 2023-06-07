@@ -56,7 +56,7 @@ export default function TopNav() {
             isScrolled ? "text-black" : " text-white "
           }`}
         >
-          JooLand
+          JoodLand
         </p>
 
         <ul

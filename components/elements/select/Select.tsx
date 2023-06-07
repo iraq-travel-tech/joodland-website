@@ -6,6 +6,7 @@ import * as Select from "@radix-ui/react-select";
 import { TiTick } from "react-icons/ti";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 import { BsChevronDown } from "react-icons/bs";
+import { useParams } from "next/navigation";
 
 const UiSelect = ({
   options,
@@ -21,6 +22,8 @@ const UiSelect = ({
   noBg?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
+  const params = useParams();
+
   return (
     <Select.Root
       open={open}
@@ -53,6 +56,7 @@ const UiSelect = ({
           className="overflow-hidden z-50 bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
           sideOffset={4}
           asChild
+          align={params.locale === "ar" ? "end" : "start"}
         >
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -69,7 +73,9 @@ const UiSelect = ({
                     value={option.value}
                     className={`text-[13px] hover:bg-gray-100 leading-none text-violet11 rounded-[3px] flex items-center h-[30px] pr-[35px] pl-[25px] cursor-pointer active:scale-95 relative select-none${
                       option.value === State ? " data-highlighted" : ""
-                    }`}
+                    }
+                    
+                    `}
                     // onTouchStartCapture={() => setState(option.value)}
                     // onSelect={() => setState(option.value)}
                     onClick={() => {

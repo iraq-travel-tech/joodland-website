@@ -1,13 +1,13 @@
 {
   "Home": {
     "heroTitle": "Where are you flying?",
-    "heroBody": "Find Your Flights and Book Them with Ease with Jooland.",
+    "heroBody": "Find Your Flights and Book Them with Ease with Joodland.",
     "from": "from",
     "to": "to",
     "DepartureDate": "Departure Date",
     "ReturnDate": "Return Date",
     "offers": {
-      "title": "What Jooland Offers For You?",
+      "title": "What Joodland Offers For You?",
       "search": {
         "title": "Search For Flights",
         "subTitle": "We can provide a search engine that allows customers to find flights to their desired destination."

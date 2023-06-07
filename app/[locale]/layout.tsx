@@ -7,10 +7,6 @@ import { notFound } from "next/navigation";
 
 import { NextIntlClientProvider } from "next-intl";
 
-// export function generateStaticParams() {
-//   return [{ locale: "en" }, { locale: "ar" }];
-// }
-
 import { Cairo } from "next/font/google";
 
 const cairo = Cairo({

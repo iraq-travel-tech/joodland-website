@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDebouncedValue } from "@mantine/hooks";
 import { IoMdClose } from "react-icons/io";
 import Button from "@components/elements/button/Button";
+import { useParams } from "next/navigation";
 
 type ResultItem = {
   id: string;
@@ -103,6 +104,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   function handleInputFocus() {
     setOpenContainer(true);
   }
+  const params = useParams();
 
   return (
     <div
@@ -142,8 +144,11 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         top-32
         sm:w-[27em]
 
-        sm:left-0
+
+
+        ${params.locale === "ar" ? "sm:right-0" : "sm:left-0"}
         left-5
+
         sm:right-auto
         overflow-y-scroll
 

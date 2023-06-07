@@ -75,7 +75,7 @@ export default function FlightsNav() {
       <nav className="max-w-6xl py-5 mx-auto px-4 sm:px-6 lg:px-8 flex items-start justify-between flex-col w-full">
         <div className="relative z-50 flex justify-between w-full items-center">
           <Link href="/" className="text-xl font-bold sm:flex hidden">
-            JooLand
+            Joodland
           </Link>
 
           <Link className="flex sm:hidden" href="/">
