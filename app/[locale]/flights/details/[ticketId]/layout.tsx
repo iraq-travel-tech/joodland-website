@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Button from "@components/elements/button/Button";
 import { useRouter } from "next/navigation";
 import { GoChevronLeft } from "react-icons/go";

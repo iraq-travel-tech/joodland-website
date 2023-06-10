@@ -63,7 +63,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <div className="flex justify-between">
           <div className="font-bold">{title}</div>
           <button className="text-blue-600 px-3" onClick={() => setOpen(false)}>
-            {params.locale === "ar" ? "إلغاء" : "Cancel"}
+            {params?.locale === "ar" ? "إلغاء" : "Cancel"}
           </button>
         </div>
         <hr className="my-4" />
@@ -79,7 +79,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         </div>
 
         <Button onClick={handleDone} className="w-full mt-5">
-          {params.locale === "ar" ? "تم" : "Done"}
+          {params?.locale === "ar" ? "تم" : "Done"}
         </Button>
       </Dialog>
     </div>

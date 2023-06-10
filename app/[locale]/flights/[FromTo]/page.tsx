@@ -1,4 +1,5 @@
 import FlightsPage from "@components/pages/flights/FlightsPage";
+import { fetchFlights } from "@lib/functions/getFlights";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -12,6 +13,9 @@ export default function page({
   const from = params.FromTo.split("-")[0];
   const to = params.FromTo.split("-")[1];
   const t = useTranslations("flights");
+
+  const data = fetchFlights(from, to);
+  // console.log(data);
 
   const allTexts = {
     flights: {

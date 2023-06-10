@@ -162,7 +162,7 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                   </div>
                 </div>
 
-                <Link href={`/flights/details/23423`}>
+                <Link className="w-max" href={`/flights/details/23423`}>
                   <Button className="w-max mt-4">See More Details</Button>
                 </Link>
               </div>
