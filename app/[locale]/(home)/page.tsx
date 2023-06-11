@@ -103,6 +103,12 @@ export default function page({ params }: { params: { locale: string } }) {
         business: t("switchTexts.class.business"),
       },
     },
+
+    flights: t("flights"),
+    hotels: t("hotels"),
+
+    city: t("city"),
+
     passengers: {
       name: t("passengers.name"),
       adults: {

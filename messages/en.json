@@ -4,8 +4,11 @@
     "heroBody": "Discover, Book, and Secure Flights and Hotels with Ease on Joodland's All-in-One Platform.",
     "from": "from",
     "to": "to",
+    "city": "City",
     "DepartureDate": "Departure Date",
     "ReturnDate": "Return Date",
+    "hotels": "Hotels",
+    "flights": "Flights",
     "offers": {
       "title": "What Joodland Offers For You?",
       "search": {

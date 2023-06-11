@@ -6,7 +6,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import TabsList from "@components/blocks/tabs/TabList";
 import HotelsSearchContainer from "../hotels/HotelsSearchContainer";
-
+import { motion } from "framer-motion";
 export interface HomeAllTextsProps {
   switchTexts: {
     direction: {
@@ -18,6 +18,7 @@ export interface HomeAllTextsProps {
       business: string;
     };
   };
+  city: string;
   passengers: {
     name: string;
     adults: {
@@ -37,6 +38,8 @@ export interface HomeAllTextsProps {
     done: string;
     search: string;
   };
+  flights: string;
+  hotels: string;
   from: string;
   to: string;
   months: {
@@ -70,11 +73,11 @@ export default function HomeSearchContainer({
 
   const availableServices = [
     {
-      name: "flights",
+      name: allTexts.flights,
       value: "flights",
     },
     {
-      name: "hotels",
+      name: allTexts.hotels,
       value: "hotels",
     },
   ];
