@@ -8,7 +8,9 @@ import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
-import HomeSearchInput from "../home/HomeSearchInput";
+import HomeSearchInput, {
+  ElasticSearchResponse,
+} from "../home/HomeSearchInput";
 import Badge from "@components/elements/badge/Badge";
 import { useRouter } from "next/navigation";
 import Flash from "@components/blocks/flash/Flash";
@@ -106,19 +108,75 @@ export default function HotelsSearchContainer({
 
   const { addFlash } = useFlashMessages();
 
+  const SearchFunction = async (text: string) => {
+    try {
+      const response = await fetch(
+        "https://us-central1-vtravel-388521.cloudfunctions.net/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                    query ($name: String) {
+                        hotels(name: $name) {
+                            name {
+                                en
+                            }
+                            hotel_id
+                            hotel_image_url
+                            city {
+                                en
+                            }
+                        }
+                    }
+                `,
+            variables: {
+              name: text,
+            },
+          }),
+        }
+      );
+
+      const { data } = await response.json();
+
+      if (data) {
+        // Transform the data into the desired format
+        return data.hotels.map((hotel: any) => ({
+          id: hotel.hotel_id,
+          destination_images: { image_jpeg: hotel.hotel_image_url },
+          name: hotel.name.en,
+          cityname: hotel.city.en,
+        }));
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Failed to fetch hotels", error);
+      return [];
+    }
+  };
+
   return (
     <motion.div
       initial={{
-        x: 300,
+        x: 10,
         opacity: 0,
       }}
       exit={{
-        x: -300,
+        x: -2,
         opacity: 0,
+        transition: {
+          type: "just",
+        },
       }}
       animate={{
         x: 0,
         opacity: 1,
+        transition: {
+          type: "just",
+        },
       }}
       className="min-w-full"
     >
@@ -169,13 +227,14 @@ export default function HotelsSearchContainer({
             placeHolder={allTexts.from}
             State={From}
             setState={setFrom}
+            SearchFunction={SearchFunction}
           />
-          <HomeSearchInput
+          {/* <HomeSearchInput
             startIcon={<FaPlaneArrival className="fill-gray-400" />}
             placeHolder={allTexts.to}
             State={To}
             setState={setTo}
-          />
+          /> */}
         </div>
 
         <DatePicker

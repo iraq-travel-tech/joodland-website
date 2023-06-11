@@ -3,7 +3,7 @@
 import Button from "@components/elements/button/Button";
 import DatePicker from "@components/elements/textinput/DatePicker";
 import TextInput from "@components/elements/textinput/TextInput";
-import { passengersAtom } from "@components/templates/home/HomeSearchContainer";
+import { passengersAtom } from "@components/templates/flights/FlightsSearchBox";
 import { useAtom } from "jotai";
 import React, { useState } from "react";
 import { BsAirplaneFill } from "react-icons/bs";

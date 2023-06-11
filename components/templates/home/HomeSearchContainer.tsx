@@ -94,7 +94,7 @@ export default function HomeSearchContainer({
         setState={setSelectedSearchBox}
         items={availableServices}
       />
-      <div className="flex overflow-x-hidden sm:pt-1 pt-3">
+      <div className="flex sm:pt-1 pt-3">
         <AnimatePresence mode="wait">
           {SelectedSearchBox === "flights" ? (
             <FlightsSearchBox key="ss" allTexts={allTexts} />

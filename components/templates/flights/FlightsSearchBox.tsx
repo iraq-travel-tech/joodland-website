@@ -8,7 +8,9 @@ import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
-import HomeSearchInput from "../home/HomeSearchInput";
+import HomeSearchInput, {
+  ElasticSearchResponse,
+} from "../home/HomeSearchInput";
 import Badge from "@components/elements/badge/Badge";
 import { useRouter } from "next/navigation";
 import Flash from "@components/blocks/flash/Flash";
@@ -106,28 +108,34 @@ export default function FlightsSearchBox({
 
   const { addFlash } = useFlashMessages();
 
-  // const elasticSearch = async () => {
-  //   const response = await fetch(
-  //     `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${debouncedFrom}`
-  //   );
-  //   const data = await response.json();
+  const SearchFunction = async (text: string) => {
+    const response = await fetch(
+      `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${text}`
+    );
+    const data = await response.json();
 
-  //   return data;
-  // };
+    return data;
+  };
 
   return (
     <motion.div
       initial={{
-        x: 300,
+        x: 10,
         opacity: 0,
       }}
       exit={{
-        x: -300,
+        x: -2,
         opacity: 0,
+        transition: {
+          type: "just",
+        },
       }}
       animate={{
         x: 0,
         opacity: 1,
+        transition: {
+          type: "just",
+        },
       }}
       className="min-w-full"
     >
@@ -178,13 +186,21 @@ export default function FlightsSearchBox({
             placeHolder={allTexts.from}
             State={From}
             setState={setFrom}
+            SearchFunction={SearchFunction}
           />
           <HomeSearchInput
+            startIcon={<FaPlaneDeparture className="fill-gray-400" />}
+            placeHolder={allTexts.from}
+            State={From}
+            setState={setFrom}
+            SearchFunction={SearchFunction}
+          />
+          {/* <HomeSearchInput
             startIcon={<FaPlaneArrival className="fill-gray-400" />}
             placeHolder={allTexts.to}
             State={To}
             setState={setTo}
-          />
+          /> */}
         </div>
 
         <DatePicker

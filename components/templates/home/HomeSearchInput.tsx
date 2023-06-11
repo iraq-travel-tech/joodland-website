@@ -1,17 +1,11 @@
-"use client";
 import TextInput from "@components/elements/textinput/TextInput";
-import React, { useEffect, useState, useCallback } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { FaPlaneDeparture } from "react-icons/fa";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
-// @ts-ignore : doesn't have types
 import { useDebouncedValue } from "@mantine/hooks";
 import { IoMdClose } from "react-icons/io";
-import Button from "@components/elements/button/Button";
 import { useParams } from "next/navigation";
 
-type ResultItem = {
+export type ElasticSearchResponse = {
   id: string;
   destination_images: { image_jpeg: string };
   name: string;
@@ -23,6 +17,7 @@ type HomeSearchInputProps = {
   setState: (state: string) => void;
   placeHolder: string;
   startIcon: React.ReactNode;
+  SearchFunction: (state: any) => Promise<ElasticSearchResponse[]> | ElasticSearchResponse[];
 };
 
 const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
@@ -30,17 +25,19 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   setState,
   placeHolder,
   startIcon,
+  SearchFunction,
 }) => {
   const [inputState, setInputState] = useState(State);
   const [openContainer, setOpenContainer] = useState(false);
-  const [results, setResults] = useState<ResultItem[]>([]);
+  const [results, setResults] = useState<ElasticSearchResponse[]>([]);
   const [selectedFromList, setSelectedFromList] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const [debouncedFrom] = useDebouncedValue(inputState, 300);
+  const [debouncedFrom] = useDebouncedValue(inputState, 500);
 
   const handlePopState = useCallback(
-    (event: any) => {
+    (event: PopStateEvent) => {
       if (openContainer) {
         event.preventDefault();
         setOpenContainer(false);
@@ -50,15 +47,8 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   );
 
   useEffect(() => {
-    // Push a new state to history when the dialog opens
     if (openContainer) {
       window.history.pushState(null, "");
-    }
-  }, [openContainer]);
-
-  useEffect(() => {
-    // Add the popstate listener when the dialog is open, remove it when it's not
-    if (openContainer) {
       window.addEventListener("popstate", handlePopState);
     } else {
       window.removeEventListener("popstate", handlePopState);
@@ -69,42 +59,30 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
     };
   }, [openContainer, handlePopState]);
 
+  const params = useParams();
+
   useEffect(() => {
     async function fetchResults() {
       setLoading(true);
-
+      setError("");
       try {
-        const response = await fetch(
-          `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${debouncedFrom}`
-        );
-        const data = await response.json();
+        const data = await SearchFunction(debouncedFrom.trim());
         setResults(data);
       } catch (err) {
         console.error(err);
+        setError("Failed to fetch data");
       }
       setLoading(false);
     }
 
-    if (debouncedFrom !== "") {
+    if (debouncedFrom.trim() !== "") {
       fetchResults();
     }
-  }, [debouncedFrom]);
+  }, [debouncedFrom, SearchFunction]);
 
-  function handleInputBlur() {
-    if (!selectedFromList) {
-      setInputState("");
-      setSelectedFromList(false); // reset selectedFromList state here
-    }
-
-    setTimeout(() => {
-      setOpenContainer(false);
-    }, 400);
-  }
-
-  function handleInputFocus() {
-    setOpenContainer(true);
-  }
-  const params = useParams();
+  const containerClasses = useMemo(() => {
+    return `autocomeplete-container absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${params?.locale === "ar" ? "sm:right-0" : "sm:left-0"} left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 py-3 sm:shadow-lg z-50`;
+  }, [params]);
 
   return (
     <div
@@ -127,69 +105,47 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
           State={inputState}
           setState={setInputState}
           placeholder={placeHolder}
-          onBlur={handleInputBlur}
-          onFocus={handleInputFocus}
+          onBlur={() => {
+            if (!selectedFromList) {
+              setInputState("");
+              setSelectedFromList(false);
+            }
+            setTimeout(() => {
+              setOpenContainer(false);
+            }, 400);
+          }}
+          onFocus={() => setOpenContainer(true)}
         />
       </motion.div>
       {openContainer && (
-        <div
-          className={`
-            autocomeplete-container absolute bg-white  
-
-        sm:h-[17em]
-        max-h-[50vh]
-        sm:rounded-lg 
-        rounded
-        sm:top-14
-        top-32
-        sm:w-[27em]
-
-
-
-        ${params?.locale === "ar" ? "sm:right-0" : "sm:left-0"}
-        left-5
-
-        sm:right-auto
-        overflow-y-scroll
-
-        right-5
-        flex-col
-        flex
-        gap-4
-
-        sm:py-0
-        py-3
-
-        sm:shadow-lg
-
-
-        z-50
-            `}
-        >
+        <div className={containerClasses}>
           <AnimatePresence>
-            {loading
-              ? [1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="h-20 roudned flex gap-2 p-2">
-                    <div className="min-w-14 w-14 h-14 rounded bg-gray-300 animate-pulse"></div>
-                    <div className="flex flex-col gap-1">
-                      <div className="w-[8em] h-6 bg-gray-300 animate-pulse rounded"></div>
-                      <div className="w-[4em] h-4 bg-gray-300 animate-pulse rounded"></div>
-                    </div>
+            {loading ? (
+              [1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="h-20 rounded flex gap-2 p-2">
+                  <div className="min-w-14 w-14 h-14 rounded bg-gray-300 animate-pulse"></div>
+                  <div className="flex flex-col gap-1">
+                    <div className="w-[8em] h-6 bg-gray-300 animate-pulse rounded"></div>
+                    <div className="w-[4em] h-4 bg-gray-300 animate-pulse rounded"></div>
                   </div>
-                ))
-              : results.map((item, index) => (
-                  <AirportItem
-                    key={item.id + index} // Use unique id for key, if available
-                    item={item}
-                    onSelect={() => {
-                      setSelectedFromList(true);
-                      setInputState(item.id);
-                      setState(item.id);
-                      setSelectedFromList(false);
-                    }}
-                    setFrom={setState}
-                  />
-                ))}
+                </div>
+              ))
+            ) : error ? (
+              <div>{error}</div>
+            ) : (
+              results.map((item, index) => (
+                <AirportItem
+                  key={item.id + index}
+                  item={item}
+                  onSelect={() => {
+                    setSelectedFromList(true);
+                    setInputState(item.id);
+                    setState(item.id);
+                    setSelectedFromList(false);
+                  }}
+                />
+              ))
+            )}
           </AnimatePresence>
         </div>
       )}
@@ -198,16 +154,9 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
 };
 
 const AirportItem: React.FC<{
-  item: {
-    id: string;
-    destination_images: { image_jpeg: string };
-    name: string;
-    cityname: string;
-  };
-
-  onSelect: any;
-  setFrom: any;
-}> = ({ item, onSelect, setFrom }) => {
+  item: ElasticSearchResponse;
+  onSelect: () => void;
+}> = ({ item, onSelect }) => {
   return (
     <motion.div
       layout
@@ -220,7 +169,7 @@ const AirportItem: React.FC<{
       <img
         className="object-cover min-w-14 w-14 h-14 rounded"
         src={item.destination_images?.image_jpeg}
-        alt={`${item.name} - ${item.cityname}`} // More descriptive alt text
+        alt={`${item.name} - ${item.cityname}`}
       />
       <div className="flex flex-col">
         <div className="font-bold">{item.name}</div>
@@ -228,7 +177,6 @@ const AirportItem: React.FC<{
           {item.cityname}
         </div>
       </div>
-      {/* <div>{item.id}</div> */}
     </motion.div>
   );
 };
