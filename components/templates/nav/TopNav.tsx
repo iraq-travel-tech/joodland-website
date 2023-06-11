@@ -2,8 +2,6 @@
 import Button from "@components/elements/button/Button";
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useRouter } from "next/router";
-import UiSelect from "@components/elements/select/Select";
 import Link from "next-intl/link";
 import { useParams } from "next/navigation";
 
@@ -20,7 +18,6 @@ const languages = [
 
 export default function TopNav() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [Language, setLanguage] = useState(languages[0].value);
   const [LeftSideBarOpen, setLeftSideBarOpen] = useState(false);
 
   useEffect(() => {

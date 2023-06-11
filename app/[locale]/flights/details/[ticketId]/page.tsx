@@ -1,14 +1,31 @@
 "use client";
 
 import Button from "@components/elements/button/Button";
+import DatePicker from "@components/elements/textinput/DatePicker";
 import TextInput from "@components/elements/textinput/TextInput";
-import Link from "next/link";
+import { passengersAtom } from "@components/templates/home/HomeSearchContainer";
+import { useAtom } from "jotai";
 import React, { useState } from "react";
 import { BsAirplaneFill } from "react-icons/bs";
 import { RxArrowRight } from "react-icons/rx";
 
 export default function page() {
   const [Email, setEmail] = useState("");
+  const [passengers, setPassengers] = useAtom(passengersAtom);
+  const [AllPassengersInfo, setAllPassengersInfo] = useState<
+    {
+      email: string;
+      phone: string;
+      firstName: string;
+      middleName?: string;
+      lastName: string;
+      dateOfBirth: string;
+    }[]
+  >([]);
+
+  const adults = passengers.adults || 0;
+  const children = passengers.children || 0;
+  const babies = passengers.Babies || 0;
 
   return (
     <div className="mt-6">
@@ -78,63 +95,32 @@ export default function page() {
           <div className="bg-white flex-1 p-4 rounded-lg custom-shadow flex flex-col">
             <div className="font-bold text-lg">Passengers</div>
             <hr />
-
-            {/* passenger 1 */}
-            <div className="mt-4">
-              <div className="text-lg font-bold capitalize">
-                traveler 1 - adult
-              </div>
-
-              <div className="flex mt-2 gap-2">
-                <TextInput
-                  label="Email"
-                  State={Email}
-                  setState={setEmail}
-                  type="email"
-                  placeholder="Enter your email"
-                />
-                <TextInput
-                  label="Email"
-                  State={Email}
-                  setState={setEmail}
-                  type="email"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div className="flex gap-2 mt-2">
-                <TextInput
-                  label="first name"
-                  State={Email}
-                  setState={setEmail}
-                  type="text"
-                  placeholder="first name"
-                />
-                <TextInput
-                  label="middle name"
-                  State={Email}
-                  setState={setEmail}
-                  type="text"
-                  placeholder="middle name"
-                />
-                <TextInput
-                  label="last name"
-                  State={Email}
-                  setState={setEmail}
-                  type="text"
-                  placeholder="last name"
-                />
-              </div>
-            </div>
-
-            {/* passenger 2 */}
-            <div className="mt-4">
-              <div className="text-lg font-bold capitalize">
-                traveler 1 - adult
-              </div>
-
-              <PassengerCompoent />
-            </div>
+            {Array.from(Array(adults), (_, index) => (
+              <PassengerCompoent
+                key={`adult-${index}`}
+                passenger={AllPassengersInfo[index]}
+                setPassengers={setAllPassengersInfo}
+                index={index}
+              />
+            ))}
+            {/* Render PassengerCompoent for each child */}
+            {Array.from(Array(children), (_, index) => (
+              <PassengerCompoent
+                key={`child-${index}`}
+                passenger={AllPassengersInfo[adults + index]}
+                setPassengers={setAllPassengersInfo}
+                index={adults + index}
+              />
+            ))}
+            {/* Render PassengerCompoent for each baby */}
+            {Array.from(Array(babies), (_, index) => (
+              <PassengerCompoent
+                key={`baby-${index}`}
+                passenger={AllPassengersInfo[adults + children + index]}
+                setPassengers={setAllPassengersInfo}
+                index={adults + children + index}
+              />
+            ))}
           </div>
         </div>{" "}
         {/* total amount box */}
@@ -179,32 +165,122 @@ export default function page() {
   );
 }
 
-const PassengerCompoent = () => {
-  const [Email, setEmail] = useState("");
-  const [Email2, setEmail2] = useState("");
+const PassengerCompoent = ({
+  passenger,
+  setPassengers,
+  index,
+}: {
+  passenger: {
+    email: string;
+    phone: string;
+    firstName: string;
+    middleName?: string | undefined;
+    lastName: string;
+    dateOfBirth: string;
+  };
+  setPassengers: React.Dispatch<
+    React.SetStateAction<
+      {
+        email: string;
+        phone: string;
+        firstName: string;
+        middleName?: string | undefined;
+        lastName: string;
+        dateOfBirth: string;
+      }[]
+    >
+  >;
+  index: number;
+}) => {
+  const today = new Date();
+  const year = String(today.getFullYear());
+  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
+    today
+  );
+  const day = String(today.getDate());
+
+  const [birth, setBirth] = useState({
+    day: day,
+    month: month,
+    year: year,
+  });
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  console.log(passenger);
+
+  // const [Email, setEmail] = useState(passenger.email);
+  // const [Phone, setPhone] = useState(passenger.phone);
+  // const [FirstName, setFirstName] = useState(passenger.firstName);
+  // const [MiddleName, setMiddleName] = useState(passenger.middleName);
+  // const [LastName, setLastName] = useState(passenger.lastName);
+  // const [DateOfBirth, setDateOfBirth] = useState(passenger.dateOfBirth);
+
   return (
-    <div className="flex gap-2 mt-2">
-      <TextInput
-        label="first name"
-        State={Email}
-        setState={setEmail}
-        type="text"
-        placeholder="first name"
-      />
-      <TextInput
-        label="middle name"
-        State={Email}
-        setState={setEmail}
-        type="text"
-        placeholder="middle name"
-      />
-      <TextInput
-        label="last name"
-        State={Email}
-        setState={setEmail}
-        type="text"
-        placeholder="last name"
-      />
+    <div className="mt-4">
+      <div className="text-lg font-bold capitalize">
+        {/* traveler {index} - {passenger.firstName} {passenger.lastName} */}
+      </div>
+      <div className="flex gap-2 mt-2">
+        {/* <TextInput
+          label="Email Address"
+          type="email"
+          placeholder="Email Address"
+          State={Email}
+          setState={setEmail}
+        />
+        <TextInput
+          label="Phone Number"
+          type="tel"
+          placeholder="phone number"
+          State={Phone}
+          setState={setPhone}
+        /> */}
+      </div>
+      <div className="flex gap-2 mt-2">
+        {/* <TextInput
+          label="first name"
+          type="text"
+          placeholder="first name"
+          State={FirstName}
+          setState={setFirstName}
+        />
+        <TextInput
+          label="middle name"
+          type="text"
+          placeholder="middle name"
+          State={MiddleName || ""}
+          setState={setMiddleName}
+        />
+        <TextInput
+          label="last name"
+          type="text"
+          placeholder="last name"
+          State={LastName}
+          setState={setLastName}
+        /> */}
+      </div>
+      <div className="mt-4">
+        <DatePicker
+          date={birth}
+          months={months}
+          title="birth date"
+          setDate={setBirth}
+        />
+      </div>
     </div>
   );
 };

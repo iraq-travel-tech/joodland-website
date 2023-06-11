@@ -56,7 +56,7 @@ const UiSelect = ({
           className="overflow-hidden z-50 bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
           sideOffset={4}
           asChild
-          align={params.locale === "ar" ? "end" : "start"}
+          align={params?.locale === "ar" ? "end" : "start"}
         >
           <motion.div
             initial={{ opacity: 0, y: -10 }}

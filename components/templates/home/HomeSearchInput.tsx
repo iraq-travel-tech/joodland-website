@@ -146,7 +146,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
 
 
 
-        ${params.locale === "ar" ? "sm:right-0" : "sm:left-0"}
+        ${params?.locale === "ar" ? "sm:right-0" : "sm:left-0"}
         left-5
 
         sm:right-auto

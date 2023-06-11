@@ -1,4 +1,5 @@
 "use client";
+import { atom, useAtom } from "jotai";
 import Button from "@components/elements/button/Button";
 import Dialog from "@components/elements/dialog/Dialog";
 import UiSelect from "@components/elements/select/Select";
@@ -13,6 +14,12 @@ import { useRouter } from "next/navigation";
 import Flash from "@components/blocks/flash/Flash";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import FlightsSearchBox from "../flights/FlightsSearchBox";
+export const passengersAtom = atom({
+  adults: 1,
+  children: 0,
+  Babies: 0,
+});
 
 interface AllTexts {
   switchTexts: {
@@ -73,11 +80,7 @@ export default function HomeSearchContainer({
   noMarginTop?: boolean;
   allTexts: AllTexts;
 }) {
-  const [Passengers, setPassengers] = useState({
-    adults: 1,
-    children: 0,
-    Babies: 0,
-  });
+  const [Passengers, setPassengers] = useAtom(passengersAtom);
   const router = useRouter();
 
   const tripdirections = [
@@ -160,6 +163,8 @@ export default function HomeSearchContainer({
         !noMarginTop && "sm:mt-16 mt-10"
       } flex-col bg-white p-4 rounded-lg ${!noShadow && "shadow-xl"}`}
     >
+      <FlightsSearchBox />
+
       <div className="flex sm:gap-3 gap-1">
         <UiSelect
           State={tripDirection}
