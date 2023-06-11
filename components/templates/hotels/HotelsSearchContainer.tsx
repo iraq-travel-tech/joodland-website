@@ -20,53 +20,12 @@ export default function HotelsSearchContainer({
   const { addFlash } = useFlashMessages();
 
   const SearchFunction = async (text: string) => {
-    try {
-      const response = await fetch(
-        "https://us-central1-vtravel-388521.cloudfunctions.net/graphql",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: `
-                    query ($city: String) {
-                        hotels(city: $city) {
-                            name {
-                                en
-                            }
-                            hotel_id
-                            hotel_image_url
-                            city {
-                                en
-                            }
-                        }
-                    }
-                `,
-            variables: {
-              city: text,
-            },
-          }),
-        }
-      );
+    const response = await fetch(
+      `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${text}`
+    );
+    const data = await response.json();
 
-      const { data } = await response.json();
-
-      if (data) {
-        // Transform the data into the desired format
-        return data.hotels.map((hotel: any) => ({
-          id: hotel.hotel_id,
-          destination_images: { image_jpeg: hotel.hotel_image_url },
-          name: hotel.name.en,
-          cityname: hotel.city.en,
-        }));
-      } else {
-        return [];
-      }
-    } catch (error) {
-      console.error("Failed to fetch hotels", error);
-      return [];
-    }
+    return data;
   };
 
   return (
