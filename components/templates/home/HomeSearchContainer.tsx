@@ -19,6 +19,7 @@ export interface HomeAllTextsProps {
     };
   };
   city: string;
+
   passengers: {
     name: string;
     adults: {

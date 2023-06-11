@@ -27,6 +27,9 @@ export default function FlightsNav() {
         business: t("switchTexts.class.business"),
       },
     },
+    city: t("city"),
+    flights: t("flights"),
+    hotels: t("hotels"),
     passengers: {
       name: t("passengers.name"),
       adults: {
