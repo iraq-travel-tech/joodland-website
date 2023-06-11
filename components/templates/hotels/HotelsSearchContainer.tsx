@@ -23,7 +23,7 @@ export const passengersAtom = atom({
   Babies: 0,
 });
 
-export default function FlightsSearchBox({
+export default function HotelsSearchContainer({
   allTexts,
 }: {
   allTexts: HomeAllTextsProps;
@@ -105,15 +105,6 @@ export default function FlightsSearchBox({
   }`;
 
   const { addFlash } = useFlashMessages();
-
-  // const elasticSearch = async () => {
-  //   const response = await fetch(
-  //     `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${debouncedFrom}`
-  //   );
-  //   const data = await response.json();
-
-  //   return data;
-  // };
 
   return (
     <motion.div
