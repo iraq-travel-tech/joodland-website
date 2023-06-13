@@ -67,6 +67,8 @@ export default function FlightsNav() {
     },
     DepartureDate: t("DepartureDate"),
     ReturnDate: t("ReturnDate"),
+    flashfrom: t("flashfrom"),
+    flashto: t("flashto"),
   };
 
   return (

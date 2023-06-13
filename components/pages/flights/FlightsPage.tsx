@@ -1,28 +1,62 @@
-"use client";
-import { motion } from "framer-motion";
 import FlightTicketCard from "@components/blocks/cards/FlightTicketCard";
 import Button from "@components/elements/button/Button";
-import React, { useState } from "react";
+import React from "react";
 import { MdFilterListAlt } from "react-icons/md";
 import DropDown from "@components/elements/dropdown/DropDown";
+import { useTranslations } from "next-intl";
+import {
+  FlightOffering,
+  FlightOfferings,
+} from "@lib/interfaces/FlightsInterfaces";
 
 export default function FlightsPage({
-  allTexts,
+  data,
+  searchParams,
+  locale,
 }: {
-  allTexts: {
-    selectOutbound: string;
-    btns: { goback: string; stops: string; sort: string };
-    directions: {
-      oneway: string;
-      round: string;
-    };
+  data: FlightOffering[];
+  searchParams: {
+    direction: string;
+    class: string;
+    adults: string;
+    children: string;
+    babies: string;
+    departure: string;
+    return: string;
   };
+  locale: "en" | "ar";
 }) {
+  const t = useTranslations("flights");
+  // console.log(searchParams);
+
+  const allTexts = {
+    flights: {
+      selectOutbound: t("selectOutbound"),
+      btns: {
+        goback: t("btns.goback"),
+        stops: t("btns.stops"),
+        sort: t("btns.sort"),
+      },
+      directions: {
+        oneway: t("directions.oneway"),
+        round: t("directions.round"),
+      },
+    },
+  };
+
+  data.map((i) => {
+    i.flightSegments.map((is) => {
+      let aa = {
+        // time: is.Flight
+      };
+    });
+  });
+
   return (
     <div>
-      <motion.div className="flex justify-between items-center">
+      <div className="flex justify-between items-center">
         <div className="text-2xl font-bold text-secondary-900">
-          {allTexts.selectOutbound}
+          {allTexts.flights.selectOutbound}
         </div>
 
         <div className="sm:hidden">
@@ -30,47 +64,40 @@ export default function FlightsPage({
             align="end"
             trigger={
               <Button startIcon={<MdFilterListAlt />} roundedFull bg={"ghost"}>
-                {allTexts.btns.sort}
+                {allTexts.flights.btns.sort}
               </Button>
             }
           >
             <div className="w-[10em] flex flex-col gap-1">
               <button className="capitalize py-2 px-3 rounded hover:bg-gray-100">
-                {allTexts.btns.stops}
+                {allTexts.flights.btns.stops}
               </button>
             </div>
           </DropDown>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div layout className="flex flex-col gap-4 pt-6 pb-10">
-        {[1, 2, 3, 4, 5].map((i, index) => (
-          <motion.div key={index}>
+      <div className="flex flex-col gap-4 pt-6 pb-10">
+        {data.map((i, index) => (
+          <div key={index}>
             <FlightTicketCard
               ticket={{
-                logo: "Airline Logo",
-                departureTime: "12:40",
-                departureLocation: "Baghdad",
-                arrivalTime: "12:40",
-                arrivalLocation: "Baghdad",
-                price: "200$",
+                logo: i.validatingCarrier.logo,
+                departureTime: i.Departure.time,
+                departureLocation: i.Departure.location[locale],
+                arrivalTime: i.Arrival.time,
+                arrivalLocation: i.Arrival.location[locale],
+                price: i.Price.TotalPrice.toString(),
                 passengerCount: 1,
-                type: "One Way",
-                stops: 0,
-                totalDuration: "3h 10min",
-                stopDetails: [
-                  {
-                    time: "12:40",
-                    duration: "3h 10m",
-                    location: "Baghdad",
-                    airport: "Baghdad International",
-                  },
-                ],
+                type: searchParams.direction,
+                stops: i.totalStops,
+                totalDuration: i.totalDuration[locale],
+                stopDetails: i.flightSegments,
               }}
             />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

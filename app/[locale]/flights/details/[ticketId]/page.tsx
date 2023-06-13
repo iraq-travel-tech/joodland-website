@@ -38,7 +38,7 @@ export default function page() {
       </div>
 
       <main className="flex lg:flex-row flex-col gap-8 mt-5 pb-6">
-        <div className="flex flex-col gap-5">
+        <div className=" flex-1">
           {/* trip summary */}
           <div className="bg-white flex-1 p-4 rounded-lg custom-shadow flex flex-col">
             <div className="font-bold text-lg">Trip Summary</div>
