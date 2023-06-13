@@ -3,7 +3,7 @@ import { atom, useAtom } from "jotai";
 import Button from "@components/elements/button/Button";
 import Dialog from "@components/elements/dialog/Dialog";
 import UiSelect from "@components/elements/select/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
@@ -117,6 +117,7 @@ export default function FlightsSearchBox({
     return data;
   };
 
+  
   return (
     <motion.div
       initial={{
@@ -155,6 +156,7 @@ export default function FlightsSearchBox({
         />
 
         <Button
+          aria-label="open passengers dialog box"
           bg={"ghost"}
           className="text-xs relative"
           endIcon={<BsChevronDown className="text-xs" />}
@@ -190,17 +192,11 @@ export default function FlightsSearchBox({
           />
           <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
-            placeHolder={allTexts.from}
-            State={From}
-            setState={setFrom}
-            SearchFunction={SearchFunction}
-          />
-          {/* <HomeSearchInput
-            startIcon={<FaPlaneArrival className="fill-gray-400" />}
             placeHolder={allTexts.to}
             State={To}
             setState={setTo}
-          /> */}
+            SearchFunction={SearchFunction}
+          />
         </div>
 
         <DatePicker
@@ -247,11 +243,13 @@ export default function FlightsSearchBox({
 
         <div className="h-full min-w-[10em]">
           <Button
+            aria-label="search flights"
             onClick={() => {
               if (From === "") {
-                addFlash(`Please set the 'From' field.`);
+                addFlash("allTexts.flashfrom");
+                console.log("allTexts.flashfrom");
               } else if (To === "") {
-                addFlash(`Please set the 'To' field.`);
+                addFlash(allTexts.flashto);
               } else {
                 setLoading(true);
                 router.push(flightSearchUrl);
@@ -296,6 +294,7 @@ const PassengersDialogBox = ({
             </div>
             <div className="flex items-center gap-2">
               <button
+                aria-label="decrease passenger number"
                 className="flex items-center justify-center w-10 h-10 transition-all border rounded-full cursor-pointer active:scale-90 hover:bg-zinc-200"
                 onClick={() => {
                   if (passenger.value > 0) {
@@ -313,6 +312,7 @@ const PassengersDialogBox = ({
                 </div>
               </div>
               <button
+                aria-label="increase passenger number"
                 className="flex items-center justify-center w-10 h-10 transition-all border rounded-full cursor-pointer active:scale-90 hover:bg-zinc-200"
                 onClick={() => {
                   const newPassengers = [...TripPassengers];

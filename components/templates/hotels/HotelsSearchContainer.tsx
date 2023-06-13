@@ -63,6 +63,7 @@ export default function HotelsSearchContainer({
 
         <div className="h-full min-w-[10em]">
           <Button
+            aria-label="search hotels"
             onClick={() => {
               if (City === "") {
                 addFlash(`Please set the 'City' field.`);

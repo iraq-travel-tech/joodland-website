@@ -146,6 +146,8 @@ export default function page({ params }: { params: { locale: string } }) {
     },
     DepartureDate: t("DepartureDate"),
     ReturnDate: t("ReturnDate"),
+    flashfrom: t("flashfrom"),
+    flashto: t("flashto"),
   };
 
   return (

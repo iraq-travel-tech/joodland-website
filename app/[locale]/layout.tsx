@@ -8,12 +8,19 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 
 import { Cairo } from "next/font/google";
+import { Metadata } from "next";
 
 const cairo = Cairo({
   variable: "--cairo",
   style: "normal",
   subsets: ["latin", "latin-ext"],
 });
+
+export const metadata: Metadata = {
+  title: "JoodLand",
+  description:
+    "Experience the ultimate convenience in travel planning with Joodland's comprehensive platform. Seamlessly explore, effortlessly book, and confidently secure your flights and hotels, all in one place.",
+};
 
 export default async function RootLayout({
   children,

@@ -36,7 +36,9 @@ export const ButtonStyles = cva(
   }
 );
 
-interface ButtonProps extends VariantProps<typeof ButtonStyles> {
+interface ButtonProps
+  extends VariantProps<typeof ButtonStyles>,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 
   startIcon?: React.ReactNode;
@@ -44,7 +46,6 @@ interface ButtonProps extends VariantProps<typeof ButtonStyles> {
 
   onClick?: () => void;
 
-  type?: "button" | "submit" | "reset";
   className?: string;
 }
 
@@ -54,7 +55,6 @@ export default function Button({
   endIcon,
   onClick,
   iconOnly,
-  type = "button",
   bg,
   padding,
   roundedFull,
@@ -72,7 +72,7 @@ export default function Button({
   });
 
   return (
-    <button className={style} onClick={onClick} type={type} {...props}>
+    <button className={style} onClick={onClick} {...props}>
       <span className="pointer-events-none">{startIcon}</span>{" "}
       <span>{children}</span>
       <span className="pointer-events-none">{endIcon}</span>{" "}

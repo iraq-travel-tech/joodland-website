@@ -41,6 +41,8 @@ const TabItem = ({
       onClick={() => setState(item.value)}
       className={`text-zinc-400 relative font-semibold cursor-pointer hover:bg-gray-100 transition-all
       ${State === item.value && "!text-black"}`}
+      role="button"
+      aria-label={item.name}
     >
       <p className="px-6 py-2">{item.name}</p>
       {State === item.value && (

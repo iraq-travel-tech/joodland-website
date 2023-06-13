@@ -2,6 +2,8 @@
   "Home": {
     "heroTitle": "What's Your Next Destination?",
     "heroBody": "Discover, Book, and Secure Flights and Hotels with Ease on Joodland's All-in-One Platform.",
+    "flashfrom": "Please set the 'From' field.",
+    "flashto": "Please set the 'To' field.",
     "from": "from",
     "to": "to",
     "city": "City",

@@ -17,7 +17,9 @@ type HomeSearchInputProps = {
   setState: (state: string) => void;
   placeHolder: string;
   startIcon: React.ReactNode;
-  SearchFunction: (state: any) => Promise<ElasticSearchResponse[]> | ElasticSearchResponse[];
+  SearchFunction: (
+    state: any
+  ) => Promise<ElasticSearchResponse[]> | ElasticSearchResponse[];
 };
 
 const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
@@ -81,14 +83,17 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   }, [debouncedFrom, SearchFunction]);
 
   const containerClasses = useMemo(() => {
-    return `autocomeplete-container absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${params?.locale === "ar" ? "sm:right-0" : "sm:left-0"} left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 py-3 sm:shadow-lg z-50`;
+    return `autocomeplete-container absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${
+      params?.locale === "ar" ? "sm:right-0" : "sm:left-0"
+    } left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 py-3 sm:shadow-lg z-50`;
   }, [params]);
 
   return (
     <div
       className={`sm:relative sm:p-0 ${
         openContainer && "z-50 fixed p-5"
-      } bg-white  top-0 left-0 w-full h-full`}
+      } bg-white top-0 left-0 w-full h-full ${openContainer && "z-50"}
+      `}
     >
       <motion.div layout>
         {openContainer && (

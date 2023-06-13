@@ -133,7 +133,7 @@ export default function page() {
               <div className="">
                 <img
                   src="https://w7.pngwing.com/pngs/773/201/png-transparent-airplane-aircraft-flight-logo-airplane-blue-logo-flight-thumbnail.png"
-                  alt=""
+                  alt="airline logo"
                   className="w-7 h-7 rounded-full object-cover"
                 />
               </div>

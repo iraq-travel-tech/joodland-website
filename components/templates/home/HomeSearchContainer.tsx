@@ -1,12 +1,10 @@
 "use client";
-import Flash from "@components/blocks/flash/Flash";
 import FlightsSearchBox from "../flights/FlightsSearchBox";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import TabsList from "@components/blocks/tabs/TabList";
 import HotelsSearchContainer from "../hotels/HotelsSearchContainer";
-import { motion } from "framer-motion";
 export interface HomeAllTextsProps {
   switchTexts: {
     direction: {
@@ -59,6 +57,8 @@ export interface HomeAllTextsProps {
   };
   DepartureDate: string;
   ReturnDate: string;
+  flashfrom: string;
+  flashto: string;
 }
 
 export default function HomeSearchContainer({
@@ -70,7 +70,7 @@ export default function HomeSearchContainer({
   noMarginTop?: boolean;
   allTexts: HomeAllTextsProps;
 }) {
-  const { messages, addFlash, removeFlash } = useFlashMessages();
+  const { addFlash } = useFlashMessages();
 
   const availableServices = [
     {
@@ -108,7 +108,8 @@ export default function HomeSearchContainer({
         </AnimatePresence>
       </div>
 
-      <Flash messages={messages} removeFlash={removeFlash} />
+      {/* <Flash /> */}
+      {/* <button onClick={handleClick}>Add Flash Message</button> */}
     </div>
   );
 }

@@ -94,6 +94,8 @@ export default function TopNav() {
         />
         <div className="md:hidden absolute top-[1em] right-2 z-50">
           <Button
+            aria-label="menu"
+            type="button"
             iconOnly
             bg={"ghost"}
             className={`
