@@ -1,6 +1,7 @@
 import HomeSearchContainer from "@components/templates/home/HomeSearchContainer";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Suspense } from "react";
 
 export default function page({ params }: { params: { locale: string } }) {
   const t = useTranslations("Home");
@@ -169,6 +170,7 @@ export default function page({ params }: { params: { locale: string } }) {
           </div>
           <div className="sm:text-xl mt-2">{t("heroBody")}</div>
         </div>
+
         <HomeSearchContainer allTexts={allTexts} />
 
         <div className="mt-14">

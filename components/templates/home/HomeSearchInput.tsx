@@ -13,13 +13,14 @@ export type ElasticSearchResponse = {
 };
 
 type HomeSearchInputProps = {
-  State: string;
-  setState: (state: string) => void;
+  State: { name: string; iataCode: string };
+  setState: (state: any) => void;
   placeHolder: string;
   startIcon: React.ReactNode;
   SearchFunction: (
     state: any
   ) => Promise<ElasticSearchResponse[]> | ElasticSearchResponse[];
+  RecentSearches?: { name: string; iata: string }[] | []; // Modify this line
 };
 
 const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
@@ -28,8 +29,9 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   placeHolder,
   startIcon,
   SearchFunction,
+  RecentSearches,
 }) => {
-  const [inputState, setInputState] = useState(State);
+  const [inputState, setInputState] = useState(State.name); // Set inputState to be a string
   const [openContainer, setOpenContainer] = useState(false);
   const [results, setResults] = useState<ElasticSearchResponse[]>([]);
   const [selectedFromList, setSelectedFromList] = useState(false);
@@ -68,8 +70,10 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
       setLoading(true);
       setError("");
       try {
-        const data = await SearchFunction(debouncedFrom.trim());
-        setResults(data);
+        if (typeof debouncedFrom === "string" && debouncedFrom.trim() !== "") {
+          const data = await SearchFunction(debouncedFrom.trim());
+          setResults(data);
+        }
       } catch (err) {
         console.error(err);
         setError("Failed to fetch data");
@@ -77,15 +81,15 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
       setLoading(false);
     }
 
-    if (debouncedFrom.trim() !== "") {
-      fetchResults();
-    }
+    fetchResults();
   }, [debouncedFrom, SearchFunction]);
 
   const containerClasses = useMemo(() => {
     return `autocomeplete-container absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${
       params?.locale === "ar" ? "sm:right-0" : "sm:left-0"
-    } left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 py-3 sm:shadow-lg z-50`;
+    } left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 
+    ${RecentSearches && RecentSearches?.length > 0 ? "pb-3" : "py-3"}
+    sm:shadow-lg z-50`;
   }, [params]);
 
   return (
@@ -107,7 +111,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         <TextInput
           className=""
           startIcon={startIcon}
-          State={inputState}
+          State={inputState} // pass inputState as a string
           setState={setInputState}
           placeholder={placeHolder}
           onBlur={() => {
@@ -138,18 +142,39 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
             ) : error ? (
               <div>{error}</div>
             ) : (
-              results.map((item, index) => (
-                <AirportItem
-                  key={item.id + index}
-                  item={item}
-                  onSelect={() => {
-                    setSelectedFromList(true);
-                    setInputState(item.id);
-                    setState(item.id);
-                    setSelectedFromList(false);
-                  }}
-                />
-              ))
+              <>
+                {RecentSearches && (
+                  <div className="flex sm:px-2 gap-2 overflow-x-scroll py-2">
+                    {RecentSearches.map((search, index) => (
+                      <button
+                        key={index}
+                        className="rounded-full min-w-max border py-1 px-2 text-sm text-zinc-400"
+                        onClick={() => {
+                          setInputState(search.name);
+                          setState({
+                            name: search.name,
+                            iataCode: search.iata,
+                          });
+                        }}
+                      >
+                        {search.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {results.map((item, index) => (
+                  <AirportItem
+                    key={item.id + index}
+                    item={item}
+                    onSelect={(selectedAirport) => {
+                      setSelectedFromList(true);
+                      setInputState(selectedAirport.name); // Set the name in inputState
+                      setState(selectedAirport); // set the state as the object
+                      setSelectedFromList(false);
+                    }}
+                  />
+                ))}
+              </>
             )}
           </AnimatePresence>
         </div>
@@ -160,7 +185,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
 
 const AirportItem: React.FC<{
   item: ElasticSearchResponse;
-  onSelect: () => void;
+  onSelect: (selectedAirport: { name: string; iataCode: string }) => void;
 }> = ({ item, onSelect }) => {
   return (
     <motion.div
@@ -169,7 +194,12 @@ const AirportItem: React.FC<{
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -6 }}
       className="h-20 relative cursor-pointer rounded hover:bg-gray-100 p-2 flex gap-2"
-      onClick={onSelect}
+      onClick={() => {
+        onSelect({
+          name: item.name,
+          iataCode: item.id, // assuming the id is the IATA code
+        });
+      }}
     >
       <img
         className="object-cover min-w-14 w-14 h-14 rounded"

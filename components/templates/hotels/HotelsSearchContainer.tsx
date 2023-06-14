@@ -52,13 +52,13 @@ export default function HotelsSearchContainer({
     >
       <div className="flex md:flex-row flex-col mt-3 gap-2">
         <div className="flex flex-1 sm:flex-row flex-col gap-2">
-          <HomeSearchInput
+          {/* <HomeSearchInput
             placeHolder={allTexts.city}
             State={City}
             setState={setCity}
             SearchFunction={SearchFunction}
             startIcon={<FaHotel className="fill-gray-400" />}
-          />
+          /> */}
         </div>
 
         <div className="h-full min-w-[10em]">

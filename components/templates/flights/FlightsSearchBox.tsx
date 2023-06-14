@@ -3,21 +3,19 @@ import { atom, useAtom } from "jotai";
 import Button from "@components/elements/button/Button";
 import Dialog from "@components/elements/dialog/Dialog";
 import UiSelect from "@components/elements/select/Select";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { FaPlaneArrival, FaPlaneDeparture, FaUsers } from "react-icons/fa";
+import { FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
-import HomeSearchInput, {
-  ElasticSearchResponse,
-} from "../home/HomeSearchInput";
+import HomeSearchInput from "../home/HomeSearchInput";
 import Badge from "@components/elements/badge/Badge";
 import { useRouter } from "next/navigation";
-import Flash from "@components/blocks/flash/Flash";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { HomeAllTextsProps } from "../home/HomeSearchContainer";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export const passengersAtom = atom({
   adults: 1,
@@ -74,8 +72,8 @@ export default function FlightsSearchBox({
     },
   ]);
   const [OpenPassengersDialog, setOpenPassengersDialog] = useState(false);
-  const [From, setFrom] = useState("");
-  const [To, setTo] = useState("");
+  const [From, setFrom] = useState({ name: "", iataCode: "" });
+  const [To, setTo] = useState({ name: "", iataCode: "" });
   const [Loading, setLoading] = useState(false);
 
   const today = new Date();
@@ -102,7 +100,9 @@ export default function FlightsSearchBox({
     ? `${ReturnDate.year}${ReturnDate.month}${ReturnDate.day}`
     : "";
 
-  const flightSearchUrl = `/flights/${From}-${To}?direction=${tripDirection}&class=${tripClass}&adults=${adults}&children=${children}&babies=${Babies}&departure=${departureDate}${
+  const flightSearchUrl = `/flights/${From.iataCode}-${
+    To.iataCode
+  }?direction=${tripDirection}&class=${tripClass}&adults=${adults}&children=${children}&babies=${Babies}&departure=${departureDate}${
     returnDate ? `&return=${returnDate}` : ""
   }`;
 
@@ -117,7 +117,41 @@ export default function FlightsSearchBox({
     return data;
   };
 
-  
+  const [RecentSearches, setRecentSearches] = useState<
+    { name: string; iata: string }[]
+  >([]); // Update the type of state
+
+  useEffect(() => {
+    if (From.iataCode === "" || To.iataCode === "") {
+      return; // Skip adding empty values to local storage
+    }
+
+    let recentSearches = localStorage.getItem("recentSearches")
+      ? JSON.parse(localStorage.getItem("recentSearches") as string)
+      : [];
+
+    // Add the new searches as objects to the beginning of the array
+    recentSearches.unshift(
+      {
+        name: From.name,
+        iata: From.iataCode,
+      },
+      {
+        name: To.name,
+        iata: To.iataCode,
+      }
+    );
+
+    // Trim the array to only keep the last 5 searches
+    recentSearches = recentSearches.slice(0, 4);
+
+    // Store the updated recentSearches array in localStorage
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+
+    // Update the RecentSearches state
+    setRecentSearches(recentSearches);
+  }, [From, To]);
+
   return (
     <motion.div
       initial={{
@@ -189,6 +223,7 @@ export default function FlightsSearchBox({
             State={From}
             setState={setFrom}
             SearchFunction={SearchFunction}
+            RecentSearches={RecentSearches}
           />
           <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
@@ -196,6 +231,7 @@ export default function FlightsSearchBox({
             State={To}
             setState={setTo}
             SearchFunction={SearchFunction}
+            RecentSearches={RecentSearches}
           />
         </div>
 
@@ -242,24 +278,30 @@ export default function FlightsSearchBox({
         )}
 
         <div className="h-full min-w-[10em]">
-          <Button
-            aria-label="search flights"
-            onClick={() => {
-              if (From === "") {
-                addFlash("allTexts.flashfrom");
-                console.log("allTexts.flashfrom");
-              } else if (To === "") {
-                addFlash(allTexts.flashto);
-              } else {
-                setLoading(true);
-                router.push(flightSearchUrl);
-              }
-            }}
-            className="h-full py-3 w-full rounded-lg"
-          >
-            {!Loading && allTexts.btns.search}
-            {Loading && <AiOutlineLoading3Quarters className="animate-spin" />}
-          </Button>
+          <Link href={flightSearchUrl} passHref>
+            <Button
+              aria-label="search flights"
+              // @ts-ignore
+              onClick={(event) => {
+                if (From.iataCode === "") {
+                  event.preventDefault();
+                  addFlash("allTexts.flashfrom");
+                  console.log("allTexts.flashfrom");
+                } else if (To.iataCode === "") {
+                  event.preventDefault();
+                  addFlash(allTexts.flashto);
+                } else {
+                  setLoading(true);
+                }
+              }}
+              className="h-full py-3 w-full rounded-lg"
+            >
+              {!Loading && allTexts.btns.search}
+              {Loading && (
+                <AiOutlineLoading3Quarters className="animate-spin" />
+              )}
+            </Button>
+          </Link>
         </div>
       </div>
     </motion.div>
