@@ -16,11 +16,36 @@ const cairo = Cairo({
   subsets: ["latin", "latin-ext"],
 });
 
-export const metadata: Metadata = {
-  title: "JoodLand",
-  description:
-    "Experience the ultimate convenience in travel planning with Joodland's comprehensive platform. Seamlessly explore, effortlessly book, and confidently secure your flights and hotels, all in one place.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    locale: "en" | "ar";
+  };
+}) {
+  const metadata: Metadata = {
+    title: params.locale === "ar" ? "جودلاند" : "JoodLand",
+    description:
+      params.locale === "ar"
+        ? "استمتع بأقصى درجات الراحة في تخطيط السفر مع منصة جودلاند الشاملة. استكشف بسهولة واحجز بسهولة وأمن حجوزاتك للرحلات الجوية والفنادق ، كل ذلك في مكان واحد."
+        : "Experience the ultimate convenience in travel planning with Joodland's comprehensive platform. Seamlessly explore, effortlessly book, and confidently secure your flights and hotels, all in one place.",
+    category:
+      params.locale === "en"
+        ? "Flight and Hotel Reservations"
+        : "حجوزات الرحلات الجوية والفنادق",
+    colorScheme: "light",
+    authors: [
+      {
+        name: "Iraq Tech Travel",
+        url: "https://www.iraqtraveltech.com/",
+      },
+    ],
+  };
+
+  return {
+    ...metadata,
+  };
+}
 
 export default async function RootLayout({
   children,

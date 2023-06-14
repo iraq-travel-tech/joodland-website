@@ -25,7 +25,7 @@ export default function loading() {
           </div>
 
           <div className="flex justify-between mt-5 items-center">
-            <div className="sm:h-12 absolute right-3 bottom-3 w-20 rounded-lg bg-gray-300 animate-pulse"></div>
+            {/* <div className="sm:h-12 absolute right-3 bottom-3 w-20 rounded-lg bg-gray-300 animate-pulse"></div> */}
           </div>
         </div>
       ))}

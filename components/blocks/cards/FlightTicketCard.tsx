@@ -2,7 +2,7 @@
 
 import Button from "@components/elements/button/Button";
 import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
+import { BiChevronDown, BiTransferAlt } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsAirplaneFill } from "react-icons/bs";
@@ -56,7 +56,9 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
-            <p className="sm:min-w-max text-center text-zinc-500 sm:text-sm text-xs">{ticket.totalDuration}</p>
+            <p className="sm:min-w-max text-center text-zinc-500 sm:text-sm text-xs">
+              {ticket.totalDuration}
+            </p>
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
           </div>
           <div className="flex-col">
@@ -124,7 +126,12 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
             className="col-span-2 overflow-hidden flex flex-col gap-4"
           >
             {ticket.stopDetails.map((stop, index) => (
-              <div key={index} className="flex pt-6 flex-col relative gap-4">
+              <div
+                key={index}
+                className={`flex ${
+                  index === 0 && "pt-6"
+                } flex-col relative gap-4`}
+              >
                 <div className="flex gap-10">
                   <div className="flex flex-col">
                     <div className="font-bold text-secondary-800">
@@ -170,10 +177,13 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                     </div>
                   </div>
                 </div>
-
-                {/* <Link className="w-max" href={`/flights/details/23423`}>
-                  <Button className="w-max mt-4">See More Details</Button>
-                </Link> */}
+                {index < ticket.stopDetails.length - 1 && (
+                  <div className="flex mt-2 gap-3 items-center text-zinc-400 text-sm">
+                    <BiTransferAlt className="fill-current" size={16} />
+                    {stop.connectionDuration}{" "}
+                    {params.locale === "en" ? "Transfer time" : "وقت التوقف"}
+                  </div>
+                )}
               </div>
             ))}
           </motion.div>

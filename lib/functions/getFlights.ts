@@ -30,6 +30,7 @@ export const fetchFlights = async (from: string, to: string): Promise<any> => {
         ],
       },
     }),
+    cache: "no-store",
   })
     .then((response) => {
       if (!response.ok) {
