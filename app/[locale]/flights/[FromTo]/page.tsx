@@ -29,11 +29,13 @@ export default async function page({
 
   return (
     <div className="md:mt-4">
-      <FlightsPage
-        data={data.FlightOfferingsResponse.FlightOfferings.FlightOffering}
-        searchParams={searchParams}
-        locale={params.locale}
-      />
+      {data.FlightOfferingsResponse && (
+        <FlightsPage
+          data={data.FlightOfferingsResponse.FlightOfferings.FlightOffering}
+          searchParams={searchParams}
+          locale={params.locale}
+        />
+      )}
     </div>
   );
 }

@@ -93,10 +93,6 @@ export default function FlightsSearchBox({
   });
 
   const { adults, children, Babies } = Passengers;
-  const departureDate = `${DepartureDate.year}${DepartureDate.month}${DepartureDate.day}`;
-  const returnDate = ReturnDate
-    ? `${ReturnDate.year}${ReturnDate.month}${ReturnDate.day}`
-    : "";
 
   const formatDateForUrl = (date: any) => {
     const year = date.year;
@@ -134,12 +130,21 @@ export default function FlightsSearchBox({
   const { addFlash } = useFlashMessages();
 
   const SearchFunction = async (text: string) => {
-    const response = await fetch(
-      `https://booking.kayak.com/mvm/smartyv2/search?f=j&s=airportonly&where=${text}`
-    );
+    // Use local API endpoint
+    const response = await fetch(`/api/elasticsearch?q=${text}`);
     const data = await response.json();
 
-    return data;
+    // Map the data to the ElasticSearchResponse format
+    const mappedData = data.map((airport: any) => ({
+      id: airport.iata, // Assuming iata can be used as an ID
+      destination_images: {
+        image_jpeg: "", // Put here a default image URL or dynamic image if available
+      },
+      name: airport.name,
+      cityname: airport.city,
+    }));
+
+    return mappedData;
   };
 
   const [RecentSearches, setRecentSearches] = useState<
@@ -147,13 +152,15 @@ export default function FlightsSearchBox({
   >([]); // Update the type of state
 
   useEffect(() => {
-    if (From.iataCode === "" || To.iataCode === "") {
-      return; // Skip adding empty values to local storage
-    }
-
     let recentSearches = localStorage.getItem("recentSearches")
       ? JSON.parse(localStorage.getItem("recentSearches") as string)
       : [];
+    // Update the RecentSearches state
+    setRecentSearches(recentSearches);
+
+    if (From.iataCode === "" || To.iataCode === "") {
+      return; // Skip adding empty values to local storage
+    }
 
     // Add the new searches as objects to the beginning of the array
     recentSearches.unshift(
@@ -172,9 +179,6 @@ export default function FlightsSearchBox({
 
     // Store the updated recentSearches array in localStorage
     localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
-
-    // Update the RecentSearches state
-    setRecentSearches(recentSearches);
   }, [From, To]);
 
   return (

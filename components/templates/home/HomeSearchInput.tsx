@@ -76,7 +76,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         }
       } catch (err) {
         console.error(err);
-        setError("Failed to fetch data");
+        setError("Network Error");
       }
       setLoading(false);
     }
@@ -130,21 +130,23 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
         <div className={containerClasses}>
           <AnimatePresence>
             {loading ? (
-              [1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="h-20 rounded flex gap-2 p-2">
-                  <div className="min-w-14 w-14 h-14 rounded bg-gray-300 animate-pulse"></div>
-                  <div className="flex flex-col gap-1">
-                    <div className="w-[8em] h-6 bg-gray-300 animate-pulse rounded"></div>
-                    <div className="w-[4em] h-4 bg-gray-300 animate-pulse rounded"></div>
+              <>
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="h-20 rounded flex gap-2 p-2">
+                    <div className="min-w-14 w-14 h-14 rounded bg-gray-300 animate-pulse"></div>
+                    <div className="flex flex-col gap-1">
+                      <div className="w-[8em] h-6 bg-gray-300 animate-pulse rounded"></div>
+                      <div className="w-[4em] h-4 bg-gray-300 animate-pulse rounded"></div>
+                    </div>
                   </div>
-                </div>
-              ))
+                ))}
+              </>
             ) : error ? (
               <div>{error}</div>
             ) : (
               <>
                 {RecentSearches && (
-                  <div className="flex bg-white sticky top-0 left-0 sm:px-2 gap-2 overflow-x-scroll py-2">
+                  <div className="flex bg-white sticky top-0 left-0 sm:px-2 gap-2 overflow-x-scroll z-40 min-h-max py-2">
                     {RecentSearches.map((search, index) => (
                       <button
                         key={index}
@@ -201,11 +203,11 @@ const AirportItem: React.FC<{
         });
       }}
     >
-      <img
+      {/* <img
         className="object-cover min-w-14 w-14 h-14 rounded"
         src={item.destination_images?.image_jpeg}
         alt={`${item.name} - ${item.cityname}`}
-      />
+      /> */}
       <div className="flex flex-col">
         <div className="font-bold">{item.name}</div>
         <div className="text-zinc-400 text-sm line-clamp-1">

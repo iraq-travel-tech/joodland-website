@@ -33,9 +33,9 @@ export const fetchFlights = async (from: string, to: string): Promise<any> => {
     cache: "no-store",
   })
     .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
+      // if (!response.ok) {
+      //   throw new Error(response.statusText);
+      // }
       return response.json();
     })
     .then((data) => {
