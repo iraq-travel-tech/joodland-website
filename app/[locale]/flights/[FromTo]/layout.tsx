@@ -1,3 +1,4 @@
+import DatesList from "@components/blocks/dateslist/DatesList";
 import Button from "@components/elements/button/Button";
 import FlightsNav from "@components/templates/nav/FlightsNav";
 import Link from "next/link";
@@ -6,11 +7,15 @@ import { GoChevronLeft } from "react-icons/go";
 export default function layout({
   children,
   params: { locale },
-}: {
+}: // searchParams,
+{
   children: React.ReactNode;
   params: {
     locale: string;
   };
+  // searchParams: {
+  //   departure: string;
+  // };
 }) {
   return (
     <div className="bg-gray-100">
@@ -32,6 +37,10 @@ export default function layout({
             </Button>
           </Link>
           {children}{" "}
+        </div>
+
+        <div className="fixed w-full left-0 bottom-0">
+          {/* <DatesList initialDate={searchParams.departure} /> */}
         </div>
       </div>
     </div>

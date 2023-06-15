@@ -10,7 +10,6 @@ import { FaPlaneDeparture, FaUsers } from "react-icons/fa";
 import DatePicker from "@components/elements/textinput/DatePicker";
 import HomeSearchInput from "../home/HomeSearchInput";
 import Badge from "@components/elements/badge/Badge";
-import { useRouter } from "next/navigation";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { HomeAllTextsProps } from "../home/HomeSearchContainer";
@@ -29,7 +28,6 @@ export default function FlightsSearchBox({
   allTexts: HomeAllTextsProps;
 }) {
   const [Passengers, setPassengers] = useAtom(passengersAtom);
-  const router = useRouter();
 
   const tripdirections = [
     {
@@ -100,10 +98,37 @@ export default function FlightsSearchBox({
     ? `${ReturnDate.year}${ReturnDate.month}${ReturnDate.day}`
     : "";
 
+  const formatDateForUrl = (date: any) => {
+    const year = date.year;
+
+    const monthNames = {
+      january: "01",
+      february: "02",
+      march: "03",
+      april: "04",
+      may: "05",
+      june: "06",
+      july: "07",
+      august: "08",
+      september: "09",
+      october: "10",
+      november: "11",
+      december: "12",
+    };
+
+    // @ts-ignore
+    const month = monthNames[date.month.toLowerCase()] || "01";
+    const day = String(date.day).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+  const departureDateForUrl = formatDateForUrl(DepartureDate);
+  const returnDateForUrl = ReturnDate ? formatDateForUrl(ReturnDate) : "";
+
   const flightSearchUrl = `/flights/${From.iataCode}-${
     To.iataCode
-  }?direction=${tripDirection}&class=${tripClass}&adults=${adults}&children=${children}&babies=${Babies}&departure=${departureDate}${
-    returnDate ? `&return=${returnDate}` : ""
+  }?direction=${tripDirection}&class=${tripClass}&adults=${adults}&children=${children}&babies=${Babies}&departure=${departureDateForUrl}${
+    returnDateForUrl ? `&return=${returnDateForUrl}` : ""
   }`;
 
   const { addFlash } = useFlashMessages();
@@ -282,7 +307,7 @@ export default function FlightsSearchBox({
             <Button
               aria-label="search flights"
               // @ts-ignore
-              onClick={(event) => {
+              onClick={(event: any) => {
                 if (From.iataCode === "") {
                   event.preventDefault();
                   addFlash("allTexts.flashfrom");

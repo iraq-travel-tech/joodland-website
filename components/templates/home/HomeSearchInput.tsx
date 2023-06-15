@@ -144,7 +144,7 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
             ) : (
               <>
                 {RecentSearches && (
-                  <div className="flex sm:px-2 gap-2 overflow-x-scroll py-2">
+                  <div className="flex bg-white sticky top-0 left-0 sm:px-2 gap-2 overflow-x-scroll py-2">
                     {RecentSearches.map((search, index) => (
                       <button
                         key={index}
