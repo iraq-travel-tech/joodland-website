@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Dialog from "@components/elements/dialog/Dialog";
-import { MdOutlineAttachMoney } from "react-icons/md";
+import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Import the necessary hooks
+import Button from "@components/elements/button/Button";
 
 type FilterItem = {
   label: string;
@@ -24,13 +25,16 @@ const CheckboxFilter: React.FC<FilterProps> = ({
 }) => {
   return (
     <div className="flex flex-col mt-4">
-      <div className="font-semibold text-gray-700">{label}</div>
-      <div className="flex flex-col mt-1">
+      <div className="font-semibold text-gray-700 mb-2">{label}</div>
+      <div className="flex flex-col">
         {items.map((item) => (
-          <label key={item.value} className="flex items-center cursor-pointer">
+          <label
+            key={item.value}
+            className="flex items-center cursor-pointer mb-2"
+          >
             <input
               type="checkbox"
-              className="form-checkbox h-5 w-5 text-blue-600 rounded-full"
+              className="form-checkbox h-5 w-5 text-blue-600 rounded"
               checked={filtersState[item.value] || false}
               onChange={(e) => onFilterChange(item.value, e.target.checked)}
             />
@@ -41,11 +45,15 @@ const CheckboxFilter: React.FC<FilterProps> = ({
     </div>
   );
 };
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Import the necessary hooks
 
-export default function TopFiltersNav() {
+export default function TopFiltersNav({
+  isDialogOpen,
+  setIsDialogOpen,
+}: {
+  isDialogOpen: boolean;
+  setIsDialogOpen: (isOpen: boolean) => void;
+}) {
   // Hooks
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<string>("cheapest");
   const [filters, setFilters] = useState<{ [key: string]: boolean }>({});
 
@@ -66,6 +74,7 @@ export default function TopFiltersNav() {
     if (params) {
       const airlines = Object.keys(filters)
         .filter((filterName) => filters[filterName])
+        .map((name) => name.replace(/\s+/g, "-"))
         .join(",");
       params.set("airlines", airlines);
       params.set("sort", sortBy);
@@ -76,21 +85,14 @@ export default function TopFiltersNav() {
   useEffect(() => {
     setFiltersInView();
   }, [filters, sortBy]);
-
   return (
-    <div className="your-container-styles">
-      <button
-        onClick={() => setIsDialogOpen(true)}
-        className="rounded-md flex gap-0.5 items-center border snap-start py-1 px-2 text-xl text-zinc-500"
-      >
-        <span>Filter</span>
-      </button>
+    <div className="p-4 bg-gray-100 rounded">
       <Dialog open={isDialogOpen} setOpen={setIsDialogOpen}>
-        <div className="w-full sm:w-96 p-2 bg-white rounded-lg flex flex-col">
-          <div className="flex justify-between items-center border-b py-2">
+        <div className=" sm:w-96 w-80 p-4 bg-white rounded-lg flex flex-col">
+          <div className="flex justify-between items-center border-b pb-2">
             <h1 className="font-bold text-xl">All Filters</h1>
             <button
-              className="font-semibold text-blue-600"
+              className="font-semibold text-blue-600 hover:text-blue-700"
               onClick={() => setIsDialogOpen(false)}
             >
               Clear
@@ -100,7 +102,7 @@ export default function TopFiltersNav() {
             <span className="text-gray-600 text-sm">Sort By</span>
             <select
               name="sort by"
-              className="mt-2 p-2 bg-gray-100 rounded-full focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm"
+              className="mt-2 p-2 bg-gray-100 rounded focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >
@@ -134,6 +136,9 @@ export default function TopFiltersNav() {
             filtersState={filters}
             onFilterChange={handleFilterChange}
           />
+          <Button className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full">
+            Done
+          </Button>
         </div>
       </Dialog>
     </div>

@@ -98,11 +98,13 @@
     "btns": {
       "goBack": "الرجوع",
       "cancel": "إلغاء",
-      "done": "تم"
+      "done": "تم",
+      "filters": "filters"
     },
     "texts": {
       "Stops": "الوقوفات",
-      "transferTime": "وقت التحويل"
+      "transferTime": "وقت التحويل",
+      "selectOutbound": "اختار الرحلة"
     }
   }
 }

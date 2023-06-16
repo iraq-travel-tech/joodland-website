@@ -25,33 +25,9 @@ export default function FlightsPage({
 }) {
   const t = useTranslations("flights");
 
-
-
-
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold text-secondary-900">
-          {t("selectOutbound")}
-        </div>
-
-        <div className="sm:hidden">
-          <DropDown
-            align="end"
-            trigger={
-              <Button startIcon={<MdFilterListAlt />} roundedFull bg={"ghost"}>
-                {t("btns.sort")}
-              </Button>
-            }
-          >
-            <div className="w-[10em] flex flex-col gap-1">
-              <button className="px-3 py-2 capitalize rounded hover:bg-gray-100">
-                {t("btns.stops")}
-              </button>
-            </div>
-          </DropDown>
-        </div>
-      </div>
+      
 
       <div className="flex flex-col gap-4 pt-6 pb-10">
         {data.map((i, index) => (

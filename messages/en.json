@@ -96,11 +96,13 @@
     "btns": {
       "goBack": "go back",
       "cancel": "cancel",
-      "done": "done"
+      "done": "done",
+      "filters": "filters"
     },
     "texts": {
       "Stops": "Stops",
-      "transferTime": "Transfer Time"
+      "transferTime": "Transfer Time",
+      "selectOutbound": "Select outbound"
     }
   }
 }
