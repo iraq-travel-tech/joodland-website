@@ -1,7 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 type Locale = "en" | "ar";
 
@@ -71,29 +76,27 @@ const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
     setDates(generateDates(newDate));
   };
 
-  const [isScrollingDown, setIsScrollingDown] = useState<boolean>(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  function setNamesView(name: string, newValue: string) {
+    const params = searchParams
+      ? new URLSearchParams(searchParams.toString())
+      : null;
+    if (params) {
+      params.set(name, newValue);
+      router.replace(`${pathname}?${params}`);
+    }
+  }
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
-
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      setIsScrollingDown(currentScrollPos > prevScrollPos);
-      prevScrollPos = currentScrollPos;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    setNamesView("departure", selectedDate);
+  }, [selectedDate]);
 
   return (
     <motion.div
-      className={`bg-white py-1 relative border-t border-gray-200 text-zinc-400 flex gap-2 text-sm overflow-x-scroll justify-center noscrollwheel scroll-smooth transition-all ${
-        isScrollingDown ? "translate-y-full" : ""
-      }`}
+      className={`bg-white md:!translate-y-full py-1 relative border-t border-gray-200 text-zinc-400 flex gap-2 text-sm overflow-x-scroll justify-center noscrollwheel scroll-smooth snap-x snap-mandatory transition-all `}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -102,7 +105,7 @@ const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
       {dates.map((date, index) => (
         <motion.button
           key={date}
-          className={`rounded min-w-max px-3 ${
+          className={`rounded snap-start min-w-max px-3 ${
             date ===
             `${
               monthNames[locale][parseInt(selectedDate.split("-")[1], 10) - 1]

@@ -1,46 +1,38 @@
+"use client";
 import DatesList from "@components/blocks/dateslist/DatesList";
 import Button from "@components/elements/button/Button";
+import TopFiltersNav from "@components/templates/flights/TopFiltersNav";
 import FlightsNav from "@components/templates/nav/FlightsNav";
 import Link from "next/link";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { GoChevronLeft } from "react-icons/go";
+import { MdOutlineAttachMoney } from "react-icons/md";
 
-export default function layout({
-  children,
-  params: { locale },
-}: // searchParams,
-{
-  children: React.ReactNode;
-  params: {
-    locale: string;
+export default function layout({ children }: { children: React.ReactNode }) {
+  const searchParams = useSearchParams();
+  const params = useParams() as {
+    locale: "en" | "ar";
   };
-  // searchParams: {
-  //   departure: string;
-  // };
-}) {
+  const departure = searchParams?.get("departure");
+
   return (
     <div className="bg-gray-100">
       <FlightsNav />
 
       <div className="max-w-6xl pt-6 mx-auto px-4 sm:px-6 lg:px-8 flex md:flex-row flex-col md:gap-7 gap-3">
-        <div className="md:w-[25em] md:bg-white md:shadow-lg transition-all md:p-3 h-max sticky md:block hidden  top-28 left-0 md:rounded-lg ">
-          <div className="flex flex-col gap-1">
-            <button className="capitalize py-2 px-3 rounded hover:bg-gray-100">
-              non stop
-            </button>
-          </div>
-        </div>
-
-        <div dir={locale === "ar" ? "rtl" : "ltr"} className="w-full">
+        <TopFiltersNav />
+        <div dir={params.locale === "ar" ? "rtl" : "ltr"} className="w-full">
           <Link className="md:flex hidden w-max" href="/">
             <Button bg={"ghost"} startIcon={<GoChevronLeft />}>
-              {locale === "ar" ? "الرجوع" : "Go Back "}
+              {params.locale === "ar" ? "الرجوع" : "Go Back "}
             </Button>
           </Link>
-          {children}{" "}
-        </div>
+          {children}
 
-        <div className="fixed w-full left-0 bottom-0">
-          {/* <DatesList initialDate={searchParams.departure} /> */}
+          <div className="fixed left-0 bottom-0 right-0">
+            <DatesList initialDate={departure || ""} />
+          </div>
         </div>
       </div>
     </div>
