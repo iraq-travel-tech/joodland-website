@@ -3,6 +3,7 @@ import React from "react";
 export default function loading() {
   return (
     <div className="flex flex-col gap-4 pt-6 pb-10">
+      <div className="h-7 w-[7em] mb-2 rounded bg-gray-300 animate-pulse"></div>
       {[1, 2, 3, 4, 5, 6].map((i) => (
         <div
           key={i}
