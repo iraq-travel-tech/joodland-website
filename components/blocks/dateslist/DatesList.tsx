@@ -1,61 +1,37 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-
-type Locale = "en" | "ar";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface DatesListProps {
   initialDate: string;
 }
 
 const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
-  const { locale } = useParams() as {
-    locale: Locale;
-  };
+  const t = useTranslations("Home");
 
-  const monthNames = {
-    en: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    ar: [
-      "يناير",
-      "فبراير",
-      "مارس",
-      "أبريل",
-      "مايو",
-      "يونيو",
-      "يوليو",
-      "أغسطس",
-      "سبتمبر",
-      "أكتوبر",
-      "نوفمبر",
-      "ديسمبر",
-    ],
-  };
+  const AllMonths = [
+    t("months.january"),
+    t("months.february"),
+    t("months.march"),
+    t("months.april"),
+    t("months.may"),
+    t("months.june"),
+    t("months.july"),
+    t("months.august"),
+    t("months.september"),
+    t("months.october"),
+    t("months.november"),
+    t("months.december"),
+  ];
 
   const generateDates = (selectedDate: string) => {
     const [year, month, day] = selectedDate.split("-").map(Number);
     const generatedDates: string[] = [];
     for (let i = -3; i <= 3; i++) {
       const date = new Date(year, month - 1, day + i);
-      const formattedMonth = monthNames[locale][date.getMonth()];
+      const formattedMonth = AllMonths[date.getMonth()];
       const formattedDay = date.getDate();
       generatedDates.push(`${formattedMonth} ${formattedDay}`);
     }
@@ -67,7 +43,7 @@ const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
 
   const handleDateClick = (date: string) => {
     const [monthName, day] = date.split(" ");
-    const monthIndex = monthNames[locale].indexOf(monthName) + 1;
+    const monthIndex = AllMonths.indexOf(monthName) + 1;
     const newDate = `${selectedDate.split("-")[0]}-${String(
       monthIndex
     ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
@@ -101,6 +77,7 @@ const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
+      dir="ltr"
     >
       {dates.map((date, index) => (
         <motion.button
@@ -108,7 +85,7 @@ const DatesList: React.FC<DatesListProps> = ({ initialDate }) => {
           className={`rounded snap-start min-w-max px-3 ${
             date ===
             `${
-              monthNames[locale][parseInt(selectedDate.split("-")[1], 10) - 1]
+              AllMonths[parseInt(selectedDate.split("-")[1], 10) - 1]
             } ${parseInt(selectedDate.split("-")[2], 10)}`
               ? " bg-primary-600 text-white py-1"
               : ""

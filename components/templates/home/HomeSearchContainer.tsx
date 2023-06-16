@@ -1,84 +1,27 @@
 "use client";
 import FlightsSearchBox from "../flights/FlightsSearchBox";
-import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import TabsList from "@components/blocks/tabs/TabList";
 import HotelsSearchContainer from "../hotels/HotelsSearchContainer";
-export interface HomeAllTextsProps {
-  switchTexts: {
-    direction: {
-      oneway: string;
-      round: string;
-    };
-    class: {
-      economy: string;
-      business: string;
-    };
-  };
-  city: string;
-
-  passengers: {
-    name: string;
-    adults: {
-      title: string;
-      subTitle: string;
-    };
-    children: {
-      title: string;
-      subTitle: string;
-    };
-    babies: {
-      title: string;
-      subTitle: string;
-    };
-  };
-  btns: {
-    done: string;
-    search: string;
-  };
-  flights: string;
-  hotels: string;
-  from: string;
-  to: string;
-  months: {
-    january: string;
-    february: string;
-    march: string;
-    april: string;
-    may: string;
-    june: string;
-    july: string;
-    august: string;
-    september: string;
-    october: string;
-    november: string;
-    december: string;
-  };
-  DepartureDate: string;
-  ReturnDate: string;
-  flashfrom: string;
-  flashto: string;
-}
+import { useTranslations } from "next-intl";
 
 export default function HomeSearchContainer({
   noShadow,
   noMarginTop,
-  allTexts,
 }: {
   noShadow?: boolean;
   noMarginTop?: boolean;
-  allTexts: HomeAllTextsProps;
 }) {
-  const { addFlash } = useFlashMessages();
+  const t = useTranslations("Home");
 
   const availableServices = [
     {
-      name: allTexts.flights,
+      name: t("flights"),
       value: "flights",
     },
     {
-      name: allTexts.hotels,
+      name: t("hotels"),
       value: "hotels",
     },
   ];
@@ -98,18 +41,15 @@ export default function HomeSearchContainer({
         setState={setSelectedSearchBox}
         items={availableServices}
       />
-      <div className="flex sm:pt-1 pt-3">
+      <div className="flex pt-3 sm:pt-1">
         <AnimatePresence mode="wait">
           {SelectedSearchBox === "flights" ? (
-            <FlightsSearchBox key="ss" allTexts={allTexts} />
+            <FlightsSearchBox key="ss" />
           ) : (
-            <HotelsSearchContainer key="ddd" allTexts={allTexts} />
+            <HotelsSearchContainer key="ddd" />
           )}
         </AnimatePresence>
       </div>
-
-      {/* <Flash /> */}
-      {/* <button onClick={handleClick}>Add Flash Message</button> */}
     </div>
   );
 }

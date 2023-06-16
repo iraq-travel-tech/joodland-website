@@ -12,9 +12,9 @@ import HomeSearchInput from "../home/HomeSearchInput";
 import Badge from "@components/elements/badge/Badge";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { HomeAllTextsProps } from "../home/HomeSearchContainer";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export const passengersAtom = atom({
   adults: 1,
@@ -22,30 +22,28 @@ export const passengersAtom = atom({
   Babies: 0,
 });
 
-export default function FlightsSearchBox({
-  allTexts,
-}: {
-  allTexts: HomeAllTextsProps;
-}) {
+export default function FlightsSearchBox() {
+  const t = useTranslations("Home");
+
   const [Passengers, setPassengers] = useAtom(passengersAtom);
 
   const tripdirections = [
     {
-      label: allTexts.switchTexts.direction.oneway,
+      label: t("switchTexts.direction.oneway"),
       value: "oneway",
     },
     {
-      label: allTexts.switchTexts.direction.round,
+      label: t("switchTexts.direction.round"),
       value: "round",
     },
   ];
   const tripClasses = [
     {
-      label: allTexts.switchTexts.class.economy,
+      label: t("switchTexts.class.economy"),
       value: "Economy",
     },
     {
-      label: allTexts.switchTexts.class.business,
+      label: t("switchTexts.class.business"),
       value: "business",
     },
   ];
@@ -54,19 +52,21 @@ export default function FlightsSearchBox({
   const [tripClass, setTripClass] = useState("Economy");
   const [TripPassengers, setTripPassengers] = useState([
     {
-      label: allTexts.passengers.adults.title,
+      label: t("passengers.adults.title"),
       value: 1,
-      age: allTexts.passengers.adults.subTitle,
+      age: t("passengers.adults.subTitle"),
     },
+
     {
-      label: allTexts.passengers.children.title,
+      label: t("passengers.children.title"),
       value: 0,
-      age: allTexts.passengers.children.subTitle,
+      age: t("passengers.children.subTitle"),
     },
+
     {
-      label: allTexts.passengers.babies.title,
+      label: t("passengers.babies.title"),
       value: 0,
-      age: allTexts.passengers.babies.subTitle,
+      age: t("passengers.babies.subTitle"),
     },
   ]);
   const [OpenPassengersDialog, setOpenPassengersDialog] = useState(false);
@@ -147,6 +147,21 @@ export default function FlightsSearchBox({
     return mappedData;
   };
 
+  const AllMonths = [
+    t("months.january"),
+    t("months.february"),
+    t("months.march"),
+    t("months.april"),
+    t("months.may"),
+    t("months.june"),
+    t("months.july"),
+    t("months.august"),
+    t("months.september"),
+    t("months.october"),
+    t("months.november"),
+    t("months.december"),
+  ];
+
   const [RecentSearches, setRecentSearches] = useState<
     { name: string; iata: string }[]
   >([]); // Update the type of state
@@ -203,7 +218,7 @@ export default function FlightsSearchBox({
       }}
       className="min-w-full"
     >
-      <div className="flex sm:gap-3 gap-1">
+      <div className="flex gap-1 sm:gap-3">
         <UiSelect
           State={tripDirection}
           setState={setTripDirection}
@@ -221,11 +236,11 @@ export default function FlightsSearchBox({
         <Button
           aria-label="open passengers dialog box"
           bg={"ghost"}
-          className="text-xs relative"
+          className="relative text-xs"
           endIcon={<BsChevronDown className="text-xs" />}
           onClick={() => setOpenPassengersDialog(true)}
         >
-          <span className="sm:flex hidden">{allTexts.passengers.name}</span>
+          <span className="hidden sm:flex">{t("passengers.name")}</span>
           <span className="sm:hidden">
             <FaUsers />
           </span>
@@ -240,15 +255,14 @@ export default function FlightsSearchBox({
           setTripPassengers={setTripPassengers}
           OpenPassengersDialog={OpenPassengersDialog}
           setPassengers={setPassengers}
-          allTexts={allTexts}
         />
       </div>
 
-      <div className="flex md:flex-row flex-col mt-3 gap-2">
-        <div className="flex flex-1 sm:flex-row flex-col gap-2">
+      <div className="flex flex-col gap-2 mt-3 md:flex-row">
+        <div className="flex flex-col flex-1 gap-2 sm:flex-row">
           <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
-            placeHolder={allTexts.from}
+            placeHolder={t("from")}
             State={From}
             setState={setFrom}
             SearchFunction={SearchFunction}
@@ -256,7 +270,7 @@ export default function FlightsSearchBox({
           />
           <HomeSearchInput
             startIcon={<FaPlaneDeparture className="fill-gray-400" />}
-            placeHolder={allTexts.to}
+            placeHolder={t("to")}
             State={To}
             setState={setTo}
             SearchFunction={SearchFunction}
@@ -267,42 +281,16 @@ export default function FlightsSearchBox({
         <DatePicker
           date={DepartureDate}
           setDate={setDepartureDate}
-          title={allTexts.DepartureDate}
-          months={[
-            allTexts.months.january,
-            allTexts.months.february,
-            allTexts.months.march,
-            allTexts.months.april,
-            allTexts.months.may,
-            allTexts.months.june,
-            allTexts.months.july,
-            allTexts.months.august,
-            allTexts.months.september,
-            allTexts.months.october,
-            allTexts.months.november,
-            allTexts.months.december,
-          ]}
+          title={t("DepartureDate")}
+          months={AllMonths}
         />
 
         {tripDirection === "round" && (
           <DatePicker
             date={ReturnDate}
-            title={allTexts.ReturnDate}
+            title={t("ReturnDate")}
             setDate={setReturnDate}
-            months={[
-              allTexts.months.january,
-              allTexts.months.february,
-              allTexts.months.march,
-              allTexts.months.april,
-              allTexts.months.may,
-              allTexts.months.june,
-              allTexts.months.july,
-              allTexts.months.august,
-              allTexts.months.september,
-              allTexts.months.october,
-              allTexts.months.november,
-              allTexts.months.december,
-            ]}
+            months={[AllMonths]}
           />
         )}
 
@@ -314,18 +302,17 @@ export default function FlightsSearchBox({
               onClick={(event: any) => {
                 if (From.iataCode === "") {
                   event.preventDefault();
-                  addFlash("allTexts.flashfrom");
-                  console.log("allTexts.flashfrom");
+                  addFlash(t("flashfrom"));
                 } else if (To.iataCode === "") {
                   event.preventDefault();
-                  addFlash(allTexts.flashto);
+                  addFlash(t("flashto"));
                 } else {
                   setLoading(true);
                 }
               }}
-              className="h-full py-3 w-full rounded-lg"
+              className="w-full h-full py-3 rounded-lg"
             >
-              {!Loading && allTexts.btns.search}
+              {!Loading && t("btns.search")}
               {Loading && (
                 <AiOutlineLoading3Quarters className="animate-spin" />
               )}
@@ -343,20 +330,20 @@ const PassengersDialogBox = ({
   setTripPassengers,
   OpenPassengersDialog,
   setPassengers,
-  allTexts,
 }: {
   setOpenPassengersDialog: any;
   TripPassengers: any;
   setTripPassengers: any;
   OpenPassengersDialog: boolean;
   setPassengers: any;
-  allTexts: HomeAllTextsProps;
 }) => {
+  const t = useTranslations("Home");
+
   return (
     <Dialog open={OpenPassengersDialog} setOpen={setOpenPassengersDialog}>
       <div className="flex flex-col gap-3 p-2 sm:w-[20em]">
-        <div className="text-xl font-bold">{allTexts.passengers.name}</div>
-        <hr className="border my-2 border-gray-200" />
+        <div className="text-xl font-bold">{t("passengers.name")}</div>
+        <hr className="my-2 border border-gray-200" />
         {TripPassengers.map((passenger: any, index: number) => (
           <div key={index} className="flex items-center justify-between gap-8">
             <div className="flex flex-col">
@@ -408,9 +395,10 @@ const PassengersDialogBox = ({
             });
           }}
         >
-          {allTexts.btns.done}
+          {t("btns.done")}
         </Button>
       </div>
     </Dialog>
   );
 };
+

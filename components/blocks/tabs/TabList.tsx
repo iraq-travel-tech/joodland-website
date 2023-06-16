@@ -48,7 +48,7 @@ const TabItem = ({
       {State === item.value && (
         <motion.div
           layoutId="konrepitbiibhqernou2ihb"
-          className="absolute bottom-0 w-full border-black border-b"
+          className="absolute bottom-0 w-full border-b border-black"
         ></motion.div>
       )}
     </div>

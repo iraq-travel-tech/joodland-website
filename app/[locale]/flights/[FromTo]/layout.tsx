@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 import DatesList from "@components/blocks/dateslist/DatesList";
 import Button from "@components/elements/button/Button";
 import TopFiltersNav from "@components/templates/flights/TopFiltersNav";
@@ -9,6 +11,7 @@ import { GoChevronLeft } from "react-icons/go";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
+  const t = useTranslations("common");
   const params = useParams() as {
     locale: "en" | "ar";
   };
@@ -18,20 +21,20 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <div className="bg-gray-100">
       <FlightsNav />
 
-      <div className="max-w-6xl pt-6 mx-auto px-4 sm:px-6 lg:px-8 flex md:flex-row flex-col md:gap-7 gap-3">
+      <div className="flex flex-col max-w-6xl gap-3 px-4 pt-6 mx-auto sm:px-6 lg:px-8 md:flex-row md:gap-7">
         <TopFiltersNav />
         <div
           dir={params.locale === "ar" ? "rtl" : "ltr"}
           className="w-full pt-14"
         >
-          <Link className="md:flex hidden w-max" href="/">
+          <Link className="hidden md:flex w-max" href="/">
             <Button bg={"ghost"} startIcon={<GoChevronLeft />}>
-              {params.locale === "ar" ? "الرجوع" : "Go Back "}
+              {t("btns.goBack")}
             </Button>
           </Link>
           {children}
 
-          <div className="fixed left-0 bottom-0 right-0">
+          <div className="fixed bottom-0 left-0 right-0">
             <DatesList initialDate={departure || ""} />
           </div>
         </div>

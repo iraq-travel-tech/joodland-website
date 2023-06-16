@@ -19,8 +19,8 @@ const WheelPickerBox = ({
       <Dialog open={open} setOpen={setOpen}>
         <div>
           <div className="flex relative h-[10em] overflow-hidden divide-2">
-            <div className="absolute bg-gradient-to-b from-white pointer-events-none w-full h-10 top-3 left-0 z-10" />
-            <div className="absolute bg-gradient-to-t from-white pointer-events-none w-full h-10 bottom-3 left-0 z-10" />
+            <div className="absolute left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-b from-white top-3" />
+            <div className="absolute left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-t from-white bottom-3" />
             <WheelPicker
               State={SelectedNumber}
               setState={setSelectedNumber}

@@ -1,26 +1,27 @@
-export default async function handler(req:any, res:any) {
-  if (req.method !== 'POST') {
-    res.status(405).json({ message: 'Method Not Allowed' });
+export default async function handler(req: any, res: any) {
+  if (req.method !== "POST") {
+    res.status(405).json({ message: "Method Not Allowed" });
     return;
   }
 
   try {
     const { from, to } = req.body;
 
-    const url = 'https://fake-uapi-search-389212.ew.r.appspot.com/flightofferings/';
+    const url =
+      "https://fake-uapi-search-389212.ew.r.appspot.com/flightofferings/";
     const requestData = {
       CatalogOfferingsRequestAir: {
         offersPerPage: 5,
         PassengerCriteria: [
           {
-            value: 'ADT',
+            value: "ADT",
             number: 1,
           },
         ],
         SearchCriteriaFlight: [
           {
-            '@type': 'SearchCriteriaFlight',
-            departureDate: '2023-02-15',
+            "@type": "SearchCriteriaFlight",
+            departureDate: "2023-02-15",
             From: {
               value: from,
             },
@@ -30,35 +31,35 @@ export default async function handler(req:any, res:any) {
           },
         ],
         SearchModifiersAir: {
-          '@type': 'SearchModifiersAir',
+          "@type": "SearchModifiersAir",
           CarrierPreference: {
-            '@type': 'CarrierPreference',
-            type: 'Prohibited',
-            carriers: ['WN'],
+            "@type": "CarrierPreference",
+            type: "Prohibited",
+            carriers: ["WN"],
           },
         },
         PseudoCityInfo: {
-          value: 'PCC',
+          value: "PCC",
         },
       },
     };
 
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(requestData),
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch flight offerings');
+      throw new Error("Failed to fetch flight offerings");
     }
 
     const responseData = await response.json();
     res.status(200).json(responseData);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 }

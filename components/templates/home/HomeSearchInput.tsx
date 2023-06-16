@@ -101,9 +101,9 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
     >
       <motion.div layout>
         {openContainer && (
-          <div className="text-2xl flex justify-between items-center mb-4 font-bold sm:hidden">
+          <div className="flex items-center justify-between mb-4 text-2xl font-bold sm:hidden">
             <p>{placeHolder}</p>
-            <button className="active:scale-90 transition-all">
+            <button className="transition-all active:scale-90">
               <IoMdClose />
             </button>
           </div>
@@ -132,8 +132,8 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
             {loading ? (
               <>
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="h-20 rounded flex gap-2 p-2">
-                    <div className="min-w-14 w-14 h-14 rounded bg-gray-300 animate-pulse"></div>
+                  <div key={i} className="flex h-20 gap-2 p-2 rounded">
+                    <div className="bg-gray-300 rounded min-w-14 w-14 h-14 animate-pulse"></div>
                     <div className="flex flex-col gap-1">
                       <div className="w-[8em] h-6 bg-gray-300 animate-pulse rounded"></div>
                       <div className="w-[4em] h-4 bg-gray-300 animate-pulse rounded"></div>
@@ -146,11 +146,11 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
             ) : (
               <>
                 {RecentSearches && (
-                  <div className="flex bg-white sticky top-0 left-0 sm:px-2 gap-2 overflow-x-scroll z-40 min-h-max py-2">
+                  <div className="sticky top-0 left-0 z-40 flex gap-2 py-2 overflow-x-scroll bg-white sm:px-2 min-h-max">
                     {RecentSearches.map((search, index) => (
                       <button
                         key={index}
-                        className="rounded-full min-w-max border py-1 px-2 text-sm text-zinc-400"
+                        className="px-2 py-1 text-sm border rounded-full min-w-max text-zinc-400"
                         onClick={() => {
                           setInputState(search.name);
                           setState({
@@ -195,7 +195,7 @@ const AirportItem: React.FC<{
       initial={{ opacity: 0, x: -6 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -6 }}
-      className="h-20 relative cursor-pointer rounded hover:bg-gray-100 p-2 flex gap-2"
+      className="relative flex h-20 gap-2 p-2 rounded cursor-pointer hover:bg-gray-100"
       onClick={() => {
         onSelect({
           name: item.name,
@@ -204,13 +204,13 @@ const AirportItem: React.FC<{
       }}
     >
       {/* <img
-        className="object-cover min-w-14 w-14 h-14 rounded"
+        className="object-cover rounded min-w-14 w-14 h-14"
         src={item.destination_images?.image_jpeg}
         alt={`${item.name} - ${item.cityname}`}
       /> */}
       <div className="flex flex-col">
         <div className="font-bold">{item.name}</div>
-        <div className="text-zinc-400 text-sm line-clamp-1">
+        <div className="text-sm text-zinc-400 line-clamp-1">
           {item.cityname}
         </div>
       </div>

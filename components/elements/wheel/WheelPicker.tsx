@@ -93,7 +93,7 @@ const WheelPicker: React.FC<WheelPickerProps> = ({ list, State, setState }) => {
   return (
     <div
       ref={ComponentRef}
-      className="flex cursor-grab active:cursor-grabbing noscrollwheel pt-20 pb-20 flex-col overflow-y-scroll text-center snap-mandatory snap-y relative "
+      className="relative flex flex-col pt-20 pb-20 overflow-y-scroll text-center cursor-grab active:cursor-grabbing noscrollwheel snap-mandatory snap-y "
       onMouseDown={onMouseDown}
       onMouseLeave={onMouseLeave}
       onMouseUp={onMouseUp}

@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BsAirplaneFill } from "react-icons/bs";
 import { FlightSegment } from "@lib/interfaces/FlightsInterfaces";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type FlightTicketCardProps = {
   ticket: Ticket;
@@ -27,13 +28,13 @@ type Ticket = {
   totalDuration: string;
 };
 
-type ticketCardProps = {
-  ticket: Ticket;
-};
+
 
 export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
   const [OpenStops, setOpenStops] = useState(false);
   const params = useParams() as { locale: "en" | "ar" };
+
+  const t = useTranslations("common");
 
   return (
     <motion.div
@@ -42,52 +43,52 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
       ${OpenStops ? " !ring-2 " : ""}
     `}
     >
-      <p className="font-bold text-secondary-800 col-span-2">{ticket.logo}</p>
-      <div className="flex sm:col-span-1 col-span-2 justify-between items-center">
+      <p className="col-span-2 font-bold text-secondary-800">{ticket.logo}</p>
+      <div className="flex items-center justify-between col-span-2 sm:col-span-1">
         <div className="flex gap-4">
           <div className="flex-col">
-            <p className="font-bold text-secondary-800 sm:text-2xl text-xl">
+            <p className="text-xl font-bold text-secondary-800 sm:text-2xl">
               {ticket.departureTime}
-              <span className="text-sm ml-1">AM</span>
+              <span className="ml-1 text-sm">AM</span>
             </p>
-            <p className="text-zinc-400 leading-4 sm:text-md text-sm">
+            <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.departureLocation}
             </p>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
-            <p className="sm:min-w-max text-center text-zinc-500 sm:text-sm text-xs">
+            <p className="text-xs text-center sm:min-w-max text-zinc-500 sm:text-sm">
               {ticket.totalDuration}
             </p>
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
           </div>
           <div className="flex-col">
-            <p className="font-bold text-secondary-800 sm:text-2xl text-xl">
+            <p className="text-xl font-bold text-secondary-800 sm:text-2xl">
               {ticket.arrivalTime}
-              <span className="text-sm ml-1">AM</span>
+              <span className="ml-1 text-sm">AM</span>
             </p>
-            <p className="text-zinc-400 leading-4 sm:text-md text-sm">
+            <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.arrivalLocation}
             </p>
           </div>
         </div>
       </div>
-      <div className="flex sm:mt-0 mt-6 flex-col items-end">
-        <div className="font-bold text-secondary-800 sm:text-2xl text-xl">
+      <div className="flex flex-col items-end mt-6 sm:mt-0">
+        <div className="text-xl font-bold text-secondary-800 sm:text-2xl">
           {ticket.price}$
         </div>
-        <div className="flex items-center gap-3 ms:text-sm text-xs">
+        <div className="flex items-center gap-3 text-xs ms:text-sm">
           <p className="flex items-center gap-1">
             <span>{ticket.passengerCount}</span>
             <span>
               <FaUser className="fill-secondary-800" size={12} />
             </span>
           </p>
-          <div className="circle rounded-full w-1 h-1 bg-black"></div>
+          <div className="w-1 h-1 bg-black rounded-full circle"></div>
           <p>{ticket.type}</p>
         </div>
       </div>
-      <div className="flex col-start-1 row-start-3 sm:mt-5 mt-auto md:col-span-2">
+      <div className="flex col-start-1 row-start-3 mt-auto sm:mt-5 md:col-span-2">
         <Button
           padding={"sm"}
           className="text-sm px-3 !bg-primary-100 !text-primary-700"
@@ -101,13 +102,7 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
           roundedFull
           onClick={() => setOpenStops(!OpenStops)}
         >
-          {params.locale === "ar"
-            ? ticket.stops === 0
-              ? "٠ توقف"
-              : `${ticket.stops} توقف`
-            : ticket.stops === 0
-            ? "0 Stops"
-            : `${ticket.stops} Stops`}
+          {t("texts.Stops")}
         </Button>
       </div>
 
@@ -123,7 +118,7 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
             exit={{
               height: 0,
             }}
-            className="col-span-2 overflow-hidden flex flex-col gap-4"
+            className="flex flex-col col-span-2 gap-4 overflow-hidden"
           >
             {ticket.stopDetails.map((stop, index) => (
               <div
@@ -137,16 +132,16 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                     <div className="font-bold text-secondary-800">
                       {stop.Flight.Departure.time}
                     </div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       {stop.Flight.Departure.time}
                     </div>
                   </div>
 
-                  <div className="flex flex-col relative">
+                  <div className="relative flex flex-col">
                     <div className="font-bold text-secondary-800">
                       {stop.Flight.Departure.location[params.locale]}
                     </div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       {stop.Flight.carrier[params.locale]}
                     </div>
                   </div>
@@ -163,25 +158,24 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                     <div className="font-bold text-secondary-800">
                       {stop.Flight.Arrival.time}
                     </div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       {stop.Flight.Arrival.time}
                     </div>
                   </div>
 
-                  <div className="flex flex-col relative">
+                  <div className="relative flex flex-col">
                     <div className="font-bold text-secondary-800">
                       {stop.Flight.Arrival.location[params.locale]}
                     </div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       {stop.Flight.carrier[params.locale]}
                     </div>
                   </div>
                 </div>
                 {index < ticket.stopDetails.length - 1 && (
-                  <div className="flex mt-2 gap-3 items-center text-zinc-400 text-sm">
+                  <div className="flex items-center gap-3 mt-2 text-sm text-zinc-400">
                     <BiTransferAlt className="fill-current" size={16} />
-                    {stop.connectionDuration}{" "}
-                    {params.locale === "en" ? "Transfer time" : "وقت التوقف"}
+                    {stop.connectionDuration} {t("texts.transferTime")}
                   </div>
                 )}
               </div>

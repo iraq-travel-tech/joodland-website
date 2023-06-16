@@ -29,7 +29,7 @@ export default function page() {
 
   return (
     <div className="mt-6">
-      <div className="text-3xl font-bold flex gap-4 items-center">
+      <div className="flex items-center gap-4 text-3xl font-bold">
         <p>London</p>
         <div className="mt-1">
           <RxArrowRight size={25} />
@@ -37,14 +37,14 @@ export default function page() {
         <p>New York</p>
       </div>
 
-      <main className="flex lg:flex-row flex-col gap-8 mt-5 pb-6">
-        <div className=" flex-1">
+      <main className="flex flex-col gap-8 pb-6 mt-5 lg:flex-row">
+        <div className="flex-1 ">
           {/* trip summary */}
-          <div className="bg-white flex-1 p-4 rounded-lg custom-shadow flex flex-col">
-            <div className="font-bold text-lg">Trip Summary</div>
+          <div className="flex flex-col flex-1 p-4 bg-white rounded-lg custom-shadow">
+            <div className="text-lg font-bold">Trip Summary</div>
             <hr className="mt-2" />
 
-            <div className="mt-2 font-bold flex gap-4 items-center">
+            <div className="flex items-center gap-4 mt-2 font-bold">
               <p>London</p>
               <div className="mt-1">
                 <RxArrowRight size={25} />
@@ -52,17 +52,17 @@ export default function page() {
               <p>New York</p>
             </div>
 
-            <div className="bg-white mt-2 custom-shadow p-3">
-              <div className="flex pt-6 flex-col relative gap-4">
+            <div className="p-3 mt-2 bg-white custom-shadow">
+              <div className="relative flex flex-col gap-4 pt-6">
                 <div className="flex gap-10">
                   <div className="flex flex-col">
                     <div className="font-bold text-secondary-800">12:40</div>
-                    <div className="text-zinc-400 text-sm">3h 10m</div>
+                    <div className="text-sm text-zinc-400">3h 10m</div>
                   </div>
 
-                  <div className="flex flex-col relative">
+                  <div className="relative flex flex-col">
                     <div className="font-bold text-secondary-800">Baghdad</div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       Baghdad International
                     </div>
                   </div>
@@ -77,12 +77,12 @@ export default function page() {
                 <div className="flex gap-10">
                   <div className="flex flex-col">
                     <div className="font-bold text-secondary-800">12:40</div>
-                    <div className="text-zinc-400 text-sm">3h 10m</div>
+                    <div className="text-sm text-zinc-400">3h 10m</div>
                   </div>
 
-                  <div className="flex flex-col relative">
+                  <div className="relative flex flex-col">
                     <div className="font-bold text-secondary-800">Baghdad</div>
-                    <div className="text-zinc-400 text-sm">
+                    <div className="text-sm text-zinc-400">
                       Baghdad International
                     </div>
                   </div>
@@ -92,8 +92,8 @@ export default function page() {
           </div>
 
           {/* trip passengers */}
-          <div className="bg-white flex-1 p-4 rounded-lg custom-shadow flex flex-col">
-            <div className="font-bold text-lg">Passengers</div>
+          <div className="flex flex-col flex-1 p-4 bg-white rounded-lg custom-shadow">
+            <div className="text-lg font-bold">Passengers</div>
             <hr />
             {Array.from(Array(adults), (_, index) => (
               <PassengerCompoent
@@ -125,8 +125,8 @@ export default function page() {
         </div>{" "}
         {/* total amount box */}
         <div className="bg-white p-4  h-max min-w-[20em] custom-shadow rounded-lg flex flex-col">
-          <div className="font-bold text-lg">London to New York</div>
-          <div className="text-zinc-500 text-sm">One-way, Economy, 1 Adult</div>
+          <div className="text-lg font-bold">London to New York</div>
+          <div className="text-sm text-zinc-500">One-way, Economy, 1 Adult</div>
 
           <div className="flex flex-col mt-4">
             <div className="flex gap-2">
@@ -134,13 +134,13 @@ export default function page() {
                 <img
                   src="https://w7.pngwing.com/pngs/773/201/png-transparent-airplane-aircraft-flight-logo-airplane-blue-logo-flight-thumbnail.png"
                   alt="airline logo"
-                  className="w-7 h-7 rounded-full object-cover"
+                  className="object-cover rounded-full w-7 h-7"
                 />
               </div>
               <p className="font-bold">British Airways</p>
             </div>
-            <div className="border mt-2 p-2 rounded-lg text-sm flex flex-col">
-              <div className="mt-2 font-bold flex gap-4 items-center">
+            <div className="flex flex-col p-2 mt-2 text-sm border rounded-lg">
+              <div className="flex items-center gap-4 mt-2 font-bold">
                 <p>London</p>
                 <div className="mt-1">
                   <RxArrowRight size={25} />
@@ -150,10 +150,10 @@ export default function page() {
                 <span>sat, may 13</span>
               </div>
 
-              <div className="text-zinc-400 text-xs">1 stop 7h 45m</div>
+              <div className="text-xs text-zinc-400">1 stop 7h 45m</div>
             </div>
 
-            <div className="mt-5 font-bold text-lg flex justify-between items-center">
+            <div className="flex items-center justify-between mt-5 text-lg font-bold">
               <p>Total Price</p>
 
               <p>$200 USD</p>

@@ -83,5 +83,24 @@
       "oneway": "one way",
       "round": "round trip"
     }
+  },
+  "companyDetails": {
+    "name": "Joodland",
+    "seo": {
+      "name": "Joodland",
+      "description": "Experience the ultimate convenience in travel planning with Joodland's comprehensive platform. Seamlessly explore, effortlessly book, and confidently secure your flights and hotels, all in one place.",
+      "category": "Flight and Hotel Reservations"
+    }
+  },
+  "common": {
+    "btns": {
+      "goBack": "go back",
+      "cancel": "cancel",
+      "done": "done"
+    },
+    "texts": {
+      "Stops": "Stops",
+      "transferTime": "Transfer Time"
+    }
   }
 }

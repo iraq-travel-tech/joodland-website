@@ -15,4 +15,3 @@ const useFlashMessages = () => {
 };
 
 export default useFlashMessages;
-    

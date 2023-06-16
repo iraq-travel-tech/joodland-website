@@ -46,7 +46,7 @@ const FlashMessage: FC<FlashMessageProps> = ({ message, removeFlash }) => {
 };
 
 const Flash: FC<FlashProps> = ({ messages, removeFlash }) => (
-  <motion.div layout className="flex fixed bottom-4 right-4 flex-col gap-4">
+  <motion.div layout className="fixed flex flex-col gap-4 bottom-4 right-4">
     <AnimatePresence>
       {messages.map((message, index) => (
         <FlashMessage

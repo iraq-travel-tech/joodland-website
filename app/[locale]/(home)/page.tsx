@@ -1,7 +1,6 @@
 import HomeSearchContainer from "@components/templates/home/HomeSearchContainer";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Suspense } from "react";
 
 export default function page({ params }: { params: { locale: string } }) {
   const t = useTranslations("Home");
@@ -93,97 +92,39 @@ export default function page({ params }: { params: { locale: string } }) {
     },
   ];
 
-  const allTexts = {
-    switchTexts: {
-      direction: {
-        oneway: t("switchTexts.direction.oneway"),
-        round: t("switchTexts.direction.round"),
-      },
-      class: {
-        economy: t("switchTexts.class.economy"),
-        business: t("switchTexts.class.business"),
-      },
-    },
-
-    flights: t("flights"),
-    hotels: t("hotels"),
-
-    city: t("city"),
-
-    passengers: {
-      name: t("passengers.name"),
-      adults: {
-        title: t("passengers.adults.title"),
-        subTitle: t("passengers.adults.subTitle"),
-      },
-      children: {
-        title: t("passengers.children.title"),
-        subTitle: t("passengers.children.subTitle"),
-      },
-      babies: {
-        title: t("passengers.babies.title"),
-        subTitle: t("passengers.babies.subTitle"),
-      },
-    },
-    btns: {
-      done: t("btns.done"),
-      search: t("btns.search"),
-    },
-    from: t("from"),
-    to: t("to"),
-    months: {
-      january: t("months.january"),
-      february: t("months.february"),
-      march: t("months.march"),
-      april: t("months.april"),
-      may: t("months.may"),
-      june: t("months.june"),
-      july: t("months.july"),
-      august: t("months.august"),
-      september: t("months.september"),
-      october: t("months.october"),
-      november: t("months.november"),
-      december: t("months.december"),
-    },
-    DepartureDate: t("DepartureDate"),
-    ReturnDate: t("ReturnDate"),
-    flashfrom: t("flashfrom"),
-    flashto: t("flashto"),
-  };
-
   return (
     <div dir={params.locale === "ar" ? "rtl" : "ltr"} className="pb-6">
       <div className="absolute top-0 left-0 sm:h-[45vh] h-[40vh] w-full">
         <Image
           src="/images/sunset-bg.jpg"
           alt="hero image of plane flying over sunset"
-          className="w-full h-full object-cover pointer-events-none select-none"
+          className="object-cover w-full h-full pointer-events-none select-none"
           fill
           priority
         />
       </div>
 
-      <div className=" mt-20 relative">
-        <div className="flex z-10 sm:font-medium font-bold text-white flex-col ">
-          <div className="sm:text-4xl text-2xl font-bold capitalize">
+      <div className="relative mt-20 ">
+        <div className="z-10 flex flex-col font-bold text-white sm:font-medium ">
+          <div className="text-2xl font-bold capitalize sm:text-4xl">
             {t("heroTitle")}
           </div>
-          <div className="sm:text-xl mt-2">{t("heroBody")}</div>
+          <div className="mt-2 sm:text-xl">{t("heroBody")}</div>
         </div>
 
-        <HomeSearchContainer allTexts={allTexts} />
+        <HomeSearchContainer />
 
         <div className="mt-14">
-          <div className="font-bold text-2xl text-secondary-900">
+          <div className="text-2xl font-bold text-secondary-900">
             {t("offers.title")}
           </div>
-          <div className="grid grid-cols-1 mt-6 gap-3 lg:grid-cols-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 mt-6 lg:grid-cols-4 md:grid-cols-2">
             {HomeCardsContent.map((card, index) => (
               <article
                 key={index}
                 className="flex flex-col p-3 transition-all bg-white border-2 rounded-lg shadow-none border-zinc-200 hover:scale-105 hover:shadow-xl"
               >
-                <div className="flex items-center justify-center w-10 h-10 text-primary-700 rounded bg-primary-100">
+                <div className="flex items-center justify-center w-10 h-10 rounded text-primary-700 bg-primary-100">
                   {card.icon}
                 </div>
                 <h1 className="mt-3 font-bold capitalize text-secondary-900">

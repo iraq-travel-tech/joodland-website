@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 
 export default function TopFiltersNav() {
-  const Scrolling = useIsScrollingDown()
+  const Scrolling = useIsScrollingDown();
 
   return (
     <div

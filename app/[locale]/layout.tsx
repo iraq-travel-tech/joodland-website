@@ -8,31 +8,17 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 
 import { Cairo } from "next/font/google";
+
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-const cairo = Cairo({
-  variable: "--cairo",
-  style: "normal",
-  subsets: ["latin", "latin-ext"],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("companyDetails");
 
-export async function generateMetadata({
-  params,
-}: {
-  params: {
-    locale: "en" | "ar";
-  };
-}) {
-  const metadata: Metadata = {
-    title: params.locale === "ar" ? "جودلاند" : "JoodLand",
-    description:
-      params.locale === "ar"
-        ? "استمتع بأقصى درجات الراحة في تخطيط السفر مع منصة جودلاند الشاملة. استكشف بسهولة واحجز بسهولة وأمن حجوزاتك للرحلات الجوية والفنادق ، كل ذلك في مكان واحد."
-        : "Experience the ultimate convenience in travel planning with Joodland's comprehensive platform. Seamlessly explore, effortlessly book, and confidently secure your flights and hotels, all in one place.",
-    category:
-      params.locale === "en"
-        ? "Flight and Hotel Reservations"
-        : "حجوزات الرحلات الجوية والفنادق",
+  return {
+    title: t("seo.name"),
+    description: t("seo.description"),
+    category: t("seo.category"),
     colorScheme: "light",
     authors: [
       {
@@ -41,11 +27,13 @@ export async function generateMetadata({
       },
     ],
   };
-
-  return {
-    ...metadata,
-  };
 }
+
+const cairo = Cairo({
+  variable: "--cairo",
+  style: "normal",
+  subsets: ["latin", "latin-ext"],
+});
 
 export default async function RootLayout({
   children,

@@ -47,7 +47,7 @@ export default function TopNav() {
           : " md:text-white text-black "
       }`}
     >
-      <nav className="max-w-6xl py-5 relative mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <nav className="relative flex items-center justify-between max-w-6xl px-4 py-5 mx-auto sm:px-6 lg:px-8">
         <p
           className={`text-xl font-bold ${
             isScrolled ? "text-black" : " text-white "

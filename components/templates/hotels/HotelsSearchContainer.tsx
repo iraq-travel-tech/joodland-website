@@ -2,22 +2,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@components/elements/button/Button";
-import HomeSearchInput from "../home/HomeSearchInput";
 import { motion } from "framer-motion";
-import { FaHotel } from "react-icons/fa";
-import { HomeAllTextsProps } from "../home/HomeSearchContainer";
 import useFlashMessages from "@lib/hooks/useFlashMessages";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useTranslations } from "next-intl";
 
-export default function HotelsSearchContainer({
-  allTexts,
-}: {
-  allTexts: HomeAllTextsProps;
-}) {
+export default function HotelsSearchContainer() {
   const router = useRouter();
   const [City, setCity] = useState("");
   const [Loading, setLoading] = useState(false);
   const { addFlash } = useFlashMessages();
+  const t = useTranslations("Home");
 
   const SearchFunction = async (text: string) => {
     const response = await fetch(
@@ -50,15 +45,9 @@ export default function HotelsSearchContainer({
       }}
       className="min-w-full"
     >
-      <div className="flex md:flex-row flex-col mt-3 gap-2">
-        <div className="flex flex-1 sm:flex-row flex-col gap-2">
-          {/* <HomeSearchInput
-            placeHolder={allTexts.city}
-            State={City}
-            setState={setCity}
-            SearchFunction={SearchFunction}
-            startIcon={<FaHotel className="fill-gray-400" />}
-          /> */}
+      <div className="flex flex-col gap-2 mt-3 md:flex-row">
+        <div className="flex flex-col flex-1 gap-2 sm:flex-row">
+          
         </div>
 
         <div className="h-full min-w-[10em]">
@@ -73,9 +62,9 @@ export default function HotelsSearchContainer({
                 router.push(`/hotels/${City}`);
               }
             }}
-            className="h-full py-3 w-full rounded-lg"
+            className="w-full h-full py-3 rounded-lg"
           >
-            {!Loading && allTexts.btns.search}
+            {!Loading && t("btns.search")}
             {Loading && <AiOutlineLoading3Quarters className="animate-spin" />}
           </Button>
         </div>

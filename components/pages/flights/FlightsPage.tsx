@@ -4,10 +4,7 @@ import React from "react";
 import { MdFilterListAlt } from "react-icons/md";
 import DropDown from "@components/elements/dropdown/DropDown";
 import { useTranslations } from "next-intl";
-import {
-  FlightOffering,
-  FlightOfferings,
-} from "@lib/interfaces/FlightsInterfaces";
+import { FlightOffering } from "@lib/interfaces/FlightsInterfaces";
 
 export default function FlightsPage({
   data,
@@ -27,36 +24,15 @@ export default function FlightsPage({
   locale: "en" | "ar";
 }) {
   const t = useTranslations("flights");
-  // console.log(searchParams);
 
-  const allTexts = {
-    flights: {
-      selectOutbound: t("selectOutbound"),
-      btns: {
-        goback: t("btns.goback"),
-        stops: t("btns.stops"),
-        sort: t("btns.sort"),
-      },
-      directions: {
-        oneway: t("directions.oneway"),
-        round: t("directions.round"),
-      },
-    },
-  };
 
-  data.map((i) => {
-    i.flightSegments.map((is) => {
-      let aa = {
-        // time: is.Flight
-      };
-    });
-  });
+
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="text-2xl font-bold text-secondary-900">
-          {allTexts.flights.selectOutbound}
+          {t("selectOutbound")}
         </div>
 
         <div className="sm:hidden">
@@ -64,13 +40,13 @@ export default function FlightsPage({
             align="end"
             trigger={
               <Button startIcon={<MdFilterListAlt />} roundedFull bg={"ghost"}>
-                {allTexts.flights.btns.sort}
+                {t("btns.sort")}
               </Button>
             }
           >
             <div className="w-[10em] flex flex-col gap-1">
-              <button className="capitalize py-2 px-3 rounded hover:bg-gray-100">
-                {allTexts.flights.btns.stops}
+              <button className="px-3 py-2 capitalize rounded hover:bg-gray-100">
+                {t("btns.stops")}
               </button>
             </div>
           </DropDown>
