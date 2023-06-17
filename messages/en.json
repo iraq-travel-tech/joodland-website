@@ -97,9 +97,20 @@
       "goBack": "go back",
       "cancel": "cancel",
       "done": "done",
-      "filters": "filters"
+      "filters": "filters",
+      "clear": "clear",
+      "sortby": "sort by"
+    },
+    "sort": {
+      "Cheapest": "Cheapest",
+      "Fastest": "Fastest",
+      "Best": "Best",
+      "nonstop": "Nonstop",
+      "1stop": "1 Stop"
     },
     "texts": {
+      "Airlines": "Airlines",
+
       "Stops": "Stops",
       "transferTime": "Transfer Time",
       "selectOutbound": "Select outbound"

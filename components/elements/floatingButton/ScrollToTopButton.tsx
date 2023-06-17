@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import Button from "../button/Button";
+import { AnimatePresence, motion } from "framer-motion";
 import { useIsScrollingDown } from "@lib/hooks/scrollDetect";
 
 export default function ScrollToTopButton() {
@@ -35,21 +36,29 @@ export default function ScrollToTopButton() {
   }, []);
 
   return (
-    <>
+    <AnimatePresence>
       {!isAtTop && (
-        <Button
-          bg={"secondary"}
-          className={`fixed z-40 right-4 w-12 h-12
-            transition-all
-            ${!scrolling ? "bottom-16 opacity-1" : "opacity-0 bottom-0"}
-            `}
-          roundedFull
-          iconOnly
-          onClick={scrollToTop}
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: 1,
+            scale: scrolling ? 0 : 1,
+          }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="fixed z-40 right-4 bottom-[4em]"
         >
-          <IoIosArrowUp size={18} />
-        </Button>
+          <Button
+            className="w-12 h-12"
+            bg={"secondary"}
+            roundedFull
+            iconOnly
+            onClick={scrollToTop}
+          >
+            <IoIosArrowUp size={18} />
+          </Button>
+        </motion.div>
       )}
-    </>
+    </AnimatePresence>
   );
 }

@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import Dialog from "@components/elements/dialog/Dialog";
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Import the necessary hooks
+import { useRouter } from "next/navigation"; // Import the necessary hooks
 import Button from "@components/elements/button/Button";
+import { updateQueryParameter } from "@lib/functions/updateQueryParameter";
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type FilterItem = {
   label: string;
@@ -13,14 +15,11 @@ type FilterItem = {
 type FilterProps = {
   label: string;
   items: FilterItem[];
-  filtersState: any;
   onFilterChange: (filterName: string, checked: boolean) => void;
 };
-
 const CheckboxFilter: React.FC<FilterProps> = ({
   label,
   items,
-  filtersState,
   onFilterChange,
 }) => {
   return (
@@ -35,7 +34,6 @@ const CheckboxFilter: React.FC<FilterProps> = ({
             <input
               type="checkbox"
               className="form-checkbox h-5 w-5 text-blue-600 rounded"
-              checked={filtersState[item.value] || false}
               onChange={(e) => onFilterChange(item.value, e.target.checked)}
             />
             <span className="ml-2 text-gray-700">{item.label}</span>
@@ -53,63 +51,54 @@ export default function TopFiltersNav({
   isDialogOpen: boolean;
   setIsDialogOpen: (isOpen: boolean) => void;
 }) {
-  // Hooks
-  const [sortBy, setSortBy] = useState<string>("cheapest");
-  const [filters, setFilters] = useState<{ [key: string]: boolean }>({});
-
-  // Next.js hooks
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const handleFilterChange = (filterName: string, checked: boolean) => {
-    setFilters((prev) => ({ ...prev, [filterName]: checked }));
-  };
-
-  const setFiltersInView = () => {
-    const params = searchParams
-      ? new URLSearchParams(searchParams.toString())
-      : null;
-
-    if (params) {
-      const airlines = Object.keys(filters)
-        .filter((filterName) => filters[filterName])
-        .map((name) => name.replace(/\s+/g, "-"))
-        .join(",");
-      params.set("airlines", airlines);
-      params.set("sort", sortBy);
-      router.replace(`${pathname}?${params}`);
+    if (checked) {
+      setSelectedFilters((prevFilters) => [...prevFilters, filterName]);
+    } else {
+      setSelectedFilters((prevFilters) =>
+        prevFilters.filter((filter) => filter !== filterName)
+      );
     }
   };
 
+  const handleSortByChange = (sortBy: string) => {
+    updateQueryParameter("sort", sortBy, router);
+  };
+
+  // Update URL whenever selected filters change
   useEffect(() => {
-    setFiltersInView();
-  }, [filters, sortBy]);
+    updateQueryParameter("airlines", selectedFilters.join(","), router);
+  }, [selectedFilters, router]);
+
+  const t = useTranslations("common");
+
   return (
     <div className="p-4 bg-gray-100 rounded">
       <Dialog open={isDialogOpen} setOpen={setIsDialogOpen}>
         <div className=" sm:w-96 w-80 p-4 bg-white rounded-lg flex flex-col">
           <div className="flex justify-between items-center border-b pb-2">
-            <h1 className="font-bold text-xl">All Filters</h1>
+            <h1 className="font-bold text-xl">{t("btns.filters")}</h1>
             <button
               className="font-semibold text-blue-600 hover:text-blue-700"
               onClick={() => setIsDialogOpen(false)}
             >
-              Clear
+              {t("btns.clear")}
             </button>
           </div>
           <div className="flex flex-col mt-4">
-            <span className="text-gray-600 text-sm">Sort By</span>
+            <span className="text-gray-600 text-sm">{t("btns.sortby")}</span>
             <select
               name="sort by"
               className="mt-2 p-2 bg-gray-100 rounded focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={(e) => handleSortByChange(e.target.value)}
             >
               {[
-                { label: "Cheapest", value: "cheapest" },
-                { label: "Fastest", value: "fastest" },
-                { label: "Best", value: "best" },
+                { label: t("sort.Cheapest"), value: "cheapest" },
+                { label: t("sort.Fastest"), value: "fastest" },
+                { label: t("sort.Best"), value: "best" },
               ].map((option) => (
                 <option value={option.value} key={option.value}>
                   {option.label}
@@ -120,24 +109,25 @@ export default function TopFiltersNav({
           <CheckboxFilter
             label="Stops"
             items={[
-              { label: "Non-Stop", value: "nonstop" },
-              { label: "1 Stop", value: "1stop" },
+              { label: t("sort.nonstop"), value: "nonstop" },
+              { label: t("sort.1stop"), value: "1stop" },
             ]}
-            filtersState={filters}
             onFilterChange={handleFilterChange}
           />
           <CheckboxFilter
-            label="Airlines"
+            label={t("texts.Airlines")}
             items={[
-              { label: "Egypt Air", value: "egyptair" },
+              { label: "Egypt Air", value: "egypt-air" },
               { label: "Emirates", value: "emirates" },
-              { label: "Royal Jordanian", value: "royaljordanian" },
+              { label: "Royal Jordanian", value: "royal-jordanian" },
             ]}
-            filtersState={filters}
             onFilterChange={handleFilterChange}
           />
-          <Button className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full">
-            Done
+          <Button
+            onClick={() => setIsDialogOpen(false)}
+            className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 w-full"
+          >
+            {t("btns.done")}
           </Button>
         </div>
       </Dialog>

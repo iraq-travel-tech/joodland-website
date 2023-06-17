@@ -85,7 +85,6 @@
       "round": "ذهاب و اياب"
     }
   },
-
   "companyDetails": {
     "name": "Joodland",
     "seo": {
@@ -99,9 +98,20 @@
       "goBack": "الرجوع",
       "cancel": "إلغاء",
       "done": "تم",
-      "filters": "filters"
+      "filters": "الفلاتر",
+      "clear": "مسح",
+      "sortby": "ترتيب حسب"
+    },
+    "sort": {
+      "Cheapest": "الأرخص",
+      "Fastest": "الأسرع",
+      "Best": "الأفضل",
+      "nonstop": "غير مباشر",
+      "1stop": "محطة واحدة"
     },
     "texts": {
+      "Airlines": "الخطوط الجوية",
+
       "Stops": "الوقوفات",
       "transferTime": "وقت التحويل",
       "selectOutbound": "اختار الرحلة"
