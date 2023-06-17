@@ -28,8 +28,6 @@ type Ticket = {
   totalDuration: string;
 };
 
-
-
 export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
   const [OpenStops, setOpenStops] = useState(false);
   const params = useParams() as { locale: "en" | "ar" };
@@ -46,10 +44,15 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
       <p className="col-span-2 font-bold text-secondary-800">{ticket.logo}</p>
       <div className="flex items-center justify-between col-span-2 sm:col-span-1">
         <div className="flex gap-4">
-          <div className="flex-col">
-            <p className="text-xl font-bold text-secondary-800 sm:text-2xl">
-              {ticket.departureTime}
-              <span className="ml-1 text-sm">AM</span>
+          <div className="flex-col sm:pt-0 pt-2">
+            <p
+              dir="ltr"
+              className="text-lg min-w-max font-bold text-secondary-800 sm:text-2xl"
+            >
+              {ticket.departureTime.slice(0, -2)}
+              <span className=" text-sm">
+                {ticket.departureTime.slice(-2)}
+              </span>
             </p>
             <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.departureLocation}
@@ -57,15 +60,20 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
-            <p className="text-xs text-center sm:min-w-max text-zinc-500 sm:text-sm">
+            <p className="text-xs text-center sm:min-w-max w-full text-zinc-500 sm:text-sm">
               {ticket.totalDuration}
             </p>
             <div className="h-[.08em] sm:w-8 w-4 rounded bg-zinc-300"></div>
           </div>
-          <div className="flex-col">
-            <p className="text-xl font-bold text-secondary-800 sm:text-2xl">
-              {ticket.arrivalTime}
-              <span className="ml-1 text-sm">AM</span>
+          <div className="flex-col sm:pt-0 pt-2">
+            <p
+              dir="ltr"
+              className="text-lg min-w-max font-bold text-secondary-800 sm:text-2xl"
+            >
+              {ticket.arrivalTime.slice(0, -2)}
+              <span className=" text-sm">
+                {ticket.arrivalTime.slice(-2)}
+              </span>
             </p>
             <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.arrivalLocation}
