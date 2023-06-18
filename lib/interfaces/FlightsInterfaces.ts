@@ -72,7 +72,11 @@ export interface Flight {
 export interface FlightSegment {
   type: string;
   sequence: number;
-  connectionDuration: string;
+  connectionDuration: {
+    type: string;
+    en: string;
+    ar: string;
+  };
   boundFlightsInd: boolean;
   Flight: Flight;
 }

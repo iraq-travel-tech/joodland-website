@@ -50,9 +50,7 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
               className="text-lg min-w-max font-bold text-secondary-800 sm:text-2xl"
             >
               {ticket.departureTime.slice(0, -2)}
-              <span className=" text-sm">
-                {ticket.departureTime.slice(-2)}
-              </span>
+              <span className=" text-sm">{ticket.departureTime.slice(-2)}</span>
             </p>
             <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.departureLocation}
@@ -71,9 +69,7 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
               className="text-lg min-w-max font-bold text-secondary-800 sm:text-2xl"
             >
               {ticket.arrivalTime.slice(0, -2)}
-              <span className=" text-sm">
-                {ticket.arrivalTime.slice(-2)}
-              </span>
+              <span className=" text-sm">{ticket.arrivalTime.slice(-2)}</span>
             </p>
             <p className="text-sm leading-4 text-zinc-400 sm:text-md">
               {ticket.arrivalLocation}
@@ -183,7 +179,8 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
                 {index < ticket.stopDetails.length - 1 && (
                   <div className="flex items-center gap-3 mt-2 text-sm text-zinc-400">
                     <BiTransferAlt className="fill-current" size={16} />
-                    {stop.connectionDuration} {t("texts.transferTime")}
+                    {stop.connectionDuration[params.locale]}{" "}
+                    {t("texts.transferTime")}
                   </div>
                 )}
               </div>
