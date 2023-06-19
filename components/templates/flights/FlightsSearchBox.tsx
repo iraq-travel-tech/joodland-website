@@ -170,6 +170,7 @@ export default function FlightsSearchBox() {
     let recentSearches = localStorage.getItem("recentSearches")
       ? JSON.parse(localStorage.getItem("recentSearches") as string)
       : [];
+
     // Update the RecentSearches state
     setRecentSearches(recentSearches);
 
@@ -177,8 +178,7 @@ export default function FlightsSearchBox() {
       return; // Skip adding empty values to local storage
     }
 
-    // Add the new searches as objects to the beginning of the array
-    recentSearches.unshift(
+    const newSearches = [
       {
         name: From.name,
         iata: From.iataCode,
@@ -186,16 +186,27 @@ export default function FlightsSearchBox() {
       {
         name: To.name,
         iata: To.iataCode,
+      },
+    ];
+
+    // Add the new searches as objects to the beginning of the array
+    // only if they don't already exist in the array
+    newSearches.forEach((newSearch) => {
+      const doesExist = recentSearches.some(
+        (item: { name: string; iata: string }) =>
+          item.name === newSearch.name && item.iata === newSearch.iata
+      );
+      if (!doesExist) {
+        recentSearches.unshift(newSearch);
       }
-    );
+    });
 
     // Trim the array to only keep the last 5 searches
-    recentSearches = recentSearches.slice(0, 4);
+    recentSearches = recentSearches.slice(0, 5);
 
     // Store the updated recentSearches array in localStorage
     localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   }, [From, To]);
-
   return (
     <motion.div
       initial={{
@@ -295,7 +306,7 @@ export default function FlightsSearchBox() {
         )}
 
         <div className="h-full min-w-[10em]">
-          <Link href={flightSearchUrl} passHref>
+          <Link className="h-full" href={flightSearchUrl} passHref>
             <Button
               aria-label="search flights"
               // @ts-ignore
@@ -314,7 +325,7 @@ export default function FlightsSearchBox() {
             >
               {!Loading && t("btns.search")}
               {Loading && (
-                <AiOutlineLoading3Quarters className="animate-spin" />
+                <AiOutlineLoading3Quarters className="animate-spin h-[1em]" />
               )}
             </Button>
           </Link>
@@ -401,4 +412,3 @@ const PassengersDialogBox = ({
     </Dialog>
   );
 };
-

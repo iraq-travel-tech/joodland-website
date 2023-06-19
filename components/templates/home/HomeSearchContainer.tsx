@@ -26,7 +26,7 @@ export default function HomeSearchContainer({
     },
   ];
   const [SelectedSearchBox, setSelectedSearchBox] = useState(
-    availableServices[0].value
+    availableServices[1].value
   );
 
   return (

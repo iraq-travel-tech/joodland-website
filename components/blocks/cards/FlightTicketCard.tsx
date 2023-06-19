@@ -41,7 +41,13 @@ export default function FlightTicketCard({ ticket }: FlightTicketCardProps) {
       ${OpenStops ? " !ring-2 " : ""}
     `}
     >
-      <p className="col-span-2 font-bold text-secondary-800">{ticket.logo}</p>
+      <p className="col-span-2 items-center flex gap-1 font-bold text-secondary-800">
+        <img
+          src={`https://storage.googleapis.com/carrier-logos/${ticket.logo}`}
+          alt="logo"
+          className="w-8 h-8 rounded-full"
+        />
+      </p>
       <div className="flex items-center justify-between col-span-2 sm:col-span-1">
         <div className="flex gap-4">
           <div className="flex-col sm:pt-0 pt-2">

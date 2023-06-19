@@ -85,11 +85,11 @@ const HomeSearchInput: React.FC<HomeSearchInputProps> = ({
   }, [debouncedFrom, SearchFunction]);
 
   const containerClasses = useMemo(() => {
-    return `autocomeplete-container absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${
-      params?.locale === "ar" ? "sm:right-0" : "sm:left-0"
-    } left-5 sm:right-auto overflow-y-scroll right-5 flex-col flex gap-4 sm:py-0 
+    return `autocomeplete-container p-3 absolute bg-white sm:h-[17em] max-h-[50vh] sm:rounded-lg rounded sm:top-14 top-32 sm:w-[27em] ${
+      params?.locale === "ar" ? "sm:right-0 sm:left-auto" : "sm:left-0"
+    } sm:right-auto  overflow-y-scroll right-5 left-5  flex-col flex gap-4 sm:py-0 
     ${RecentSearches && RecentSearches?.length > 0 ? "pb-3" : "py-3"}
-    sm:shadow-lg z-50`;
+    sm:shadow-xl z-50`;
   }, [params]);
 
   return (
