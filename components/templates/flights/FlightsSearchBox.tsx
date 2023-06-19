@@ -15,6 +15,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useDateSelector } from "@lib/hooks/useDateSelector";
 
 export const passengersAtom = atom({
   adults: 1,
@@ -74,52 +75,18 @@ export default function FlightsSearchBox() {
   const [To, setTo] = useState({ name: "", iataCode: "" });
   const [Loading, setLoading] = useState(false);
 
-  const today = new Date();
-  const year = String(today.getFullYear());
-  const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(
-    today
-  );
-  const day = String(today.getDate());
-
-  const [DepartureDate, setDepartureDate] = useState({
-    year: year,
-    month: month,
-    day: day,
-  });
-  const [ReturnDate, setReturnDate] = useState({
-    year: year,
-    month: month,
-    day: day,
-  });
-
   const { adults, children, Babies } = Passengers;
 
-  const formatDateForUrl = (date: any) => {
-    const year = date.year;
+  const {
+    departureDate,
+    setDepartureDate,
+    returnDate,
+    setReturnDate,
+    formatDateForUrl,
+  } = useDateSelector();
 
-    const monthNames = {
-      january: "01",
-      february: "02",
-      march: "03",
-      april: "04",
-      may: "05",
-      june: "06",
-      july: "07",
-      august: "08",
-      september: "09",
-      october: "10",
-      november: "11",
-      december: "12",
-    };
-
-    // @ts-ignore
-    const month = monthNames[date.month.toLowerCase()] || "01";
-    const day = String(date.day).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-  };
-  const departureDateForUrl = formatDateForUrl(DepartureDate);
-  const returnDateForUrl = ReturnDate ? formatDateForUrl(ReturnDate) : "";
+  const departureDateForUrl = formatDateForUrl(departureDate);
+  const returnDateForUrl = returnDate ? formatDateForUrl(returnDate) : null;
 
   const flightSearchUrl = `/flights/${From.iataCode}-${
     To.iataCode
@@ -207,6 +174,7 @@ export default function FlightsSearchBox() {
     // Store the updated recentSearches array in localStorage
     localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   }, [From, To]);
+
   return (
     <motion.div
       initial={{
@@ -290,18 +258,18 @@ export default function FlightsSearchBox() {
         </div>
 
         <DatePicker
-          date={DepartureDate}
+          date={departureDate}
           setDate={setDepartureDate}
           title={t("DepartureDate")}
-          months={AllMonths}
+          months={...AllMonths}
         />
 
         {tripDirection === "round" && (
           <DatePicker
-            date={ReturnDate}
+            date={returnDate}
             title={t("ReturnDate")}
             setDate={setReturnDate}
-            months={[AllMonths]}
+            months={[...AllMonths]}
           />
         )}
 

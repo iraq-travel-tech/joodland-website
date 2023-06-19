@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { useDebouncedValue } from "@mantine/hooks";
+import { useTranslations } from "next-intl";
 
 interface FetchResponse {
   name: string;
@@ -22,6 +23,8 @@ export default function HotelsInput({
   State: { name: string; country: string };
   setState: any;
 }) {
+  const t = useTranslations("Home");
+
   const [OpenContainer, setOpenContainer] = useState(false);
   const [inputState, setInputState] = useState(State.name);
   const [Results, setResults] = useState<FetchResponse[]>([]);
@@ -68,7 +71,10 @@ export default function HotelsInput({
           setState({ name: "", country: "" });
           setInputState("");
         }
-      : setInputState(State.name);
+      : () => {
+          setState({ name: "", country: "" });
+          setInputState("");
+        };
     setSelectedFromList(false);
 
     setTimeout(() => {
@@ -85,14 +91,18 @@ export default function HotelsInput({
       }`}
     >
       <motion.div layout>
-        <motion.input
+        <input
           ref={InputRef}
-          className="relative h-14 w-full px-3 pb-1 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 md:pt-3.5 font-semibold transition duration-200 ease-in-out text-base"
+          className="relative h-14 w-full px-3 pb-1 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 md:pt-3.5 font-semibold transition duration-200 ease-in-out text-base
+
+          ltr:pl-[3rem]
+          rtl:pr-[3rem]
+          
+          "
           onFocus={Focused}
           onBlur={OnInputBlur}
           value={inputState}
           onChange={(e) => setInputState(e.target.value)}
-          style={{ paddingLeft: "3rem" }}
         />
       </motion.div>
 
@@ -100,13 +110,36 @@ export default function HotelsInput({
         <>
           <AiOutlineClose
             size={28}
-            className={`absolute md:left-3 left-5 md:top-1/2 top-10 transform -translate-y-1/2 text-zinc-400 text-lg`}
+            onClick={() => {
+              // Here, set the input state and other states to empty values
+              setInputState("");
+              setState({ name: "", country: "" });
+              setResults([]);
+              setError("");
+            }}
+            className={`absolute 
+            
+            md:ltr:left-2.5 
+            ltr:left-5
+            
+            md:rtl:right-2.5 
+            rtl:right-5
+            
+            md:top-1/2 top-10 transform -translate-y-1/2 text-zinc-400 text-lg`}
           />
         </>
       ) : (
         <AiOutlineSearch
-          size={28}
-          className={`absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 text-lg`}
+          size={26}
+          className={`absolute 
+          
+          md:ltr:left-3 
+            ltr:left-3.5
+            
+            md:rtl:right-3 
+            rtl:right-3.5
+
+          top-1/2 transform -translate-y-1/2 text-zinc-400 text-lg`}
         />
       )}
 
@@ -115,14 +148,14 @@ export default function HotelsInput({
         
         ${
           OpenContainer || inputState.trim() !== ""
-            ? "left-12 top-2 text-xs hidden"
-            : "top-4 capitalize left-12 transform text-base"
+            ? "ltr:left-12 rtl:right-12 top-2 text-xs hidden"
+            : "top-4 capitalize ltr:left-12 rtl:right-12 transform text-base"
         }
         `}
         layout
         onClick={focusInput}
       >
-        destinations
+        {t("destinations")}
       </motion.div>
 
       <AnimatePresence>
@@ -131,7 +164,12 @@ export default function HotelsInput({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className={`p-2 w-full mt-4 rounded-lg bg-white flex flex-col overflow-y-auto md:w-[30em] md:h-[20em] md:mt-0 md:absolute md:top-[4.4em] md:left-0 md:shadow-lg`}
+            className={`p-2 w-full mt-4 rounded-lg bg-white flex flex-col overflow-y-auto md:w-[30em] md:h-[20em] md:mt-0 md:absolute md:top-[4.4em] 
+            
+            md:ltr:left-0
+            md:rtl:right-0
+            
+            md:shadow-lg`}
           >
             {loading ? (
               <>

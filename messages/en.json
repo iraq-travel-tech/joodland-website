@@ -11,6 +11,8 @@
     "ReturnDate": "Return Date",
     "hotels": "Hotels",
     "flights": "Flights",
+    "guests&rooms": "Guests & Rooms",
+
     "offers": {
       "title": "What Joodland Offers For You?",
       "search": {
@@ -53,7 +55,8 @@
       "babies": {
         "title": "babies",
         "subTitle": "less than 2 years old"
-      }
+      },
+      "rooms": "rooms"
     },
     "btns": {
       "done": "done",
@@ -74,7 +77,11 @@
       "october": "October",
       "november": "November",
       "december": "December"
-    }
+    },
+
+    "checkin": "checkin",
+    "checkout": "checkout",
+    "destinations": "destinations"
   },
   "flights": {
     "selectOutbound": "Select outbound",
