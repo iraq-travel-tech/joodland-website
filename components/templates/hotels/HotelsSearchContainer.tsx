@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import HotelsDatePicker from "./HotelsDatePicker";
 import { useParams } from "next/navigation";
 import HotelsGuestsRooms from "./HotelsGuestsRooms";
+import Link from "next/link";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function HotelsSearchContainer() {
   const params = useParams() as {
@@ -52,6 +54,9 @@ export default function HotelsSearchContainer() {
     t("months.november"),
     t("months.december"),
   ];
+  const [Loading, setLoading] = useState(false);
+
+  const hotelsUrl = `/hotels/${City.name}?checkin=${CheckIn.year}-${CheckIn.month}-${CheckIn.day}&checkout=${CheckOut.year}-${CheckOut.month}-${CheckOut.day}&adults=1&children=0&rooms=1`;
 
   return (
     <div className="flex lg:flex-row flex-col w-full gap-3 mt-2">
@@ -73,12 +78,25 @@ export default function HotelsSearchContainer() {
         />
       </div>
 
-     
+      <HotelsGuestsRooms />
 
-<HotelsGuestsRooms />
-
-      <Button>{t("btns.search")}</Button>
-    
+      <Link className="h-full " href={hotelsUrl} passHref>
+        <Button
+          className="h-full "
+          onClick={() => {
+            if (City.name === "") {
+              alert("Please enter a city");
+            } else {
+              setLoading(true);
+            }
+          }}
+        >
+          {!Loading && t("btns.search")}
+          {Loading && (
+            <AiOutlineLoading3Quarters className="animate-spin h-[1em]" />
+          )}
+        </Button>
+      </Link>
     </div>
   );
 }

@@ -16,7 +16,11 @@ const languages = [
   },
 ];
 
-export default function TopNav() {
+export default function TopNav({
+  whiteBackground,
+}: {
+  whiteBackground?: boolean;
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [LeftSideBarOpen, setLeftSideBarOpen] = useState(false);
 
