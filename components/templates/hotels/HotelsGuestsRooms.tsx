@@ -99,11 +99,13 @@ export default function HotelsGuestsRooms() {
         className="flex w-full items-center gap-3 h-14 min-w-[14em] cursor-pointer border bg-gray-100 rounded-lg px-3 py-2 border-gray-300  relative"
       >
         <span className="text-zinc-400">
-          <BiHotel />
+          <BiHotel size={22} />
         </span>
-        <div>
-          <span className="font-bold text-sm">{t("guests&rooms")}</span>
-          <div className="text-xs text-gray-600">
+        <div className="min-w-max">
+          <span className="text-xs leading-1 text-zinc-400">
+            {t("guests&rooms")}
+          </span>
+          <div className="text-sm font-semibold">
             {Guests.adults} {t("passengers.adults.title")}, {Guests.children}{" "}
             {t("passengers.children.title")}, {Guests.rooms}{" "}
             {t("passengers.rooms")}

@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import HotelsGuestsRooms from "./HotelsGuestsRooms";
 import Link from "next/link";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 export default function HotelsSearchContainer() {
   const params = useParams() as {
@@ -59,7 +60,27 @@ export default function HotelsSearchContainer() {
   const hotelsUrl = `/hotels/${City.name}?checkin=${CheckIn.year}-${CheckIn.month}-${CheckIn.day}&checkout=${CheckOut.year}-${CheckOut.month}-${CheckOut.day}&adults=1&children=0&rooms=1`;
 
   return (
-    <div className="flex lg:flex-row flex-col w-full gap-3 mt-2">
+    <motion.div
+      initial={{
+        x: 10,
+        opacity: 0,
+      }}
+      exit={{
+        x: -2,
+        opacity: 0,
+        transition: {
+          type: "just",
+        },
+      }}
+      animate={{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: "just",
+        },
+      }}
+      className="flex lg:flex-row flex-col w-full gap-3 mt-2"
+    >
       <HotelsInput State={City} setState={setCity} />
 
       <div className="flex sm:flex-row flex-col gap-2">
@@ -97,6 +118,6 @@ export default function HotelsSearchContainer() {
           )}
         </Button>
       </Link>
-    </div>
+    </motion.div>
   );
 }
