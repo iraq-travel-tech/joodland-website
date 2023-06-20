@@ -4,6 +4,7 @@
 
 .noscrollwheel::-webkit-scrollbar {
   width: 0rem;
+  height: 0rem;
 }
 
 .custom-shadow {
