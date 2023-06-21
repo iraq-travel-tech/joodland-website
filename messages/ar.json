@@ -121,5 +121,14 @@
       "transferTime": "وقت التحويل",
       "selectOutbound": "اختار الرحلة"
     }
+  },
+  "hotels": {
+    "filters": "الفلاتر",
+    "maximumPricePerNight": "السعر الأقصى لليلة",
+    "stars": "النجوم",
+    "goBack": "الرجوع",
+    "staysIn": "اقامات في",
+    "perNight": "لليلة",
+    "reviews": "تقييمات"
   }
 }

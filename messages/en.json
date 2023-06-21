@@ -122,5 +122,14 @@
       "transferTime": "Transfer Time",
       "selectOutbound": "Select outbound"
     }
+  },
+  "hotels": {
+    "filters": "Filters",
+    "maximumPricePerNight": "Maximum Price /night",
+    "stars": "Stars",
+    "goBack": " Go Back",
+    "staysIn": "stays in",
+    "perNight": "/night",
+    "reviews": "reviews"
   }
 }

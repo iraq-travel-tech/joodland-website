@@ -20,6 +20,12 @@ export default function HotelsSearchContainer() {
     country: "",
   });
 
+  const monthNameToNumber = (monthName: string) => {
+    const index = AllMonths.indexOf(monthName) + 1;
+    return String(index).padStart(2, '0');
+  };
+
+
   const t = useTranslations("Home");
 
   const today = new Date();
@@ -57,7 +63,7 @@ export default function HotelsSearchContainer() {
   ];
   const [Loading, setLoading] = useState(false);
 
-  const hotelsUrl = `/hotels/${City.name}?checkin=${CheckIn.year}-${CheckIn.month}-${CheckIn.day}&checkout=${CheckOut.year}-${CheckOut.month}-${CheckOut.day}&adults=1&children=0&rooms=1`;
+  const hotelsUrl = `/hotels/${City.name}?checkin=${CheckIn.year}-${monthNameToNumber(CheckIn.month)}-${CheckIn.day}&checkout=${CheckOut.year}-${monthNameToNumber(CheckOut.month)}-${CheckOut.day}&adults=1&children=0&rooms=1`;
 
   return (
     <motion.div
