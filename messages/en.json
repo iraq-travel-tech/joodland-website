@@ -130,6 +130,7 @@
     "goBack": " Go Back",
     "staysIn": "stays in",
     "perNight": "/night",
-    "reviews": "reviews"
+    "reviews": "reviews",
+    "pricePerNights": "${price} for {count} nights"
   }
 }

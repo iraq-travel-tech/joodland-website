@@ -21,6 +21,7 @@ interface Hotel {
     ar: string;
   };
   min_price: string;
+  hotel_id: string;
 }
 
 interface HotelsData {
@@ -36,6 +37,29 @@ export default function HotelsPageList({ data }: { data: HotelsData }) {
   const params = useParams() as {
     locale: "en" | "ar";
   };
+
+  // this has to be removed in futrue
+  const shuffleArray = (array: string[]) => {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  };
+  // FUNCTION_END
+
+  const images = [
+    "https://storage.googleapis.com/v-travel-hotels-images/55355/50113833.jpg",
+    "https://storage.googleapis.com/v-travel-hotels-images/55355/7728e4f1.jpg",
+    "https://storage.googleapis.com/v-travel-hotels-images/55355/cb0f5b3d.jpg",
+    "https://storage.googleapis.com/v-travel-hotels-images/55355/e3cb4f1e.jpg",
+    "https://storage.googleapis.com/v-travel-hotels-images/55355/c03952cf.jpg",
+  ];
+  const randomizedImages = shuffleArray(images);
 
   return (
     <div>
@@ -62,10 +86,12 @@ export default function HotelsPageList({ data }: { data: HotelsData }) {
         <div className="grid gap-3 mt-2 lg:grid-cols-1 md:grid-cols-2 sm:grid-cols-2 grid-cols-1">
           {data.data.hotels.map((hotel) => (
             <HotelCard
+              images={shuffleArray(images)}
               key={hotel.name.en}
               hotelName={hotel.name[params.locale]}
               hotelDescription={hotel.hotel_description[params.locale]}
               pricePerNight={hotel.min_price}
+              hotelId={hotel.hotel_id}
             />
           ))}
         </div>

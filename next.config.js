@@ -7,6 +7,6 @@ module.exports = withNextIntl({
   // Other Next.js configuration ...
   experimental: {},
   images: {
-    // domains: ["img.etimg.com"],
+    domains: ["storage.googleapis.com"],
   },
 });

@@ -23,7 +23,7 @@ export default function HotelsFilters() {
           isFilterVisible ? "fixed right-0" : "fixed -right-full"
         }`}
       >
-        <div className="text-2xl font-bold underline">{t("filters")}</div>
+        <div className="text-2xl font-bold ">{t("filters")}</div>
         <hr className="my-2" />
 
         {/* Maximum Price Filter */}

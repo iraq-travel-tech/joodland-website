@@ -1,5 +1,6 @@
 import HotelsFilters from "@components/templates/hotels/HotelsFilters";
 import HotelsPageList from "@components/templates/hotels/HotelsPageList";
+import { Suspense } from "react";
 
 export default async function page({
   params,
@@ -9,11 +10,11 @@ export default async function page({
     city: string;
   };
 }) {
-  const url =
-    "https://us-central1-vtravel-388521.cloudfunctions.net/hotelsgraphql";
+  const url = process.env.HOTELS_API_ENDPOINT as string;
   const query = `
   {
     hotels(city:"${params.city}"){
+      hotel_id
       name{
         en
         ar
@@ -42,8 +43,9 @@ export default async function page({
       dir={params.locale === "ar" ? "rtl" : "ltr"}
       className="flex gap-3 w-full"
     >
-
-      <HotelsPageList data={data} />
+      <Suspense fallback={<p>loading...</p>}>
+        <HotelsPageList data={data} />
+      </Suspense>
     </div>
   );
 }

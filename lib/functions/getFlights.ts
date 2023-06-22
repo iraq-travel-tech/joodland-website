@@ -1,5 +1,5 @@
 export const fetchFlights = async (from: string, to: string): Promise<any> => {
-  return fetch("https://joodland.ey.r.appspot.com/flightofferings", {
+  return fetch(process.env.FLIGHTS_API_ENDPOINT as string, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -129,6 +129,7 @@
     "goBack": "الرجوع",
     "staysIn": "اقامات في",
     "perNight": "لليلة",
-    "reviews": "تقييمات"
+    "reviews": "تقييمات",
+    "pricePerNights": "{price} دولار لمدة {count} ليال"
   }
 }

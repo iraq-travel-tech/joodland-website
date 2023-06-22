@@ -52,12 +52,24 @@ export default function HotelsInput({
       try {
         if (debouncedInput.trim() !== "") {
           const response = await fetch(`/api/cities?query=${debouncedInput}`);
-          const data = await response.json();
-          setResults(data);
+
+          // Check if the response is okay (status code 200-299)
+          if (response.ok) {
+            const data = await response.json();
+            setResults(data);
+          } else {
+            // Handling HTTP status codes for client and server errors
+            if (response.status >= 400 && response.status < 500) {
+              setError("Client error, please check your input and try again.");
+            } else if (response.status >= 500) {
+              setError("Server error, please try again later.");
+            }
+          }
         }
       } catch (err) {
+        // Handling network errors or any other errors
         console.error(err);
-        setError("Error fetching data");
+        setError("An unexpected error occurred. Please try again later.");
       }
       setLoading(false);
     }
