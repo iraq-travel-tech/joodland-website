@@ -25,6 +25,7 @@ export default function HomeSearchContainer({
       value: "hotels",
     },
   ];
+
   const [SelectedSearchBox, setSelectedSearchBox] = useState(
     availableServices[0].value
   );

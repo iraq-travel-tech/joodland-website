@@ -109,7 +109,7 @@ export default function HotelsSearchContainer() {
 
       <Link className="h-full " href={hotelsUrl} passHref>
         <Button
-          className="h-full "
+          className="h-full w-full"
           onClick={() => {
             if (City.name === "") {
               alert("Please enter a city");

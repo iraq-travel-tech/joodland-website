@@ -2,33 +2,15 @@
 import Button from "@components/elements/button/Button";
 import React, { useState, useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import Link from "next-intl/link";
-import { useParams } from "next/navigation";
+import SwitchLang from "./items/SwitchLang";
 
-const languages = [
-  {
-    label: "Ar",
-    value: "ar",
-  },
-  {
-    label: "En",
-    value: "en",
-  },
-];
-
-export default function TopNav({
-  whiteBackground,
-}: {
-  whiteBackground?: boolean;
-}) {
+export default function TopNav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [LeftSideBarOpen, setLeftSideBarOpen] = useState(false);
 
   useEffect(() => {
-    // Add event listener to handle scroll
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -37,10 +19,6 @@ export default function TopNav({
   const handleScroll = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setIsScrolled(scrollTop > 0);
-  };
-
-  const params = useParams() as {
-    locale: "ar" | "en";
   };
 
   return (
@@ -66,23 +44,7 @@ export default function TopNav({
           } `}
         >
           <li className="relative z-50">
-            {/* <UiSelect
-              options={[...languages]}
-              State={Language}
-              setState={setLanguage}
-              noShadow
-              noBg
-            /> */}
-
-            {params.locale === "ar" ? (
-              <Link locale="en" href="/">
-                english
-              </Link>
-            ) : (
-              <Link locale="ar" href="/">
-                arabic
-              </Link>
-            )}
+            <SwitchLang RedirectTo="/" />
           </li>
         </ul>
         <div

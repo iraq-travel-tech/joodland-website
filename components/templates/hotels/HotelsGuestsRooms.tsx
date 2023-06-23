@@ -18,10 +18,12 @@ const HotelsGuestsRoomsBox = ({
   OpenGuestsRoomsDialog: boolean;
   setGuests: any;
 }) => {
+  const t = useTranslations("Home");
+
   return (
     <Dialog open={OpenGuestsRoomsDialog} setOpen={setOpenGuestsRoomsDialog}>
       <div className="flex flex-col gap-3 p-2 sm:w-[20em] w-[16em]">
-        <div className="text-xl font-bold">Guests & Rooms</div>
+        <div className="text-xl font-bold">{t("guests&rooms")}</div>
         <hr className="my-2 border border-gray-200" />
 
         {GuestsRooms.map((item, index) => (
@@ -68,7 +70,7 @@ const HotelsGuestsRoomsBox = ({
             });
           }}
         >
-          Done
+          {t("btns.done")}
         </Button>
       </div>
     </Dialog>
@@ -76,10 +78,12 @@ const HotelsGuestsRoomsBox = ({
 };
 
 export default function HotelsGuestsRooms() {
+  const t = useTranslations("Home");
+
   const [GuestsRooms, setGuestsRooms] = useState([
-    { label: "Adults", value: 1 },
-    { label: "Children", value: 0 },
-    { label: "Rooms", value: 1 },
+    { label: t("passengers.adults.title"), value: 1 },
+    { label: t("passengers.children.title"), value: 0 },
+    { label: t("passengers.rooms"), value: 1 },
   ]);
 
   const [ShowContainer, setShowContainer] = useState(false);
@@ -89,8 +93,6 @@ export default function HotelsGuestsRooms() {
     children: 0,
     rooms: 1,
   });
-
-  const t = useTranslations("Home");
 
   return (
     <div>
@@ -113,11 +115,6 @@ export default function HotelsGuestsRooms() {
         </div>
       </div>
 
-      {/* {ShowContainer && (
-        <div className="absolute top-16 mt-2 bg-white shadow-md border border-gray-200 rounded-lg w-[16em] p-3 z-10">
-          
-        </div>
-      )} */}
       <HotelsGuestsRoomsBox
         OpenGuestsRoomsDialog={ShowContainer}
         setOpenGuestsRoomsDialog={setShowContainer}

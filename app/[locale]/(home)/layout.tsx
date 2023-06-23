@@ -1,4 +1,4 @@
-import TopNav from "@components/templates/nav/TopNav";
+import TopNav from "@components/templates/nav/HomeNav";
 import React from "react";
 
 export default function layout({ children }: { children: React.ReactNode }) {
