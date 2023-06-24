@@ -92,6 +92,7 @@ export default function HotelsPageList({ data }: { data: HotelsData }) {
               hotelDescription={hotel.hotel_description[params.locale]}
               pricePerNight={hotel.min_price}
               hotelId={hotel.hotel_id}
+              slug={hotel.name.en.replaceAll(" ", "-")}
             />
           ))}
         </div>

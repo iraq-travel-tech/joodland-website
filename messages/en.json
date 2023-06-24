@@ -132,5 +132,17 @@
     "perNight": "/night",
     "reviews": "reviews",
     "pricePerNights": "${price} for {count} nights"
+  },
+  "HotelDetails": {
+    "hotelWebsite": "Hotel Website",
+    "city": "City",
+    "address": "Address",
+    "goback": "go back",
+    "questions": {
+      "aboutHotel": "Can you tell me more about the hotel?",
+      "roomExpectation": "What can I expect from the rooms?",
+      "diningOptions": "What dining options are available at the hotel?",
+      "popularAttractions": "Are there any popular attractions nearby?"
+    }
   }
 }

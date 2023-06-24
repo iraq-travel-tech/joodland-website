@@ -11,12 +11,14 @@ const HotelCard = ({
   pricePerNight,
   hotelId,
   images,
+  slug,
 }: {
   hotelName: string;
   hotelDescription: string;
   pricePerNight: string;
   hotelId: string;
   images: string[];
+  slug: string;
 }) => {
   const [selectedImage, setSelectedImage] = useState<number>(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -133,7 +135,7 @@ const HotelCard = ({
       </div>
 
       <Link
-        href={`/hotels/hotel/${hotelId}`}
+        href={`/hotels/hotel/${slug}`}
         className="flex  flex-col lg:mt-0 mt-2 lg:flex-1 lg:ms-4"
       >
         <div className="font-bold md:text-xl text-lg lg:text-2xl text-secondary-800  transition-all capitalize">

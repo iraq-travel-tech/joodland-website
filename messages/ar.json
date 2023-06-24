@@ -132,5 +132,18 @@
     "perNight": "لليلة",
     "reviews": "تقييمات",
     "pricePerNights": "{price} دولار لمدة {count} ليال"
+  },
+
+  "HotelDetails": {
+    "hotelWebsite": "موقع الفندق",
+    "city": "المدينة",
+    "address": "العنوان",
+    "goback": "الرجوع",
+    "questions": {
+      "aboutHotel": "هل يمكنك إخباري بمزيد من التفاصيل عن الفندق؟",
+      "roomExpectation": "ماذا يمكنني توقعه من الغرف؟",
+      "diningOptions": "ما هي خيارات تناول الطعام المتاحة في الفندق؟",
+      "popularAttractions": "هل هناك معالم سياحية شهيرة بالقرب من الفندق؟"
+    }
   }
 }
