@@ -27,8 +27,6 @@ export default function FlightsPage({
 
   return (
     <div>
-      
-
       <div className="flex flex-col gap-4 pt-6 pb-10">
         {data.map((i, index) => (
           <div key={index}>

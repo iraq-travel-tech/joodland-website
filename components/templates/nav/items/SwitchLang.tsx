@@ -8,6 +8,8 @@ const SwitchLang = ({ RedirectTo }: { RedirectTo: string }) => {
   const params = useParams() as { locale: "ar" | "en" };
   const currentLocale = params.locale;
 
+  const currentParams = window.location.pathname; // /en/hotels/hotel/Sofitel-Dubai-Jumeirah-Beach
+
   return (
     <div className="relative z-50">
       <DropDown
@@ -25,7 +27,10 @@ const SwitchLang = ({ RedirectTo }: { RedirectTo: string }) => {
           ].map((i, index) => (
             <Link
               locale={currentLocale === "ar" ? "en" : "ar"}
-              href={RedirectTo}
+              href={currentParams.replace(
+                currentLocale,
+                currentLocale === "ar" ? "en" : "ar"
+              )}
               key={index}
             >
               {i.label}

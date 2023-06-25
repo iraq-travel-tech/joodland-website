@@ -97,6 +97,9 @@ const HotelCard = ({
   };
   const t = useTranslations("hotels");
 
+  const numberOfNights = calculateDaysBetween(checkin, checkout);
+  const totalPrice = parseInt(pricePerNight, 10) * numberOfNights;
+
   return (
     <div className="flex flex-col group lg:flex-row p-3 rounded-lg bg-white">
       <div className="relative rounded-lg overflow-hidden lg:w-[15em]">
@@ -161,10 +164,8 @@ const HotelCard = ({
 
             <div className="text-zinc-400 text-xs leading-1 lg:text-md">
               {t("pricePerNights", {
-                count: calculateDaysBetween(checkin, checkout),
-                price:
-                  parseInt(pricePerNight) *
-                  calculateDaysBetween(checkin, checkout),
+                count: numberOfNights,
+                price: totalPrice,
               })}
             </div>
           </div>

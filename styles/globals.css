@@ -10,3 +10,12 @@
 .custom-shadow {
   box-shadow: rgba(19, 41, 104, 0.2) 0px 2px 5px 0px;
 }
+
+[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
+
+
+[data-state="open"] .transition-transform {
+  transform: rotate(180deg);
+}

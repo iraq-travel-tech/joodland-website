@@ -1,11 +1,11 @@
 import React from "react";
 import HotelDetailsImages from "./_HotelDetailsImages";
-import Accordion from "@components/elements/accordion/Accordion";
 import { BiLink } from "react-icons/bi";
 import Link from "next/link";
 import { GrLocation } from "react-icons/gr";
 import { useTranslations } from "next-intl";
 import GoBackBtn from "@components/elements/button/GoBackBtn";
+import AccordionDemo from "@components/elements/accordion/Accordion";
 
 export default function HotelDetailsPage({
   data,
@@ -43,33 +43,31 @@ export default function HotelDetailsPage({
       <HotelDetailsImages />
 
       <div className="mt-10">
-        <GoBackBtn>
-          {t("goback")}
-        </GoBackBtn>
+        <GoBackBtn>{t("goback")}</GoBackBtn>
       </div>
-      <h1 className="sm:text-4xl text-2xl mt-2 font-bold">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl mt-2 font-bold">
         {data.data.hotels[0].name[locale]}
       </h1>
       <section className="flex md:flex-row flex-col justify-between gap-10">
         <article className="flex flex-col ">
-          <p className="text-zinc-500 sm:text-2xl mt-2">
+          <p className="text-zinc-500 lg:text-2xl md:text-xl mt-2">
             {data.data.hotels[0].general_description[locale]}
           </p>
 
-          <div className="md:max-w-lg sm:text-base text-sm">
-            <Accordion questions={questions} />
+          <div className="md:max-w-lg sm:text-base text-sm mt-6">
+            <AccordionDemo questions={questions} />
           </div>
         </article>
 
-        <aside className="flex flex-col">
-          <div className="flex flex-col divide-y-2 min-w-max">
-            <div className="py-2 flex justify-between items-center gap-10">
+        <aside className="flex md:w-[25em] flex-col">
+          <div className="flex flex-col divide-y-2 w-full min-w-max">
+            <div className="py-2 flex justify-between items-center gap-10 w-full">
               <p className="text-zinc-600 flex items-center gap-2">
                 <BiLink aria-label="Link icon" />
                 {t("hotelWebsite")}
               </p>
               <Link
-                className="text-blue-600 underline"
+                className="text-blue-600 underline truncate max-w-[10em]"
                 href={data.data.hotels[0].hotel_web}
               >
                 {data.data.hotels[0].hotel_web}
@@ -77,11 +75,11 @@ export default function HotelDetailsPage({
             </div>
 
             <div className="py-2 flex justify-between items-center gap-10">
-              <p className="text-zinc-600 flex items-center gap-2">
+              <p className="text-zinc-600 flex items-center  gap-2">
                 <GrLocation aria-label="Location icon" />
                 {t("city")}
               </p>
-              <p className="text-zinc-600">
+              <p className="text-zinc-600 max-w-[8em] truncate">
                 {data.data.hotels[0].city[locale]}
               </p>
             </div>
@@ -91,7 +89,7 @@ export default function HotelDetailsPage({
                 <GrLocation aria-label="Location icon" />
                 {t("address")}
               </p>
-              <p className="text-zinc-600">
+              <p className="text-zinc-600 max-w-[9em] truncate">
                 {data.data.hotels[0].address[locale]}
               </p>
             </div>

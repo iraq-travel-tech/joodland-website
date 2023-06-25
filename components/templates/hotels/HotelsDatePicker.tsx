@@ -38,7 +38,7 @@ const HotelsDatePicker: React.FC<DatePickerProps> = ({
   const [day, setDay] = useState(date.day);
 
   const handleDone = () => {
-    setDate({ year, month, day });
+    setDate({ year, month, day: String(day).padStart(2, "0") });
     setOpen(false);
   };
 

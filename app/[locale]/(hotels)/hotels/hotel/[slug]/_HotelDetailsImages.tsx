@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import useDisableBackButton from "@lib/functions/DisableGoingBack";
 
 const images = [
   "https://storage.googleapis.com/v-travel-hotels-images/55355/50113833.jpg",
@@ -18,17 +19,7 @@ export default function HotelDetailsImages() {
   const [openModal, setOpenModal] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
-  const handlePrevClick = () => {
-    setCarouselIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNextClick = () => {
-    setCarouselIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  useDisableBackButton(openModal, setOpenModal);
 
   return (
     <div>
@@ -90,7 +81,7 @@ export default function HotelDetailsImages() {
               className="w-full h-full bg-black/50 fixed inset-0 z-10"
               onClick={() => setOpenModal(false)}
             />
-            <div className="z-20 w-full h-[90vh] bg-white rounded-t-3xl flex flex-col overflow-y-scroll transition-transform pb-10 duration-300 ease-in-out">
+            <div className="z-20 w-full h-[80vh] bg-white rounded-t-3xl flex flex-col overflow-y-scroll transition-transform pb-10 duration-300 ease-in-out">
               <div className="sticky top-0 pt-4 pb-3 flex justify-center bg-white">
                 <div
                   className="w-10 h-1 rounded-full bg-gray-300 cursor-pointer"

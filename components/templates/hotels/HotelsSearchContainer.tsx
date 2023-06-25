@@ -4,7 +4,7 @@ import HotelsInput from "./HotelsInput";
 import Button from "@components/elements/button/Button";
 import { useTranslations } from "next-intl";
 import HotelsDatePicker from "./HotelsDatePicker";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import HotelsGuestsRooms from "./HotelsGuestsRooms";
 import Link from "next/link";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -15,6 +15,8 @@ export default function HotelsSearchContainer() {
     locale: "en" | "ar";
   };
 
+  const router = useRouter();
+
   const [City, setCity] = useState({
     name: "",
     country: "",
@@ -22,9 +24,8 @@ export default function HotelsSearchContainer() {
 
   const monthNameToNumber = (monthName: string) => {
     const index = AllMonths.indexOf(monthName) + 1;
-    return String(index).padStart(2, '0');
+    return String(index).padStart(2, "0");
   };
-
 
   const t = useTranslations("Home");
 
@@ -63,7 +64,13 @@ export default function HotelsSearchContainer() {
   ];
   const [Loading, setLoading] = useState(false);
 
-  const hotelsUrl = `/hotels/${City.name}?checkin=${CheckIn.year}-${monthNameToNumber(CheckIn.month)}-${CheckIn.day}&checkout=${CheckOut.year}-${monthNameToNumber(CheckOut.month)}-${CheckOut.day}&adults=1&children=0&rooms=1`;
+  const hotelsUrl = `/hotels/${City.name}?checkin=${
+    CheckIn.year
+  }-${monthNameToNumber(CheckIn.month)}-${CheckIn.day}&checkout=${
+    CheckOut.year
+  }-${monthNameToNumber(CheckOut.month)}-${
+    CheckOut.day
+  }&adults=1&children=0&rooms=1`;
 
   return (
     <motion.div
@@ -88,7 +95,6 @@ export default function HotelsSearchContainer() {
       className="flex lg:flex-row flex-col w-full gap-3 mt-2"
     >
       <HotelsInput State={City} setState={setCity} />
-
       <div className="flex sm:flex-row flex-col gap-2">
         <HotelsDatePicker
           date={CheckIn}
@@ -104,26 +110,30 @@ export default function HotelsSearchContainer() {
           months={[...AllMonths]}
         />
       </div>
-
       <HotelsGuestsRooms />
-
-      <Link className="h-full " href={hotelsUrl} passHref>
-        <Button
-          className="h-full w-full"
-          onClick={() => {
-            if (City.name === "") {
-              alert("Please enter a city");
-            } else {
-              setLoading(true);
-            }
-          }}
-        >
-          {!Loading && t("btns.search")}
-          {Loading && (
-            <AiOutlineLoading3Quarters className="animate-spin h-[1em]" />
-          )}
-        </Button>
-      </Link>
+      <Button
+        className="h-full w-full"
+        onClick={() => {
+          if (City.name === "") {
+            alert("Please enter a city");
+          } else if (
+            CheckIn.year === CheckOut.year &&
+            CheckIn.month === CheckOut.month &&
+            CheckIn.day === CheckOut.day
+          ) {
+            alert("Check-out date cannot be the same as check-in date");
+          } else {
+            setLoading(true);
+            // Navigate to /flights or whatever you need to do next
+            router.push(hotelsUrl);
+          }
+        }}
+      >
+        {!Loading && t("btns.search")}
+        {Loading && (
+          <AiOutlineLoading3Quarters className="animate-spin h-[1em]" />
+        )}
+      </Button>
     </motion.div>
   );
 }
