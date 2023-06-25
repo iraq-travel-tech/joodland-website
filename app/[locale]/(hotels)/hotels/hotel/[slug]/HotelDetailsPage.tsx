@@ -19,19 +19,19 @@ export default function HotelDetailsPage({
   const questions = [
     {
       question: t("questions.aboutHotel"),
-      answer: data.data.hotels[0].hotel_description.en,
+      answer: data.data.hotels[0].hotel_description[locale],
     },
     {
       question: t("questions.roomExpectation"),
-      answer: data.data.hotels[0].room_description.en,
+      answer: data.data.hotels[0].room_description[locale],
     },
     {
       question: t("questions.diningOptions"),
-      answer: data.data.hotels[0].eating_description.en,
+      answer: data.data.hotels[0].eating_description[locale],
     },
     {
       question: t("questions.popularAttractions"),
-      answer: data.data.hotels[0].poi_description.en,
+      answer: data.data.hotels[0].poi_description[locale],
     },
   ];
 
