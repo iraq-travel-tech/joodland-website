@@ -176,3 +176,4 @@ const HotelCard = ({
 };
 
 export default HotelCard;
+// s
