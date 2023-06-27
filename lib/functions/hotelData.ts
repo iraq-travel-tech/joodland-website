@@ -8,11 +8,11 @@ export async function fetchHotelData(name: string) {
       query: `
           query ($name: String) {
             hotels(name: $name) {
-              address { en }
-              city { en }
-              eating_description { en }
-              general_description { en }
-              hotel_description { en }
+              address { en,ar }
+              city { en,ar }
+              eating_description { en,ar }
+              general_description { en,ar }
+              hotel_description { en,ar }
               hotel_id
               hotel_image_url
               hotel_web
@@ -20,9 +20,9 @@ export async function fetchHotelData(name: string) {
               longitude
               min_price
               zip
-              room_description { en }
-              poi_description { en }
-              name { en }
+              room_description { en,ar }
+              poi_description { en,ar }
+              name { en,ar }
             }
           }
         `,
