@@ -44,7 +44,7 @@ export default function TopNav() {
           } `}
         >
           <li className="relative z-50">
-            <SwitchLang RedirectTo="/" />
+            <SwitchLang />
           </li>
         </ul>
         <div

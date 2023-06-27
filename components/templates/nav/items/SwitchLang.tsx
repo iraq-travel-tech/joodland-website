@@ -1,14 +1,14 @@
 "use client";
 import DropDown from "@components/elements/dropdown/DropDown";
-import Link from "next-intl/link";
-import { useParams } from "next/navigation";
 import { BsTranslate } from "react-icons/bs";
+import Link from "next-intl/link";
+import { useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
-const SwitchLang = ({ RedirectTo }: { RedirectTo: string }) => {
-  const params = useParams() as { locale: "ar" | "en" };
-  const currentLocale = params.locale;
+const SwitchLang = () => {
+  const pathname = usePathname();
 
-  const currentParams = window.location.pathname; // /en/hotels/hotel/Sofitel-Dubai-Jumeirah-Beach
+  const searchparams = useSearchParams();
 
   return (
     <div className="relative z-50">
@@ -26,12 +26,13 @@ const SwitchLang = ({ RedirectTo }: { RedirectTo: string }) => {
             { locale: "ar", label: "arabic" },
           ].map((i, index) => (
             <Link
-              locale={currentLocale === "ar" ? "en" : "ar"}
-              href={currentParams.replace(
-                currentLocale,
-                currentLocale === "ar" ? "en" : "ar"
-              )}
+              replace
               key={index}
+              href={`${pathname?.replace(
+                "/en/",
+                "/"
+              )}?${searchparams?.toString()}`}
+              locale={i.locale}
             >
               {i.label}
             </Link>

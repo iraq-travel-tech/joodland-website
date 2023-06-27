@@ -27,7 +27,7 @@ export default function DropDown({
                 initial={{ opacity: 0, y: -10 }}
                 exit={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded p-3 bg-white shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2)] "
+                className="rounded z-50 p-3 bg-white shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2)] "
               >
                 <Popover.Arrow className="fill-white" />
                 {children}
