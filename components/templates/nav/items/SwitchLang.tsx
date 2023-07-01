@@ -5,8 +5,14 @@ import Link from "next-intl/link";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const SwitchLang = () => {
-  const pathname = usePathname();
+const SwitchLang = ({
+  children,
+  className,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) => {
+  const pathname = usePathname()?.replace("/en", "/");
 
   const searchparams = useSearchParams();
 
@@ -15,8 +21,9 @@ const SwitchLang = () => {
       <DropDown
         align="end"
         trigger={
-          <button className="flex gap-2 items-center">
+          <button className={`flex gap-2 items-center ${className}`}>
             <BsTranslate size={20} />
+            {children}
           </button>
         }
       >

@@ -120,7 +120,8 @@
 
       "Stops": "Stops",
       "transferTime": "Transfer Time",
-      "selectOutbound": "Select outbound"
+      "selectOutbound": "Select outbound",
+      "switchlanguages": "Switch Languages"
     }
   },
   "hotels": {

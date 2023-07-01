@@ -6,24 +6,31 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 interface FetchResponse {
-  name: string;
-  latitude: string;
-  longitude: string;
-  country: string;
-  population: string;
-  is_capital: boolean;
+  name: {
+    en: string;
+    ar: string;
+  };
 }
 
 export default function HotelsInput({
   State,
   setState,
 }: {
-  State: { name: string; country: string };
-  setState: any;
+  State: {
+    name: {
+      en: string;
+      ar: string;
+    };
+  };
+  setState: React.Dispatch<
+    React.SetStateAction<{ name: { en: string; ar: string } }>
+  >;
 }) {
   const t = useTranslations("Home");
+  const locale = useParams()?.locale as string;
 
   const [OpenContainer, setOpenContainer] = useState(false);
   const [inputState, setInputState] = useState(State.name);
@@ -50,8 +57,10 @@ export default function HotelsInput({
       setLoading(true);
       setError("");
       try {
-        if (debouncedInput.trim() !== "") {
-          const response = await fetch(`/api/cities?query=${debouncedInput}`);
+        // Use the 'en' property from debouncedInput
+        if (debouncedInput.en.trim() !== "") {
+          // Pass the English name as a query parameter
+          const response = await fetch(`/api/cities?q=${debouncedInput.en}`);
 
           // Check if the response is okay (status code 200-299)
           if (response.ok) {
@@ -78,15 +87,9 @@ export default function HotelsInput({
   }, [debouncedInput]);
 
   const OnInputBlur = () => {
-    selectedFromList
-      ? () => {
-          setState({ name: "", country: "" });
-          setInputState("");
-        }
-      : () => {
-          setState({ name: "", country: "" });
-          setInputState("");
-        };
+    // Simplify this logic since both conditions were doing the same thing
+    setState({ name: { en: "", ar: "" } });
+    setInputState({ en: "", ar: "" });
     setSelectedFromList(false);
 
     setTimeout(() => {
@@ -104,17 +107,19 @@ export default function HotelsInput({
     >
       <motion.div layout>
         <input
-          ref={InputRef}
           className="relative h-14 w-full px-3 pb-1 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 md:pt-3.5 font-semibold transition duration-200 ease-in-out text-base
 
           ltr:pl-[3rem]
           rtl:pr-[3rem]
           
           "
+          ref={InputRef}
           onFocus={Focused}
           onBlur={OnInputBlur}
-          value={inputState}
-          onChange={(e) => setInputState(e.target.value)}
+          value={inputState.en} // use the 'en' property
+          onChange={
+            (e) => setInputState({ ...inputState, en: e.target.value }) // update the 'en' property
+          }
         />
       </motion.div>
 
@@ -124,8 +129,12 @@ export default function HotelsInput({
             size={28}
             onClick={() => {
               // Here, set the input state and other states to empty values
-              setInputState("");
-              setState({ name: "", country: "" });
+              setInputState(
+                { en: "", ar: "" } // update the 'en' property
+              );
+              setState(
+                { name: { en: "", ar: "" } } // update the 'en' property
+              );
               setResults([]);
               setError("");
             }}
@@ -159,7 +168,7 @@ export default function HotelsInput({
         className={`labeltext absolute  text-zinc-400 md:!block
         
         ${
-          OpenContainer || inputState.trim() !== ""
+          OpenContainer || inputState.en.trim() !== ""
             ? "ltr:left-12 rtl:right-12 top-2 text-xs hidden"
             : "top-4 capitalize ltr:left-12 rtl:right-12 transform text-base"
         }
@@ -201,7 +210,9 @@ export default function HotelsInput({
                   className="flex gap-3 p-2 rounded-lg hover:bg-gray-200 items-center cursor-pointer active:scale-95 transition-all"
                   onClick={() => {
                     setSelectedFromList(true);
-                    setState({ name: item.name, country: item.country });
+                    setState({
+                      name: { en: item.name.en, ar: item.name.ar },
+                    });
                     setInputState(item.name);
                   }}
                 >
@@ -211,10 +222,8 @@ export default function HotelsInput({
                   />
                   <div className="flex flex-col">
                     <div className="capitalize font-bold text-lg">
-                      {item.name}
-                    </div>
-                    <div className="text-zinc-400 text-xs leading-1">
-                      {item.country}
+                      {/* @ts-ignore */}
+                      {item.name[locale]}
                     </div>
                   </div>
                 </motion.div>

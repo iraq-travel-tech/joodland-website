@@ -18,8 +18,10 @@ export default function HotelsSearchContainer() {
   const router = useRouter();
 
   const [City, setCity] = useState({
-    name: "",
-    country: "",
+    name: {
+      en: "",
+      ar: "",
+    },
   });
 
   const monthNameToNumber = (monthName: string) => {
@@ -64,7 +66,7 @@ export default function HotelsSearchContainer() {
   ];
   const [Loading, setLoading] = useState(false);
 
-  const hotelsUrl = `/hotels/${City.name}?checkin=${
+  const hotelsUrl = `/hotels/${City.name.en}?checkin=${
     CheckIn.year
   }-${monthNameToNumber(CheckIn.month)}-${CheckIn.day}&checkout=${
     CheckOut.year
@@ -114,7 +116,7 @@ export default function HotelsSearchContainer() {
       <Button
         className="h-full w-full"
         onClick={() => {
-          if (City.name === "") {
+          if (City.name.en === "") {
             alert("Please enter a city");
           } else if (
             CheckIn.year === CheckOut.year &&
