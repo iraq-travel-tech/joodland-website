@@ -11,6 +11,7 @@
     "ReturnDate": "Return Date",
     "hotels": "Hotels",
     "flights": "Flights",
+    "packages": "Packages",
     "guests&rooms": "Guests & Rooms",
 
     "offers": {
@@ -144,6 +145,32 @@
       "roomExpectation": "What can I expect from the rooms?",
       "diningOptions": "What dining options are available at the hotel?",
       "popularAttractions": "Are there any popular attractions nearby?"
+    }
+  },
+  "packages": {
+    "title": "Packages",
+    "destination": "Destination",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "btns": {
+      "search": "search",
+      "checkin": "checkin",
+      "guests&rooms": "Guests & Rooms",
+      "done": "done",
+      "numberofdays": "number of days",
+      "days": "{count} days"
     }
   }
 }

@@ -9,6 +9,8 @@
     "ReturnDate": "تاريخ العودة",
     "hotels": "الفنادق",
     "flights": "الرحلات الجوية",
+    "packages": "الباقات",
+
     "guests&rooms": "الضيوف والغرف",
 
     "flashfrom": "يرجى تحديد حقل 'من'.",
@@ -80,7 +82,7 @@
     },
     "checkin": "تسجيل الوصول",
     "checkout": "تسجيل الخروج",
-    "destinations": "الوجهات"
+    "destinations": "الوجهة"
   },
   "flights": {
     "selectOutbound": "اختار الرحلة",
@@ -145,6 +147,32 @@
       "roomExpectation": "ماذا يمكنني توقعه من الغرف؟",
       "diningOptions": "ما هي خيارات تناول الطعام المتاحة في الفندق؟",
       "popularAttractions": "هل هناك معالم سياحية شهيرة بالقرب من الفندق؟"
+    }
+  },
+  "packages": {
+    "title": "الباقات",
+    "destination": "الوجهة",
+    "months": {
+      "january": "يناير",
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو",
+      "july": "يوليو",
+      "august": "أغسطس",
+      "september": "سبتمبر",
+      "october": "أكتوبر",
+      "november": "نوفمبر",
+      "december": "ديسمبر"
+    },
+    "btns": {
+      "search": "البحث",
+      "checkin": "تاريخ تسجيل الدخول",
+      "guests&rooms": "الضيوف و الغرف",
+      "done": "تم",
+      "numberofdays": "عدد الايام",
+      "days": "{count} ايام"
     }
   }
 }

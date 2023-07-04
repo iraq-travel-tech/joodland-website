@@ -1,10 +1,11 @@
 "use client";
 import FlightsSearchBox from "../flights/FlightsSearchBox";
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import TabsList from "@components/blocks/tabs/TabList";
 import HotelsSearchContainer from "../hotels/HotelsSearchContainer";
 import { useTranslations } from "next-intl";
+import PackagesSearchBox from "../packages/PackagesSearchBox";
 
 export default function HomeSearchContainer({
   noShadow,
@@ -23,6 +24,10 @@ export default function HomeSearchContainer({
     {
       name: t("hotels"),
       value: "hotels",
+    },
+    {
+      name: t("packages"),
+      value: "packages",
     },
   ];
 
@@ -44,11 +49,17 @@ export default function HomeSearchContainer({
       />
       <div className="flex pt-3 sm:pt-1">
         <AnimatePresence mode="wait">
-          {SelectedSearchBox === "flights" ? (
-            <FlightsSearchBox key="ss" />
-          ) : (
-            <HotelsSearchContainer key="ddd" />
-          )}
+          {availableServices.map((service) => {
+            if (service.value === SelectedSearchBox) {
+              if (service.value === "flights") {
+                return <FlightsSearchBox key="ss" />;
+              } else if (service.value === "hotels") {
+                return <HotelsSearchContainer key="ddd" />;
+              } else {
+                return <PackagesSearchBox />;
+              }
+            }
+          })}
         </AnimatePresence>
       </div>
     </div>

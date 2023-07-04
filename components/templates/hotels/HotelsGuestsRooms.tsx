@@ -18,12 +18,12 @@ const HotelsGuestsRoomsBox = ({
   OpenGuestsRoomsDialog: boolean;
   setGuests: any;
 }) => {
-  const t = useTranslations("Home");
+  const t = useTranslations("packages");
 
   return (
     <Dialog open={OpenGuestsRoomsDialog} setOpen={setOpenGuestsRoomsDialog}>
       <div className="flex flex-col gap-3 p-2 sm:w-[20em] w-[16em]">
-        <div className="text-xl font-bold">{t("guests&rooms")}</div>
+        <div className="text-xl font-bold">{t("btns.guests&rooms")}</div>
         <hr className="my-2 border border-gray-200" />
 
         {GuestsRooms.map((item, index) => (

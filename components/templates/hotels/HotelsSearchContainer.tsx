@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import HotelsDatePicker from "./HotelsDatePicker";
 import { useParams, useRouter } from "next/navigation";
 import HotelsGuestsRooms from "./HotelsGuestsRooms";
-import Link from "next/link";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { motion } from "framer-motion";
 
