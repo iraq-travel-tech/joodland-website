@@ -26,7 +26,7 @@
     "framer-motion": "^10.12.4",
     "install": "^0.13.0",
     "jotai": "^2.1.0",
-    "next": "13.4.6",
+    "next": "13.4.8",
     "next-intl": "2.15.0-beta.5",
     "openai": "^3.3.0",
     "postcss": "8.4.23",

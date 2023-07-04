@@ -6,6 +6,7 @@ import { GrLocation } from "react-icons/gr";
 import { useTranslations } from "next-intl";
 import GoBackBtn from "@components/elements/button/GoBackBtn";
 import AccordionDemo from "@components/elements/accordion/Accordion";
+import { IoShareOutline } from "react-icons/io5";
 
 export default function HotelDetailsPage({
   data,
@@ -45,12 +46,12 @@ export default function HotelDetailsPage({
       <div className="mt-10">
         <GoBackBtn>{t("goback")}</GoBackBtn>
       </div>
-      <h1 className="lg:text-4xl md:text-3xl text-2xl mt-2 font-bold">
+      <h1 className="lg:text-2xl text-xl mt-2 font-bold">
         {data.data.hotels[0].name[locale]}
       </h1>
       <section className="flex md:flex-row flex-col justify-between gap-10">
         <article className="flex flex-col ">
-          <p className="text-zinc-500 lg:text-2xl md:text-xl mt-2">
+          <p className="text-zinc-500 lg:text-lg mt-2">
             {data.data.hotels[0].general_description[locale]}
           </p>
 
@@ -61,6 +62,12 @@ export default function HotelDetailsPage({
 
         <aside className="flex md:w-[25em] flex-col">
           <div className="flex flex-col divide-y-2 w-full min-w-max">
+            {/* <div className="flex justify-between items-center">
+              <button className="mb-3 gap-2 flex items-center hover:underline">
+                Share
+                <IoShareOutline />
+              </button>
+            </div> */}
             <div className="py-2 flex justify-between items-center gap-10 w-full">
               <p className="text-zinc-600 flex items-center gap-2">
                 <BiLink aria-label="Link icon" />
